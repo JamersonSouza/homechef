@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="https://static.pingendo.com/bootstrap/bootstrap-4.3.1.css">
+</head>
+
+<body style="	background-image: linear-gradient(to bottom, rgba(130,130,130,0.8), rgba(130,130,130,0.8));	background-position: top left;	background-size: 100%;	background-repeat: repeat;">
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark py-4 pb-4" style="">
+    <div class="container"> <a class="navbar-brand" th:href="@{index}">
+        <b><b class="">HOME CHEF</b></b>
+      </a> <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse" data-target="#navbar10">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbar10">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item text-white"> <a class="nav-link" th:href="@{encontrar_chef}"><b class="text-dark"><b class="text-white">ENCONTRAR UM CHEF</b></b></a> </li>
+          <li class="nav-item text-danger"> <a class="nav-link text-decoration-none" href="sobre_nos.html"><span><b class="text-dark"><b class="text-white">SOBRE NOS</b></b></span></a> </li>
+          <li class="nav-item text-dark" style=""> <a class="nav-link text-decoration-none" href="contato.html"><b class="text-dark"><b class="text-white h-50">CONTATO</b></b></a> </li>
+          <button class="btn btn-outline-warning" type="button">
+          <a class="link" th:href="@{index}">SAIR</a>
+          </button>
+        </a>
+      </div>
+    </div>
+  </nav>
+  <div class="text-center text-white py-2" style="	background-image: linear-gradient(to bottom, rgba(105,105,105.0.8), rgba(105,105,105.0.8));	background-position: top left;	background-size: 100%;	background-repeat: repeat;">
+    <div class="container">
+      <div class="row">
+        <div class="mx-auto p-4 col-md-5"> <img class="img-fluid d-block ml-5 mb-1" src="imagens/user.png" style="	max-width: 65%;	max-height: 65%;">
+          <h1 class="mt-3"><b>nome_chef</b></h1>
+          <div class="row">
+            <div class="col-md-6"><a class="btn btn-primary" href="#"><b>CADASTRAR CARDÁPIO</b></a></div>
+            <div class="col-md-6"><a class="btn btn-primary" href="#"><b>MEUS EVENTOS AGENDADOS</b></a></div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mt-4"><a class="btn btn-primary" href="#"><b>GALERIA DE FOTOS</b></a></div>
+            <div class="col-md-6 mt-4"><a class="btn btn-primary" href="#"><b>COMPLETAR PERFIL</b></a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="text-white py-1" style="	background-image: linear-gradient(to bottom, rgba(0, 0, 0, .75), rgba(0, 0, 0, .75)), url(imagens/fundoFotter.jpg);	background-position: center center, center center;	background-size: cover, cover;	background-repeat: repeat, repeat;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center align-self-center p-4">
+          <p class=""><b>Home Cheff Team.&nbsp;<br>Av.Barão de Lucena, 251 - Centro Jaboatão dos Guararapes,&nbsp;<br>PE 54110-051&nbsp;<br>Tel: (81) 9 5642-3532&nbsp;</b></p>
+          <div class="row">
+            <div class="col-md-12 d-flex align-items-center justify-content-around"> <a href="#">
+                <i class="d-block fa fa-facebook-official text-light fa-lg mx-2"></i>
+              </a> <a href="#">
+                <i class="d-block fa fa-instagram text-light fa-lg mx-2"></i>
+              </a> <a href="#">
+                <i class="d-block fa fa-google-plus-official text-light fa-lg mx-2"></i>
+              </a> <a href="#">
+                <i class="d-block fa fa-pinterest-p text-light fa-lg mx-2"></i>
+              </a> <a href="#">
+                <i class="d-block fa fa-reddit text-light fa-lg mx-2"></i>
+              </a> <a href="#">
+                <i class="d-block fa fa-twitter text-light fa-lg ml-2"></i>
+              </a> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+
+</html>
