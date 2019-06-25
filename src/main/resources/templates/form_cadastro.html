@@ -2,46 +2,145 @@
 <html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
-  <link rel="stylesheet" href="https://static.pingendo.com/bootstrap/bootstrap-4.3.1.css">
-  <title>Escolher Cadastro</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+	type="text/css">
+<link rel="stylesheet"
+	href="https://static.pingendo.com/bootstrap/bootstrap-4.3.1.css">
+<title>Cadastro :: Chef</title>
+<script type="text/javascript">
+	function validarSenha() {
+		SenhaAtual = document.getElementById('SenhaAtual').value;
+		SenhaRepeat = document.getElementById('SenhaRepeat').value;
+		if (SenhaAtual != SenhaRepeat) {
+			alert("SENHAS DIFERENTES!\nFAVOR DIGITAR SENHAS IGUAIS");
+		} else {
+			document.FormSenha.submit();
+		}
+	}
+	
+	/**
+	 * FUNÇÃO PARA MASCARAR TELEFONE
+	 */
+	function mascara(o,f){
+	    v_obj=o
+	    v_fun=f
+	    setTimeout("execmascara()",1)
+	}
+	function execmascara(){
+	    v_obj.value=v_fun(v_obj.value)
+	}
+	function mtel(v){
+	    v=v.replace(/\D/g,"");             //Remove tudo o que não é dígito
+	    v=v.replace(/^(\d{2})(\d)/g,"($1) $2"); //Coloca parênteses em volta dos dois primeiros dígitos
+	    v=v.replace(/(\d)(\d{4})$/,"$1-$2");    //Coloca hífen entre o quarto e o quinto dígitos
+	    return v;
+	}
+	</script>
 </head>
 
 <body>
-  <div class="py-5 text-left" style="	background-image: url(imagens/chef.jpg);	background-size: cover;	background-position: left top;	background-repeat: repeat;">
-    <div class="container">
-      <div class="row" style="">
-        <div class="mx-auto bg-white p-5 col-12 col-md-6 bg-dark text-body" style="	box-shadow: grey 10px 5px 4px;	background-image: linear-gradient(to bottom, rgb(211, 211, 211), rgb(211, 211, 211));	background-position: top left;	background-size: 100%;	background-repeat: repeat;">
-          <h1 class="mb-4 text-center text-dark"><b>CADASTRE-SE</b></h1>
-          <form>
-          	<strong>NOME:</strong>	
-            <div class="form-group"> 
-            <input type="email" class="form-control mb-2 border border-dark rounded-sm" placeholder="Exemplo: João" id="form9">
-            <strong>EMAIL:</strong>
-             <div class="form-group">
-             <input type="email" class="form-control mt-2 border border-dark rounded-sm" id="form9" placeholder="exemplo@gmail.com"></div>
-            </div>
-            <strong>SENHA:</strong>
-            <div class="form-group mb-3"> 
-            <input type="password" class="form-control rounded-sm border-dark border" id="form10" placeholder="Mínimo 8 caracteres">
-            <br>
-            <strong>REPETIR SENHA:</strong>
-              <div class="form-group"><input type="password" class="form-control mt-1 border border-dark rounded-sm" id="form10" placeholder="Insira novamente sua senha"></div> <small class="form-text text-muted text-right"></small>
-            </div>
-          </form>
-          <div class="row">
-            <div class="col-md-12"><a class="btn mb-2 btn-primary w-100" th:href="@{usuario_logado_index}"><b>FINALIZAR CADASTRO</b></a></div>
-            <div class="col-md-12"><a class="btn text-white w-100" href="#" style="background: rgb(221, 75, 57);" target="_blank"><i class="fa fa-google-plus-circle fa-fw fa-1x py-1"></i><b>&nbsp;Cadastrar com o Google</b></a><a class="btn w-75 ml-4 mt-3 btn-light" th:href="@{Escolher_Cadastro}" style="">VOLTAR</a></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-</body>
+<form id="FormSenha" method="POST" th:action="@{/addUser}" th:object="${cadastrousuario}">
+	<div class="py-1 text-left"	style="background-image: url(imagens/chef.jpg); background-size: cover; background-position: left top; background-repeat: repeat;">	
+			<div class="row">
+		
+			
+	<div class="mx-auto bg-white p-5 col-12 col-md-6 bg-dark text-body"
+					style="box-shadow: grey 10px 5px 4px; background-image: linear-gradient(to bottom, rgb(211, 211, 211), rgb(211, 211, 211)); background-position: top left; background-size: 100%; background-repeat: repeat;">
+					<h1 class="mb-4 text-center text-dark">
+						<b>CADASTRE-SE</b>
+					</h1> 
+			<br>
+				<!-- mensagem de cadastro concluido -->
+		<div id="alerta" class="alert alert-success" th:if="${!#strings.isEmpty(mensagem)}">
+		<strong>CADASTRO REALIZADO COM SUCESSO. CLIQUE AQUI PARA <a th:href="@{login}"><strong>LOGAR</strong></a></strong>
+				</div>
+					<div class="form-row">
+					<!-- INPUT NOME -->
+			<div class="form-group col-md-6 ">
+					<label for="inputNome"><strong>NOME:</strong></label> 
+						<input type="text" th:field="*{nomeCliente}" placeholder="Exemplo: Carlos Andrade" class="form-control border border-dark rounded-sm"
+						id="inputNome">
+				</div>
+				<!-- INPUT EMAIL -->
+					<div class="form-group col-md-6">
+					<label for="inputEmail"><strong>EMAIL:</strong></label> 
+						<input type="email" th:field="*{emailCliente}" placeholder="exemplo@gmail.com" class="form-control border border-dark rounded-sm"
+						id="inputEmail">
+				</div>
+					<!-- INPUT ENDEREÇO -->
+					<div class="form-group col-md-4">
+					<label for="inputEnd"><strong>ENDEREÇO:</strong></label> 
+						<input type="text" th:field="*{enderecoCliente}" placeholder="Ex: Av. Recife, nº 10" class="form-control border border-dark rounded-sm"
+						id="inputEnd">
+						</div>
+						<!-- INPUT COMPLEMENTO -->
+					<div class="form-group col-md-4">
+					<label for="inputCmp"><strong>COMPLEMENTO:</strong></label> 
+						<input type="text" th:field="*{complementoEndereco}" placeholder="Ex: aptº 372 - bloco A" class="form-control border border-dark rounded-sm"
+						id="inputCmp">
+						</div>
+						<!-- INPUT CEP -->
+						<div class="form-group col-md-4">
+					<label for="cep"><strong>CEP:</strong></label> 
+						<input type="text" th:field="*{cepCliente}" maxlength="9"  placeholder="Ex:10101-011 " class="form-control border border-dark rounded-sm"
+						id="cep">
+						</div>
+						
+							<!-- INPUT TELEFONE -->
+						<div class="form-group col-md-12">
+					<label for="inputTel"><strong>TELEFONE:</strong></label> 
+						<input type="text" th:field="*{telefoneCliente}" maxlength="15" onkeyup="mascara(this,mtel);" placeholder="Exemplo: (81)91111-2222" class="form-control border border-dark rounded-sm"
+						id="inputTel">
+						</div>
+						
+							<!-- INPUT SENHA -->
+						<div class="form-group col-md-6">
+					<label for="inputSenha"><strong>SENHA:</strong></label> 
+						<input type="password" th:field="*{senhaCliente}" placeholder="Insira sua senha" class="form-control border border-dark rounded-sm"
+						id="SenhaAtual">
+						</div>
+						
+							<!-- INPUT CONFIRMAR SENHA -->
+						<div class="form-group col-md-6">
+					<label for="inputCsenha"><strong>CONFIRME SUA SENHA:</strong></label> 
+						<input type="password" placeholder="Digite novamente sua senha" class="form-control border border-dark rounded-sm"
+						id="SenhaRepeat">
+						</div>
+				</div>
+					</form>
+						<center>
+							<button type="submit" class="btn btn-success col-sm-6"
+								onclick="validarSenha();">
+								<b>FINALIZAR CADASTRO</b>
+						</center>
+				<hr>
+				<center>
+						<div class="col-sm-10">
+							<a class="btn text-white" href="#"
+								style="background: rgb(221, 75, 57);" target="_blank"><i
+								class="fa fa-google-plus-circle fa-fw fa-1x py-1"></i><b>&nbsp;Cadastrar
+									com o Google</b></a>
+									<br>
+									<a class="btn w-45 md-4 mt-2 btn-light"
+								th:href="@{Escolher_Cadastro}" style="">VOLTAR</a>
+								</center>
+						</div>
+						</div>
+							</div>
 
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+		integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
+</body>
 </html>

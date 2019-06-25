@@ -20,34 +20,7 @@ public class indexController {
 		ModelAndView mv = new ModelAndView("login");
 		return mv;
 	}
-	
-	//Pagina de Escolher qual o tipo do cadastro - View
-	@GetMapping("/Escolher_Cadastro")
-	public ModelAndView tipoCadastro() {
-		ModelAndView mv = new ModelAndView("Escolher_Cadastro");
-		return mv;
-	}
-	
-	//Pagina de Cadastro de um usuario normal - View
-	@GetMapping("/form_cadastro")
-	public ModelAndView formCadastro() {
-		ModelAndView mv = new ModelAndView("form_cadastro");
-		return mv;
-	}
-	
-	//Pagina de Cadastro de um Chef - View
-	@GetMapping("/form_cadastro_chef")
-	public ModelAndView formCadastroChef() {
-		ModelAndView mv = new ModelAndView("form_cadastro_chef");
-		return mv;
-	}
-	
-	//Pagina do perfil do chef após ele Finalizar o Cadastro! - View.
-	@GetMapping("perfil_chefe")
-	public ModelAndView perfilChefe() {
-		ModelAndView mv = new ModelAndView("perfil_chefe");
-		return mv;
-	}
+
 	
 	//Pagina de um Usuario Normal Logado - View
 	@GetMapping("/usuario_logado_index")
