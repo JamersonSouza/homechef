@@ -36,10 +36,24 @@ public class indexController {
 		return mv;
 	}
 	
+	//encontrar chef
 	@GetMapping("/encontrar_chef")
 	public ModelAndView buscaChef() {
 		ModelAndView mv = new ModelAndView("encontrar_chef");
 		return mv;
 	}
 
+	//sobre nos
+	@GetMapping("/sobre_nos")
+		public ModelAndView sobreNos() {
+			ModelAndView mv = new ModelAndView("sobre_nos");
+			return mv;
+	}
+	//contato
+	@GetMapping("/contato")
+	public ModelAndView contato() {
+		ModelAndView mv = new ModelAndView("contato");
+			return mv;
+	}
+				
 }

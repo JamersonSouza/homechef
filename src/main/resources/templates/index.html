@@ -19,8 +19,8 @@
         <ul class="navbar-nav ml-auto">
           <li class="nav-item"> <a class="nav-link" href="#"><b></b></a> </li>
           <li class="nav-item text-warning"> <a class="nav-link" th:href="@{encontrar_chef}"><b class="text-dark"><b class="text-white">ENCONTRAR UM CHEF</b></b></a> </li>
-          <li class="nav-item text-danger"> <a class="nav-link text-decoration-none" href="sobre_nos.html"><span><b class="text-dark"><b class="text-white">SOBRE NÓS</b></b></span></a> </li>
-          <li class="nav-item text-dark" style=""> <a class="nav-link text-decoration-none" href="contato.html"><b class="text-dark"><b class="text-white h-50">CONTATO</b></b></a> </li>
+          <li class="nav-item text-danger"> <a class="nav-link text-decoration-none" th:href="@{sobre_nos}"><span><b class="text-dark"><b class="text-white">SOBRE NÓS</b></b></span></a> </li>
+          <li class="nav-item text-dark" style=""> <a class="nav-link text-decoration-none" th:href="@{contato}"><b class="text-dark"><b class="text-white h-50">CONTATO</b></b></a> </li>
         </ul> <a class="btn navbar-btn ml-md-2 btn-light text-danger" th:href="@{login}"><i class="fa fa-user fa-fw text-dark"></i><b class="text-body">ENTRAR</b></a>
       </div>
     </div>
@@ -148,7 +148,7 @@
             <div class="card-body p-4 text-dark" style="	background-image: url(imagens/chef.jpg);	background-position: top;	background-size: 100%;	background-repeat: repeat;">
               <h2 style="" class="text-left text-white"><span class="text-left" style="font-weight: bold;"><b>VOCÊ É UM CHEFE?</b><br></span><b>Cadastre seu menu agora!</b></h2>
               <div class="row">
-                <div class="col-lg-12 col-3"> <a class="btn btn-success" href="Escolher_Cadastro.html">CADASTRE-SE</a> </div>
+                <div class="col-lg-12 col-3"> <a class="btn btn-success" th:href="@{Escolher_Cadastro}">CADASTRE-SE</a> </div>
               </div>
             </div>
           </div>
