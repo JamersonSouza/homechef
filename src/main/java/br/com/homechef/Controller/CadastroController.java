@@ -86,5 +86,31 @@ public class CadastroController {
 				mv.addObject("mensagem", "Chef Cadastrado");
 				return mv;
 		}
+		
+		
+		
+		@PostMapping("/login")
+		public ModelAndView efetuarLogin(@ModelAttribute CadastroUsuario usuario, Errors errors) {
+				ModelAndView mv = new ModelAndView("login");
+				if(errors.hasErrors()) {
+					
+					return mv;
+				}
+		
+				
+			
+			
+				
+				return mv;
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	
 }
