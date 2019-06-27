@@ -10,8 +10,7 @@ import br.com.homechef.model.CadastroUsuario;
 
 public interface CadastroUsuarioDAO extends JpaRepository<CadastroUsuario, Integer> {
 
-	
-	//@Query("select u from tab_usuario u where u.email=:usuario.email and u.senha=:usuario.senha")
-	//public CadastroUsuario efetuarlogin(CadastroUsuario usuario);
+	@Query(value =  "select * from tab_usuario where email = ?1 AND senha_cliente = ?2", nativeQuery = true)
+    CadastroUsuario buscalogin(String email, String senha);
 	
 }

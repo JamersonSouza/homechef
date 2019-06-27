@@ -1,9 +1,11 @@
 package br.com.homechef.Controller;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
@@ -88,29 +90,32 @@ public class CadastroController {
 		}
 		
 		
-		
-		@PostMapping("/login")
-		public ModelAndView efetuarLogin(@ModelAttribute CadastroUsuario usuario, Errors errors) {
-				ModelAndView mv = new ModelAndView("login");
-				if(errors.hasErrors()) {
-					
-					return mv;
-				}
-		
-				
-			
-			
-				
-				return mv;
+		@GetMapping("/login")
+		public String login(CadastroUsuario usuario, Model model) {
+			model.addAttribute("usuario", new CadastroUsuario());
+			return "login";
 		}
 		
-		
-		
-		
-		
-		
-		
-		
+		@PostMapping("/login")
+		public String efetuarLogin(@ModelAttribute("usuario") CadastroUsuario usuario, BindingResult br, Model model, HttpSession sessao) {
+			if(br.hasErrors()) {
+				System.out.println("Resultado: " + br);
+			}
+			
+			
+			 CadastroUsuario usuarioCosultado = cadastrousuarioDAO.buscalogin(usuario.getEmailCliente(), usuario.getSenhaCliente());
+			
+			if(usuarioCosultado == null) {
+				model.addAttribute("mensagem", "Usuario e senha invalido");
+			}else {
+				sessao.setAttribute("usuariologado", usuarioCosultado);
+				return "usuario_logado_index";
+
+			}
+			
+			return null;
+
+		}		
 		
 	
 }
