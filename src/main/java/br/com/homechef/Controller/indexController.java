@@ -42,11 +42,6 @@ public class indexController {
 			ModelAndView mv = new ModelAndView("sobre_nos");
 			return mv;
 	}
-	//contato
-	@GetMapping("/contato")
-	public ModelAndView contato() {
-		ModelAndView mv = new ModelAndView("contato");
-			return mv;
-	}
+
 				
 }

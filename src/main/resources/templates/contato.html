@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <meta charset="utf-8">
@@ -9,29 +10,54 @@
 </head>
 
 <body style="	background-image: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.5));	background-position: top left;	background-size: 100%;	background-repeat: repeat;">
+   
   <div class="py-5 text-center text-white" style="	background-image: linear-gradient(to bottom, rgba(0, 0, 0, .75), rgba(0, 0, 0, .75)), url(imagens/ct-home-chef-pat-vihtelic-bsi-20150625.jpg);	background-position: center center, center center;	background-size: cover, cover;	background-repeat: repeat, repeat;">
+   
     <div class="container">
+     	    
       <div class="row">
+           <br>
+				<!-- alerta de mensagem enviada com sucesso -->
+			<div id="alerta" class="alert alert-danger" th:if="${!#strings.isEmpty(mensagem)}">
+		<strong>MENSAGEM ENVIADA COM SUCESSO.</strong>
+				</div>
         <div class="mx-auto col-md-10 p-4">
+			
           <h1 class="text-light"><b>CONVERSE CONOSCO!</b></h1>
           <p class="mb-4 lead text-light">Utilize o formulário abaixo para entrar em contato conosco e enviar suas dúvidas e sugestões.</p>
-          <form>
-            <div class="form-row">
-              <div class="form-group col-md-4"> <input type="text" class="form-control" id="form22" placeholder="NOME" required="required"> </div>
-              <div class="form-group col-md-4"> <input type="email" class="form-control" id="form23" placeholder="EMAIL"> </div>
-              <div class="form-group col-md-4"> <input type="text" class="form-control" id="form24" placeholder="TELEFONE"> </div>
+         
+          <form id="formContato" method="POST" th:action="@{/contato}" th:object="${contato}">
+<input type="hidden" id="idContato" th:field="*{id}" />
+		
+              <div class="form-group"> 
+              <label for="nome">NOME:</label>
+              <input type="text" th:field="*{nome}" class="form-control" id="form22" placeholder="Exemplo: Carlos Andrade" required="required"> </div>
+            <div class="form-row">  
+              <div class="form-group col-md-6"> 
+              <label for="email">EMAIL:</label>
+              <input type="email" th:field="*{email}" class="form-control" id="form23" placeholder="exemplo@gmail.com"> </div>
+              <div class="form-group col-md-6"> 
+              <label for="telefone">TELEFONE:</label>
+              <input type="text" th:field="*{telefone}" class="form-control" id="form24" maxlength="15" placeholder="Ex.:(81)91111-2222"> </div>
             </div>
-            <div class="form-group"> <input type="text" class="form-control" id="form25" placeholder="ASSUNTO*"> </div>
-            <div class="form-group"> <textarea class="form-control" id="form26" rows="3" placeholder="MENSAGEM*"></textarea> </div>
-          </form>
+            <div class="form-group"> 
+            <label for="assunto">ASSUNTO:</label>
+            <input type="text" th:field="*{assunto}" class="form-control" id="form25"  placeholder="SUGESTÕES/DÚVIDAS"> </div>
+            <div class="form-group"> 
+            <label for="mensagem">MENSAGEM:</label>
+            <textarea th:field="*{mensagem}" class="form-control" id="form26" rows="4" maxlength="250" placeholder="ESCREVA AQUI A SUA MENSAGEM."></textarea> </div>
+          
         </div>
       </div>
       <div class="row">
-        <div class="col-md-6"><a class="btn btn-primary text-center w-50" href="#">ENVIAR</a></div>
+        <div class="col-md-6"><button type="submit" class="btn btn-primary text-center w-50">ENVIAR</button></div>
         <div class="col-md-6"><a class="btn btn-outline-info w-50" th:href="@{index}">VOLTAR</a></div>
+  
       </div>
     </div>
   </div>
+ 		 </form>
+  
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
