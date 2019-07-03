@@ -13,8 +13,6 @@ public class indexController {
 		ModelAndView mv = new ModelAndView("index");
 		return mv;
 	}
-	
-	
 	//Pagina de um Usuario Normal Logado - View
 	@GetMapping("/usuario_logado_index")
 	public ModelAndView usuarioLogadoIndex() {

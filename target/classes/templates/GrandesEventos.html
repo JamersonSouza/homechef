@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="css/theme.css" type="text/css">
+  <title>HOME CHEF : GRANDES EVENTOS</title>
+ 
+</head>
+<body class="bg-light" style="">
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-5 py-1 pb-1" style="">
+    <div class="container"> <a class="navbar-brand" th:href="@{index}">
+        <img alt="" src="/imagens/logo_homechef2.png" width="150px">
+      </a> <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse" data-target="#navbar10">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbar10">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"> <a class="nav-link" href="#"><b></b></a> </li>
+          <li class="nav-item text-warning"> <a class="nav-link" th:href="@{encontrar_chef}"><b class="text-dark"><b class="text-white">ENCONTRAR UM CHEF</b></b></a> </li>
+          <li class="nav-item text-danger"> <a class="nav-link text-decoration-none" th:href="@{sobre_nos}"><span><b class="text-dark"><b class="text-white">SOBRE NÓS</b></b></span></a> </li>
+          <li class="nav-item text-dark" style=""> <a class="nav-link text-decoration-none" th:href="@{contato}"><b class="text-dark"><b class="text-white h-50">CONTATO</b></b></a> </li>
+        </ul> <a class="btn navbar-btn ml-md-2 btn-light text-danger" th:href="@{login}"><i class="fa fa-user fa-fw text-dark"></i><b class="text-body">ENTRAR</b></a>
+      </div>
+    </div>
+  </nav>
+  <div class="container">
+  <div class="jumbotron">
+  	<h4 class="display-5"><strong>Nós selecionamos Chefs em sua cidade e desenvolvemos com eles várias propostas personalizadas para atender a sua necessidade.</strong></h4>
+  </div>
+  <hr>
+  </div>
+   
+   <div class="container">
+  <form method="post" th:action="@{/solicitacao}" th:object="${grandeEvento}">
+  
+  
+<!-- MENSAGEM DE ERRO - VALIDAÇÃO -->
+		<div id="alerta" class="alert alert-danger" th:if="${#fields.hasAnyErrors()}">
+			<p th:each="erro : ${#fields.allErrors()}" th:text="${erro}"></p>
+		</div>
+		
+		
+		<!-- MENSAGEM DE SALVO COM SUCESSO! -->
+		<div id="alerta" class="alert alert-success" th:if="${!#strings.isEmpty(mensagem)}"> 
+		<strong>MENSAGEM ENVIADA COM SUCESSO! CLIQUE AQUI PARA  <a th:href="@{index}">VOLTAR</a></strong>
+		</div>
+  		
+  		
+  		
+  		<div class="form-row">
+  		<!-- INPUT NOME -->
+			<div class="col-md-4">
+					<label for="inputNome"><strong>NOME:</strong></label>
+			<input type="text" th:field="*{nome}" id="inputNome" class="form-control" placeholder="Exemplo: Juca">
+		</div>
+		<!-- INPUT EMAIL -->
+		<div class="col-md-4">
+					<label for="inputEmail"><strong>EMAIL:</strong></label>
+					<input type="email" th:field="*{email}" id="inputEmail" class="form-control" placeholder="exemplo@gmail.com">
+		</div>
+		<!-- INPUT TELEFONE -->
+		<div class="col-md-4">
+					<label for="inputTel"><strong>TELEFONE:</strong></label>
+					<input type="text" th:field="*{telefone}" id="inputTel" class="form-control" placeholder="(11) 98292-2923">
+		</div>
+		<div class="container"><hr></div>
+		<!-- SELECT OPÇÕES -->
+		<div class="col-md-3">
+			<label for="selectOpcao"><strong>OPÇÕES:</strong></label>
+			<select id="selectOpcao" th:field="*{opcoes}" class="form-control">
+				<option value="Personal Chef">Personal Chef</option>
+				<option value="Buffet">Buffet</option>
+				<option value="Coquetel">Coquetel</option>
+				<option value="Outros">Outros</option>
+				
+			</select>
+		</div>
+		
+		<!-- INPUT NUMERO PESSOAS -->
+		<div class="col-md-3">
+			<label for="inputNum"><strong>Número de Pessoas</strong></label>
+				<input type="text" th:field="*{numPessoas}" class="form-control" placeholder="Ex: 103">
+		</div>
+		
+		<!-- INPUT DATA DO EVENTO -->
+		<div class="col-md-3">
+			<label for="inputNum"><strong>DATA DO EVENTO</strong></label>
+				<input type="date" th:field="*{dataEvento}" class="form-control" placeholder="Ex: 103">
+		</div>
+		
+		
+		<!-- INPUT HORÁRIO DO EVENTO -->
+		<div class="col-md-3">
+			<label for="inputHora"><strong>Horáro:</strong></label>
+				<input id="inputHora" type="time" th:field="*{hora}" class="form-control">
+				<small>*Insira a duração do Evento em horas.</small>
+		</div>
+		<div class="container"><hr></div>
+		<div class="col-md-12">
+			<label for="inputLocal"><strong>Estado / Cidade / Bairro</strong></label>
+				<input id="inputLocal" type="text" th:field="*{local}" placeholder="Pernambuco / Recife / São José" class="form-control">
+				<small>*Insira o local como solicitado.</small>
+		</div>
+		<div class="container"><hr></div>
+		<div class="col-md-12">
+		<label for="inputMsg"><strong>Mensagem:</strong></label>
+		<textarea rows="8" cols="" th:field="*{msg}" class="form-control"></textarea>
+		</div>
+  </div>
+  <br>
+  <center>
+  <button type="submit" class="btn btn-success btn-block w-50"><strong>ENVIAR!</strong></button>
+  </center>
+  </form>
+</div>
+
+
+<br>
+  <div class="text-white py-2" style="	background-image: linear-gradient(to bottom, rgba(0, 0, 0, .75), rgba(0, 0, 0, .75)), url(imagens/fundoFotter.jpg);	background-position: center center, center center;	background-size: cover, cover;	background-repeat: repeat, repeat;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center align-self-center p-4">
+          <p class=""><b>Home Cheff Team.&nbsp;<br>Av.Barão de Lucena, 251 - Centro Jaboatão dos Guararapes,&nbsp;<br>PE 54110-051&nbsp;<br>Tel: (81) 9 5642-3532&nbsp;</b></p>
+          <div class="row">
+            <div class="col-md-12 d-flex align-items-center justify-content-around"> <a href="#">
+                <i class="d-block fa fa-facebook-official text-light fa-lg mx-2"></i>
+              </a> <a href="#">
+                <i class="d-block fa fa-instagram text-light fa-lg mx-2"></i>
+              </a> <a href="#">
+                <i class="d-block fa fa-google-plus-official text-light fa-lg mx-2"></i>
+              </a> <a href="#">
+                <i class="d-block fa fa-pinterest-p text-light fa-lg mx-2"></i>
+              </a> <a href="#">
+                <i class="d-block fa fa-reddit text-light fa-lg mx-2"></i>
+              </a> <a href="#">
+                <i class="d-block fa fa-twitter text-light fa-lg ml-2"></i>
+              </a> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
