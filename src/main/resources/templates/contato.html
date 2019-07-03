@@ -27,11 +27,14 @@
           <p class="mb-4 lead text-light">Utilize o formulário abaixo para entrar em contato conosco e enviar suas dúvidas e sugestões.</p>
          
           <form id="formContato" method="POST" th:action="@{/contato}" th:object="${contato}">
+          <div id="alerta" class="alert alert-danger" th:if="${#fields.hasAnyErrors()}" >
+				<p th:each="err : ${#fields.allErrors()}" th:text="${err}"></p>	
+				</div>
 <input type="hidden" id="idContato" th:field="*{id}" />
 		
               <div class="form-group"> 
               <label for="nome">NOME:</label>
-              <input type="text" th:field="*{nome}" class="form-control" id="form22" placeholder="Exemplo: Carlos Andrade" required="required"> </div>
+              <input type="text" th:field="*{nome}" class="form-control" id="form22" placeholder="Exemplo: Carlos Andrade" > </div>
             <div class="form-row">  
               <div class="form-group col-md-6"> 
               <label for="email">EMAIL:</label>

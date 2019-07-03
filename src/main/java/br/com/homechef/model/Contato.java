@@ -4,16 +4,21 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 public class Contato {
 	
 	@Id @GeneratedValue (strategy = GenerationType.AUTO)
 	private Integer id;
+	@NotBlank(message="O nome deve ser preenchido com texto válido.")
 	private String nome;
+	@NotBlank(message="O email deve ser preenchido corretamente.")
 	private String email;
+	@NotBlank(message="O telefone deve ser informado.")
 	private String telefone;
 	private String assunto;
+	@NotBlank(message="Escreva a sua mensagem.")
 	private String mensagem;
 	public Integer getId() {
 		return id;

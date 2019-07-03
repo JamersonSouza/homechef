@@ -38,12 +38,12 @@ public class ContatoController {
 	//}
 	//metodo para salvar mensagem no banco e tratar erros
 	@PostMapping("/contato")
-	public ModelAndView addContato(@ModelAttribute Contato contato, Errors errors) {
+	public ModelAndView addContato(@Valid @ModelAttribute Contato contato, Errors errors) {
 		ModelAndView mv= new ModelAndView("contato");
 		if(errors.hasErrors()) {
 			return mv;
 		}
-		contatoRep.save(contato);
+		this.contatoRep.save(contato);
 		System.out.println(contato);
 		mv.addObject("contato", new Contato());
 		mv.addObject("mensagem", "Mensagem enviada");
