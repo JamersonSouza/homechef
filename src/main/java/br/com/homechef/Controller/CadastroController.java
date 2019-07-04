@@ -16,9 +16,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 import br.com.homechef.DAO.CadastroChefDAO;
-import br.com.homechef.DAO.CadastroUsuarioDAO;
+import br.com.homechef.DAO.UsuarioDAO;
 import br.com.homechef.model.CadastroChef;
-import br.com.homechef.model.CadastroUsuario;
+import br.com.homechef.model.Usuario;
 
 @Controller
 public class CadastroController {
@@ -26,7 +26,7 @@ public class CadastroController {
 	@Autowired
 	private CadastroChefDAO cadastrochefDAO;
 	@Autowired
-	private CadastroUsuarioDAO cadastrousuarioDAO;
+	private UsuarioDAO cadastrousuarioDAO;
 
 	
 	
@@ -42,29 +42,6 @@ public class CadastroController {
 			ModelAndView mv = new ModelAndView("Escolher_Cadastro");
 			return mv;
 		}
-		
-		//Pagina de Cadastro de um usuario normal - View
-		@GetMapping("/form_cadastro")
-		public ModelAndView formCadastro() {
-			ModelAndView mv = new ModelAndView("form_cadastro");
-			mv.addObject("cadastrousuario", new CadastroUsuario());
-			return mv;
-		}
-		
-		 //Metodo para criar conta do usuario normal
-		@PostMapping("/addUser")
-		public ModelAndView cadastrarUsuario(@ModelAttribute CadastroUsuario cadastrousuario , Errors errors) {
-			ModelAndView mv = new ModelAndView("form_cadastro");
-			if(errors.hasErrors()) {
-				return mv;
-			}
-			cadastrousuarioDAO.save(cadastrousuario);
-			System.out.println(cadastrousuario);
-			mv.addObject("cadastrousuario", new CadastroUsuario());
-			mv.addObject("mensagem", "Chef Cadastrado");
-			return mv;
-		}
-		
 		
 		
 		//Pagina de Cadastro de um Chef - View
@@ -91,19 +68,19 @@ public class CadastroController {
 		
 		
 		@GetMapping("/login")
-		public String login(CadastroUsuario usuario, Model model) {
-			model.addAttribute("usuario", new CadastroUsuario());
+		public String login(Usuario usuario, Model model) {
+			model.addAttribute("usuario", new Usuario());
 			return "login";
 		}
 		
 		@PostMapping("/login")
-		public String efetuarLogin(@ModelAttribute("usuario") CadastroUsuario usuario, BindingResult br, Model model, HttpSession sessao) {
+		public String efetuarLogin(@ModelAttribute("usuario") Usuario usuario, BindingResult br, Model model, HttpSession sessao) {
 			if(br.hasErrors()) {
 				System.out.println("Resultado: " + br);
 			}
 			
 			
-			 CadastroUsuario usuarioCosultado = cadastrousuarioDAO.buscalogin(usuario.getEmailCliente(), usuario.getSenhaCliente());
+			 Usuario usuarioCosultado = cadastrousuarioDAO.buscalogin(usuario.getEmail(), usuario.getSenha());
 			
 			if(usuarioCosultado == null) {
 				model.addAttribute("mensagem", "Usuario e senha invalido");

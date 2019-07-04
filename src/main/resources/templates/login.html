@@ -32,8 +32,8 @@
         <div class="mx-auto bg-white p-5 col-12 col-md-6" style="	box-shadow: grey 10px 5px 4px;	background-image: linear-gradient(to bottom, rgb(211,211,211), rgb(211,211,211));	background-position: top left;	background-size: 100%;	background-repeat: repeat;">
           <h1 class="mb-4 text-center"><b>Login</b></h1>
           <form th:action="@{/login}" th:object="${usuario}" method="POST">
-            <div class="form-group"> <input type="email" class="form-control border border-dark rounded-sm" placeholder="Email" th:field="*{emailCliente}" id="form9"> </div>
-            <div class="form-group mb-3"> <input type="password" class="form-control border border-dark rounded-sm" id="form10" th:field="*{senhaCliente}" placeholder="Senha"> <small class="form-text text-muted text-right">
+            <div class="form-group"> <input type="email" class="form-control border border-dark rounded-sm" placeholder="Email" th:field="*{email}" id="form9"> </div>
+            <div class="form-group mb-3"> <input type="password" class="form-control border border-dark rounded-sm" id="form10" th:field="*{senha}" placeholder="Senha"> <small class="form-text text-muted text-right">
                 
                 <a href="recuperarSenha.html" class="text-white"><b> Recuperar Senha</b></a>
               </small> </div>

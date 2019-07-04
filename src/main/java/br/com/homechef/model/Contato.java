@@ -9,7 +9,8 @@ import javax.validation.constraints.NotBlank;
 @Entity
 public class Contato {
 	
-	@Id @GeneratedValue (strategy = GenerationType.AUTO)
+	@Id 
+	@GeneratedValue (strategy = GenerationType.AUTO)
 	private Integer id;
 	@NotBlank(message="O nome deve ser preenchido com texto válido.")
 	private String nome;
