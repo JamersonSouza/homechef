@@ -13,6 +13,7 @@
 </head>
 <body>
 
+
 	<div class="py-1 text-left" style="background-image: url(imagens/chef.jpg); background-size: cover; background-position: left top; background-repeat: repeat;">
 		<div class="row">
 			<div class="mx-auto bg-white p-5 col-12 col-md-6 bg-dark text-body"
@@ -21,7 +22,7 @@
 					<b>CADASTRE-SE</b>
 				</h1>
 				<br>
-				<form method="post" th:action="@{/addUsuario}" th:object="${usuario}">
+				<form method="post" th:action="@{/addChef}" th:object="${chef}">
 				
 						<!-- ALERTA MENSAGEM DE USUARIO CADASTRADO -->
 						<div id="alerta" class="alert alert-success" th:if="${!#strings.isEmpty(mensagem)}">
@@ -37,56 +38,28 @@
 						<!-- INICIO DOS INPUT PARA CADASTRAMENTO -->
 						<div class="form-row">
 							<!-- INPUT NOME -->
-						<div class="form-group col-md-6 ">
+						<div class="form-group col-md-12">
 							<label for="inputNome"><strong>NOME:</strong></label> 
 						<input type="text" th:field="*{nome}" placeholder="Exemplo: Carlos Andrade" class="form-control border border-dark rounded-sm"
 						id="inputNome">
 						</div>
 						
 						<!-- INPUT EMAIL -->
-						<div class="form-group col-md-6">
+						<div class="form-group col-md-12">
 							<label for="inputEmail"><strong>EMAIL:</strong></label> 
 							<input type="email" th:field="*{email}" placeholder="exemplo@gmail.com" class="form-control border border-dark rounded-sm"
 							id="inputEmail">
 						</div>
 						
-						<!-- INPUT ENDEREÇO -->
-						<div class="form-group col-md-4">
-							<label for="inputEnd"><strong>ENDEREÇO:</strong></label> 
-							<input type="text" th:field="*{endereco}" placeholder="Ex: Av. Recife, nº 10" class="form-control border border-dark rounded-sm"
-							id="inputEnd">
-						</div>
-						
-						<!-- INPUT COMPLEMENTO -->
-						<div class="form-group col-md-4">
-							<label for="inputCmp"><strong>COMPLEMENTO:</strong></label> 
-						<input type="text" th:field="*{complemento}" placeholder="Ex: aptº 372 - bloco A" class="form-control border border-dark rounded-sm"
-						id="inputCmp">
-						</div>
-						
-						<!-- INPUT CEP -->
-						<div class="form-group col-md-4">
-								<label for="cep"><strong>CEP:</strong></label> 
-						<input type="text"  maxlength="9" th:field="*{cep}" placeholder="Ex:10101-011 " class="form-control border border-dark rounded-sm"
-						id="cep">
-						</div>
-						
-							<!-- INPUT TELEFONE -->
-						<div class="form-group col-md-12">
-								<label for="inputTel"><strong>TELEFONE:</strong></label> 
-						<input type="text" maxlength="11" th:field="*{telefone}" placeholder="Exemplo: (81)91111-2222" class="form-control border border-dark rounded-sm"
-						id="inputTel">
-						</div>
-						
 							<!-- INPUT SENHA -->
-						<div class="form-group col-md-6">
+						<div class="form-group col-md-12">
 								<label for="inputSenha"><strong>SENHA:</strong></label> 
 						<input type="password" th:field="*{senha}" placeholder="Insira sua senha" class="form-control border border-dark rounded-sm"
 						id="SenhaAtual">
 						</div>
 						
 							<!-- INPUT CONFIRMAR SENHA -->
-						<div class="form-group col-md-6">
+						<div class="form-group col-md-12">
 								<label for="inputCsenha"><strong>CONFIRME SUA SENHA:</strong></label> 
 						<input type="password" th:field="*{cnfSenha}" placeholder="Digite novamente sua senha" class="form-control border border-dark rounded-sm"
 						id="SenhaRepeat">
@@ -102,5 +75,8 @@
 		<!-- DIVS IMPORTANTES RESPONSAVEL IMG FNDO -->
 			</div>		
 		</div>
+
+
+
 </body>
 </html>

@@ -31,7 +31,7 @@
 						<!-- ALERTA MENSAGEM DE ERRO -->	
 				
 						<div id="alerta" class="alert alert-danger" th:if="${#fields.hasAnyErrors()}" >
-							<p th:each="err : ${#fields.allErrors()}" th:text="${err}"></p>	
+							<strong><p th:each="err : ${#fields.allErrors()}" th:text="${err}"></p></strong>
 						</div>
 						
 						<!-- INICIO DOS INPUT PARA CADASTRAMENTO -->
