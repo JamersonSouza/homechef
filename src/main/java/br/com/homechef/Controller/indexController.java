@@ -41,5 +41,35 @@ public class indexController {
 			return mv;
 	}
 
+	//comida baixo preco
+			@GetMapping("/lista-pratos-baixoPreco")
+				public ModelAndView pratosBaixoPreco() {
+					ModelAndView mv = new ModelAndView("lista-pratos-baixoPreco");
+					return mv;
+			}
+		
+			
+	//comida medio preco
+		@GetMapping("/lista-pratos-MedioPreco")
+			public ModelAndView pratosMedioPreco() {
+				ModelAndView mv = new ModelAndView("lista-pratos-MedioPreco");
+				return mv;
+					}
+					
+	//comida alto preco
+		@GetMapping("/lista-pratos-AltoPreco")
+			public ModelAndView pratosAltoPreco() {
+				ModelAndView mv = new ModelAndView("lista-pratos-AltoPreco");
+				return mv;
+							}
+	//comida preco altissimo
+		@GetMapping("/lista-pratos-SelectPreco")
+			public ModelAndView pratosSelectPreco() {
+				ModelAndView mv = new ModelAndView("lista-pratos-SelectPreco");
+				return mv;
+						}
+			
+	
+	
 				
 }
