@@ -4,6 +4,10 @@
 
 <head>
   <meta charset="utf-8">
+  <meta charset="utf-8">
+  <meta name="google-signin-scope" content="profile email">
+  <meta name="google-signin-client_id" content="333594364714-gh90if2rj3fe93fq7ld5r3a7ta1ocs30.apps.googleusercontent.com">
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
   <link rel="stylesheet" href="https://static.pingendo.com/bootstrap/bootstrap-4.3.1.css">
@@ -20,8 +24,8 @@
         <ul class="navbar-nav ml-auto">
           <li class="nav-item"> <a class="nav-link" href="#"><b></b></a> </li>
           <li class="nav-item text-warning"> <a class="nav-link" th:href="@{encontrar_chef}"><b class="text-dark"><b class="text-white">ENCONTRAR UM CHEF</b></b></a> </li>
-          <li class="nav-item text-danger"> <a class="nav-link text-decoration-none" href="sobre_nos.html"><span><b class="text-dark"><b class="text-white">SOBRE NOS</b></b></span></a> </li>
-          <li class="nav-item text-dark" style=""> <a class="nav-link text-decoration-none" href="contato.html"><b class="text-dark"><b class="text-white h-50">CONTATO</b></b></a> </li>
+          <li class="nav-item text-danger"> <a class="nav-link text-decoration-none" th:href="@{sobre_nos}"><span><b class="text-dark"><b class="text-white">SOBRE NÓS</b></b></span></a> </li>
+          <li class="nav-item text-dark" style=""> <a class="nav-link text-decoration-none" th:href="@{contato}"><b class="text-dark"><b class="text-white h-50">CONTATO</b></b></a> </li>
         </ul>
       </div>
     </div>
@@ -35,7 +39,7 @@
             <div class="form-group"> <input type="email" class="form-control border border-dark rounded-sm" placeholder="Email" th:field="*{email}" id="form9"> </div>
             <div class="form-group mb-3"> <input type="password" class="form-control border border-dark rounded-sm" id="form10" th:field="*{senha}" placeholder="Senha"> <small class="form-text text-muted text-right">
                 
-                <a href="recuperarSenha.html" class="text-white"><b> Recuperar Senha</b></a>
+                <a th:href="@{recuperarSenha}" class="text-white"><b> Recuperar Senha</b></a>
               </small> </div>
           
           <!-- MENSAGEM -->
@@ -46,10 +50,15 @@
            <button type="submit" class="btn btn-primary btn-mg">ENTRAR</button>
            <hr>
          </center>
-            </form>
+           
+            
              <div class="row">
-            <div class="col-md-12"><a class="btn text-white w-100" href="#" style="background: rgb(221, 75, 57);" target="_blank"><i class="fa fa-google-plus-circle fa-fw fa-1x py-1"></i>&nbsp;Entrar com o Google</a></div>
+           <!--   <div class="col-md-12"><a class="btn text-white w-100" href="#" style="background: rgb(221, 75, 57);" target="_blank"><i class="fa fa-google-plus-circle fa-fw fa-1x py-1"></i>&nbsp;Entrar com o Google</a></div> -->
+         	 <div class="g-signin2" data-onsuccess="onSignIn"  data-theme="dark" data-width="370" data-height="50" data-longtitle="true" data-lang="pt-BR"></div>
+           <div><a th:href="@{login}" onclick="signOut();">Sign out</a></div>   
           </div>
+           </form>
+           
           <div class="row">
             <div class="col-md-12">
               <h6 class="text-center my-0 mt-4 mb-1"><b>Ainda não é cadastrado?</b></h6>
@@ -62,6 +71,48 @@
       </div>
     </div>
   </div>
+  
+  <script>
+
+      function onSignIn(response) {
+
+            // Conseguindo as informações do seu usuário:
+            var perfil = response.getBasicProfile();
+
+            // Conseguindo o ID do Usuário
+            var userID = perfil.getId();
+
+            // Conseguindo o Nome do Usuário
+            var userName = perfil.getName();
+
+            // Conseguindo o E-mail do Usuário
+            var userEmail = perfil.getEmail(); 
+
+            // Conseguindo a URL da Foto do Perfil
+            var userPicture = perfil.getImageUrl();
+
+            document.getElementById('user-photo').src = userPicture;
+            document.getElementById('user-name').innerText = userName;
+            document.getElementById('user-email').innerText = userEmail;
+
+            // Recebendo o TOKEN que você usará nas demais requisições à API:
+            var LoR = response.getAuthResponse().id_token;
+
+            console.log("~ le Tolkien: " + LoR);
+
+        };
+
+    </script>
+       
+<script>
+  function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+    });
+  }
+</script>
+
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
