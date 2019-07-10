@@ -20,18 +20,18 @@ public class Usuario {
 	private String nome;
 	@NotBlank(message = "Campo EMAIL Vazio ou Inválido")
 	private String email;
-	@Size(min = 8, message = "SENHA no Mínimo 8 Digitos")
-	@NotBlank(message = "Campo SENHA Vazio ou Inválido")
+	//@Size(min = 8, message = "SENHA no Mínimo 8 Digitos")
+	//@NotBlank(message = "Campo SENHA Vazio ou Inválido")
 	private String senha;
 	@Transient 
 	private String cnfSenha;
-	@NotBlank(message = "Campo ENDEREÇO Vazio ou Inválido")
+	//@NotBlank(message = "Campo ENDEREÇO Vazio ou Inválido")
 	private String endereco;
-	@NotBlank(message = "Campo CEP Vazio ou Inválido")
+	//@NotBlank(message = "Campo CEP Vazio ou Inválido")
 	private String cep;
-	@NotBlank(message = "Campo COMPLEMENTO Vazio ou Inválido")
+	//@NotBlank(message = "Campo COMPLEMENTO Vazio ou Inválido")
 	private String complemento;
-	@NotBlank(message = "Campo TELEFONE Vazio ou Inválido")
+	//@NotBlank(message = "Campo TELEFONE Vazio ou Inválido")
 	private String telefone;
 	
 	public Integer getIdUsuario() {

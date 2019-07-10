@@ -1,6 +1,7 @@
 package br.com.homechef.Controller;
 
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,13 +77,24 @@ public class UsuarioController {
 	
 	@RequestMapping(value = "/loginGoogle", method = RequestMethod.POST)
 	@ResponseBody
-	public ModelAndView loginGoogle(@RequestParam String email, @RequestParam String nome) {
+	public String loginGoogle(@RequestParam String email, @RequestParam String nome,HttpSession session) {
 		
 		ModelAndView mv = new ModelAndView("cadastro");
-		if(email.getEmail() != null && email.getNome() != null) {
-		usuarioDao.findByNomeEmailAprox(nome, email);
+		Usuario usuario = usuarioDao.findByEmail(email);
+		if(usuario!=null) {
+			session.setAttribute("usuarioLogado", usuario);
+			return "usuario_logado_index";
+		}else {
+			usuario = new Usuario();
+			usuario.setNome(nome);
+			usuario.setEmail(email);
+			usuarioDao.save(usuario);
+			usuario = usuarioDao.findByEmail(email);
+			session.setAttribute("usuarioLogado", usuario);
+			return "usuario_logado_index";
 		}
-		return "redirect:/index";
+		
+		
 		
 	}
 	
