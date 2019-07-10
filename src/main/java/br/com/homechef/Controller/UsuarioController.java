@@ -10,7 +10,10 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.homechef.DAO.UsuarioDAO;
@@ -64,13 +67,23 @@ public class UsuarioController {
 	}
 	
 	
-
-	
 	public ModelAndView listar() {
-		ModelAndView mv = new ModelAndView();
+	ModelAndView mv = new ModelAndView();
 		mv.addObject("listaUsuario", usuarioDao.findAll(Sort.by("nome")));
 		mv.addObject("usuario", new Usuario());
 		return mv;
+	}
+	
+	@RequestMapping(value = "/loginGoogle", method = RequestMethod.POST)
+	@ResponseBody
+	public ModelAndView loginGoogle(@RequestParam String email, @RequestParam String nome) {
+		
+		ModelAndView mv = new ModelAndView("cadastro");
+		if(email.getEmail() != null && email.getNome() != null) {
+		usuarioDao.findByNomeEmailAprox(nome, email);
+		}
+		return "redirect:/index";
+		
 	}
 	
 }

@@ -11,6 +11,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
   <link rel="stylesheet" href="https://static.pingendo.com/bootstrap/bootstrap-4.3.1.css">
+  <script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
 </head>
 
 <body>
@@ -91,15 +93,30 @@
             // Conseguindo a URL da Foto do Perfil
             var userPicture = perfil.getImageUrl();
 
-            document.getElementById('user-photo').src = userPicture;
-            document.getElementById('user-name').innerText = userName;
-            document.getElementById('user-email').innerText = userEmail;
-
             // Recebendo o TOKEN que você usará nas demais requisições à API:
             var LoR = response.getAuthResponse().id_token;
 
             console.log("~ le Tolkien: " + LoR);
 
+        	jQuery(document).ready(function($) {
+				$.post("/loginGoogle", {
+					email : userEmail,
+					nome : userName
+
+				}, function(data) {
+
+					var json = JSON.parse(data);
+					//...
+
+				}).done(function() {
+				}).fail(function(xhr, textStatus, errorThrown) {
+				}).complete(function() {
+					$("#btn-save").prop("disabled", false);
+
+				});
+
+			});
+            
         };
 
     </script>

@@ -13,5 +13,10 @@ public interface UsuarioDAO extends JpaRepository<Usuario, Integer> {
     Usuario buscalogin(String email, String senha);
 	
 	public List<Usuario> findByNomeContainingIgnoreCase(String nome);
-
+	
+	@Query("select u from Usuario u where u.email = :email")
+	public Usuario findByEmail(String email);
+	
+	@Query("select u from Usuario u where u.nome like %:nome% or u.email like %:email%")
+	public Usuario findByNomeEmailAprox(String nome, String email); 
 }
