@@ -21,11 +21,6 @@ public class indexController {
 	}
 	
 	//Pagina do Perfil do Usuário - View
-	@GetMapping("/perfil_usuario")
-	public ModelAndView perfilDoUsuario() {
-		ModelAndView mv = new ModelAndView("perfil_usuario");
-		return mv;
-	}
 	
 	//encontrar chef
 	@GetMapping("/encontrar_chef")

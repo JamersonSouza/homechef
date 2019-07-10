@@ -4,11 +4,13 @@ package br.com.homechef.Controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.homechef.DAO.UsuarioDAO;
@@ -44,4 +46,31 @@ public class UsuarioController {
 		
 	}
 
+	
+	@GetMapping("/editarPerfil")
+	public ModelAndView editar(@Valid @RequestParam Integer idUsuario) {
+		ModelAndView mv = new ModelAndView("alterarcadastro");
+		mv.addObject("usuario", usuarioDao.findById(idUsuario));
+		usuarioDao.deleteById(idUsuario);
+		return mv;
+		
+	}
+	
+	@GetMapping("/usuarioPerfil")
+	public ModelAndView perfilUser() {
+		ModelAndView mv = new ModelAndView("usuarioPerfil");
+		mv.addObject("listaUsuario", usuarioDao.findAll(Sort.by("nome")));
+		return mv;
+	}
+	
+	
+
+	
+	public ModelAndView listar() {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("listaUsuario", usuarioDao.findAll(Sort.by("nome")));
+		mv.addObject("usuario", new Usuario());
+		return mv;
+	}
+	
 }
