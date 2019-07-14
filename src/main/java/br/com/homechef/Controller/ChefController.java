@@ -9,15 +9,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.homechef.DAO.ChefDAO;
 import br.com.homechef.model.Chef;
+import br.com.homechef.model.Usuario;
 
 @Controller
 public class ChefController {
 
 	@Autowired
 	private ChefDAO chefDAO;
+	
+	@Autowired
+	private ChefService chefservice;
 	
 	@GetMapping("/cadastroChef")
 	public ModelAndView cadastroChef() {
@@ -27,18 +32,25 @@ public class ChefController {
 	}
 	
 	@PostMapping("/addChef")
-	public ModelAndView addChef(@Valid @ModelAttribute Chef chef, Errors errors) {
+	public ModelAndView addUser(@Valid @ModelAttribute Chef chef, Errors erros, RedirectAttributes rt) {
 		ModelAndView mv = new ModelAndView("cadastroChef");
 		mv.addObject("chef", chef);
-		if(errors.hasErrors()) {
+		if(erros.hasErrors()) {
 			return mv;
+		}else {
+			
+		try {
+			chefservice.salvarChef(chef);
+			rt.addFlashAttribute("mensagem", "chef salvo");
+			mv.addObject("mensagem", "chef salvo");
+			return mv;
+		} catch (Exception e) {
+				rt.addFlashAttribute("mensagemErro", e.getMessage());
+				mv.addObject("mensagemErro", "erro");
+				return mv;
 		}
 		
-		chefDAO.save(chef);
-		System.out.println(chef);
-		mv.addObject("mensagem", "chef Cadastrado");
-		mv.addObject("chef", new Chef());
-		return mv;
 	}
+}
 	
 }

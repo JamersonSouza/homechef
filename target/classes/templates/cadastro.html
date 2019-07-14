@@ -28,6 +28,11 @@
 							<strong>CONTA CRIADA COM SUCESSO! CLIQUE AQUI PARA <a th:href="@{login}">LOGAR</a>.</strong>
 						</div>
 						
+							<!-- ALERTA MENSAGEM DE ERRO NO CADASTRO -->
+						<div id="alerta" class="alert alert-warning" th:if="${!#strings.isEmpty(mensagemErro)}">
+							<strong>EMAIL JÁ CADASTRADO. TENTE OUTRO DIFERENTE</strong>
+						</div>
+						
 						<!-- ALERTA MENSAGEM DE ERRO -->	
 				
 						<div id="alerta" class="alert alert-danger" th:if="${#fields.hasAnyErrors()}" >

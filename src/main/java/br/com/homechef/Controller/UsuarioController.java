@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.homechef.DAO.UsuarioDAO;
 import br.com.homechef.model.Usuario;
@@ -26,6 +27,9 @@ public class UsuarioController {
 	@Autowired
 	private UsuarioDAO usuarioDao;
 	
+	@Autowired
+	private UsuarioService usuarioService;
+	
 	//Pagina de Cadastro de um usuario normal - View
 	@GetMapping("/cadastro")
 	public ModelAndView formCadastro() {
@@ -35,19 +39,25 @@ public class UsuarioController {
 	}
 //====================== METODO PARA INSERIR UM USUARIO NO BANCO ==================================
 	@PostMapping("/addUsuario")
-	public ModelAndView addUsuario(@Valid @ModelAttribute Usuario usuario, Errors errors) {
-		
-		ModelAndView mv = new ModelAndView("cadastro");
-		mv.addObject("usuario", usuario);
-		if(errors.hasErrors()) {
-			return mv;
+		public ModelAndView addUser(@Valid @ModelAttribute Usuario user, Errors erros, RedirectAttributes rt) {
+			ModelAndView mv = new ModelAndView("cadastro");
+			mv.addObject("usuario", user);
+			if(erros.hasErrors()) {
+				return mv;
+			}else {
+				
+			try {
+				usuarioService.salvarUsuario(user);
+				rt.addFlashAttribute("mensagem", "Usuario salvo");
+				mv.addObject("mensagem", "usuario salvo");
+				return mv;
+			} catch (Exception e) {
+					rt.addFlashAttribute("mensagemErro", e.getMessage());
+					mv.addObject("mensagemErro", "erro");
+					return mv;
+			}
+			
 		}
-		usuarioDao.save(usuario);
-		System.out.println(usuario);
-		mv.addObject("usuario", new Usuario());
-		mv.addObject("mensagem", "Inserido com sucesso");
-		return mv;
-		
 	}
 //==================== FUNCIONALIDADE PARA EDITAR PERFIL =============================
 	@PostMapping("/editUser")

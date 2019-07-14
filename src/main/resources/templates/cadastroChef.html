@@ -14,10 +14,10 @@
 <body>
 
 
-	<div class="py-1 text-left" style="background-image: url(imagens/chef.jpg); background-size: cover; background-position: left top; background-repeat: repeat;">
+	<div style="background-image: url(imagens/chef.jpg); background-size: cover; background-repeat: repeat; overflow: hidden;">
 		<div class="row">
-			<div class="mx-auto bg-white p-5 col-12 col-md-6 bg-dark text-body"
-				style="box-shadow: grey 10px 5px 4px; background-image: linear-gradient(to bottom, rgb(211, 211, 211), rgb(211, 211, 211)); background-position: top left; background-size: 100%; background-repeat: repeat;">
+			<div class="mx-auto bg-white p-4 col-12 col-md-6 bg-dark text-body"
+				style="border: 10px solid gray; background-image: linear-gradient(to bottom, rgb(211, 211, 211), rgb(211, 211, 211)); background-position: top left; background-size: 100%; background-repeat: repeat;">
 				<h1 class="mb-4 text-center text-dark">
 					<b>CADASTRE-SE</b>
 				</h1>
@@ -27,6 +27,12 @@
 						<!-- ALERTA MENSAGEM DE USUARIO CADASTRADO -->
 						<div id="alerta" class="alert alert-success" th:if="${!#strings.isEmpty(mensagem)}">
 							<strong>CONTA CRIADA COM SUCESSO! CLIQUE AQUI PARA <a th:href="@{login}">LOGAR</a>.</strong>
+						</div>
+						
+						
+						<!-- ALERTA MENSAGEM DE USUARIO CADASTRADO -->
+						<div id="alerta" class="alert alert-warning" th:if="${!#strings.isEmpty(mensagemErro)}">
+							<strong>EMAIL JÁ EXISTE. TENTE OUTRO DIFERENTE</strong>
 						</div>
 						
 						<!-- ALERTA MENSAGEM DE ERRO -->	
@@ -39,33 +45,33 @@
 						<div class="form-row">
 							<!-- INPUT NOME -->
 						<div class="form-group col-md-12">
-							<label for="inputNome"><strong>NOME:</strong></label> 
+							<label for="inputNome"><h5><strong>NOME:</strong></h5></label> 
 						<input type="text" th:field="*{nome}" placeholder="Exemplo: Carlos Andrade" class="form-control border border-dark rounded-sm"
 						id="inputNome">
 						</div>
 						
 						<!-- INPUT EMAIL -->
 						<div class="form-group col-md-12">
-							<label for="inputEmail"><strong>EMAIL:</strong></label> 
+							<label for="inputEmail"><h5><strong>EMAIL:</strong></h5></label> 
 							<input type="email" th:field="*{email}" placeholder="exemplo@gmail.com" class="form-control border border-dark rounded-sm"
 							id="inputEmail">
 						</div>
 						
 							<!-- INPUT SENHA -->
 						<div class="form-group col-md-12">
-								<label for="inputSenha"><strong>SENHA:</strong></label> 
+								<label for="inputSenha"><h5><strong>SENHA:</strong></h5></label> 
 						<input type="password" th:field="*{senha}" placeholder="Insira sua senha" class="form-control border border-dark rounded-sm"
 						id="SenhaAtual">
 						</div>
 						
 							<!-- INPUT CONFIRMAR SENHA -->
 						<div class="form-group col-md-12">
-								<label for="inputCsenha"><strong>CONFIRME SUA SENHA:</strong></label> 
+								<label for="inputCsenha"><h5><strong>CONFIRME SUA SENHA:</strong></h5></label> 
 						<input type="password" th:field="*{cnfSenha}" placeholder="Digite novamente sua senha" class="form-control border border-dark rounded-sm"
 						id="SenhaRepeat">
 						</div>
 						</div>
-						
+						<br>
 						<div class="row d-flex justify-content-center">
 						<button type="submit" class="btn btn-success btn-block w-50"><strong>CRIAR CONTA</strong></button>
 						</div>
