@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.homechef.DAO.ChefDAO;
 import br.com.homechef.excecoes.EmailExistsException;
+import br.com.homechef.excecoes.ServiceException;
 import br.com.homechef.model.Chef;
 
 @Service
@@ -20,6 +21,17 @@ public class ChefService {
 		}
 		chefdao.save(chef);
 	}
+	
+	
+	public Chef efetuarLogin(String email, String senha) throws ServiceException {
+		Chef chef = this.chefdao.efetuarLogin(email, senha);
+		if (chef == null) {
+			throw new ServiceException("Email ou Senha Inválidos");
+		}
+		
+		return chef;
+	}
+	
 
 
 }

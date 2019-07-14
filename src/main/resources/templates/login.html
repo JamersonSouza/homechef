@@ -28,16 +28,22 @@
           <li class="nav-item text-warning"> <a class="nav-link" th:href="@{encontrar_chef}"><b class="text-dark"><b class="text-white">ENCONTRAR UM CHEF</b></b></a> </li>
           <li class="nav-item text-danger"> <a class="nav-link text-decoration-none" th:href="@{sobre_nos}"><span><b class="text-dark"><b class="text-white">SOBRE NÓS</b></b></span></a> </li>
           <li class="nav-item text-dark" style=""> <a class="nav-link text-decoration-none" th:href="@{contato}"><b class="text-dark"><b class="text-white h-50">CONTATO</b></b></a> </li>
+        	<a class="btn navbar-btn ml-md-2 btn-warning" th:href="@{loginchef}"><i class="fa fa-user fa-fw text-dark"></i><b class="text-body">CHEF</b></a>
         </ul>
       </div>
     </div>
   </nav>
-  <div class="text-left py-4" style="	background-image: url(imagens/ct-home-chef-pat-vihtelic-bsi-20150625.jpg);	background-size: cover;	background-position: left top;	background-repeat: repeat;">
+  <div class="py-1" style="	background-image: url(imagens/ct-home-chef-pat-vihtelic-bsi-20150625.jpg);	background-size: cover;	background-position: left top;	background-repeat: repeat;">
     <div class="container">
       <div class="row" style="">
-        <div class="mx-auto bg-white p-5 col-12 col-md-6" style="	box-shadow: grey 10px 5px 4px;	background-image: linear-gradient(to bottom, rgb(211,211,211), rgb(211,211,211));	background-position: top left;	background-size: 100%;	background-repeat: repeat;">
-          <h1 class="mb-4 text-center"><b>Login</b></h1>
+        <div class="mx-auto bg-white p-5 col-12 col-md-6" style="border: 10px solid gray;	background-image: linear-gradient(to bottom, rgba(211,211,211,0.5), rgba(211,211,211,0.5)); background-size: 100%;	background-repeat: repeat; overflow: hidden;">
+          <h1 class="mb-4 text-center"><b>Login Usuario</b></h1>
           <form th:action="@{/login}" th:object="${usuario}" method="POST">
+            
+            <!-- MENSAGEM DE ERRO -->
+            <div th:if="${mensagemErro}">
+					<div class="alert alert-danger" th:text="${mensagemErro}"></div>
+			</div>
             <div class="form-group"> <input type="email" class="form-control border border-dark rounded-sm" placeholder="Email" th:field="*{email}" id="form9"> </div>
             <div class="form-group mb-3"> <input type="password" class="form-control border border-dark rounded-sm" id="form10" th:field="*{senha}" placeholder="Senha"> <small class="form-text text-muted text-right">
                 

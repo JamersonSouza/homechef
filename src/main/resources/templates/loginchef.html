@@ -28,7 +28,7 @@
           <li class="nav-item text-warning"> <a class="nav-link" th:href="@{encontrar_chef}"><b class="text-dark"><b class="text-white">ENCONTRAR UM CHEF</b></b></a> </li>
           <li class="nav-item text-danger"> <a class="nav-link text-decoration-none" th:href="@{sobre_nos}"><span><b class="text-dark"><b class="text-white">SOBRE NÓS</b></b></span></a> </li>
           <li class="nav-item text-dark" style=""> <a class="nav-link text-decoration-none" th:href="@{contato}"><b class="text-dark"><b class="text-white h-50">CONTATO</b></b></a> </li>
-        	<a class="btn navbar-btn ml-md-2 btn-warning" th:href="@{loginchef}"><i class="fa fa-user fa-fw text-dark"></i><b class="text-body">CHEF</b></a>
+        	<a class="btn navbar-btn ml-md-2 btn-warning" th:href="@{login}"><i class="fa fa-user fa-fw text-dark"></i><b class="text-body">USUÁRIO</b></a>
         </ul>
       </div>
     </div>
@@ -37,8 +37,8 @@
     <div class="container">
       <div class="row" style="">
         <div class="mx-auto bg-white p-5 col-12 col-md-6" style="border: 10px solid gray;	background-image: linear-gradient(to bottom, rgba(211,211,211,0.5), rgba(211,211,211,0.5)); background-size: 100%;	background-repeat: repeat; overflow: hidden;">
-          <h1 class="mb-4 text-center"><b>Login Usuario</b></h1>
-          <form th:action="@{/login}" th:object="${usuario}" method="POST">
+          <h1 class="mb-4 text-center"><b>Login Chef</b></h1>
+          <form th:action="@{/logar}" th:object="${chef}" method="POST">
             
             <!-- MENSAGEM DE ERRO -->
             <div th:if="${mensagemErro}">

@@ -15,12 +15,12 @@ public class Chef {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer idChef;
-	@NotBlank(message = "Campo NOME obrigatório!")
+//	@NotBlank(message = "Campo NOME obrigatório!")
 	private String nome;
 	@NotBlank(message = "Campo EMAIL Vazio ou Inválido")
 	private String email;
-	@Size(min = 8, message = "SENHA COM NO MÍNIMO 8 DIGITOS")
-	@NotBlank(message = "Campo SENHA Vazio ou Inválido")
+//	@Size(min = 8, message = "SENHA COM NO MÍNIMO 8 DIGITOS")
+//	@NotBlank(message = "Campo SENHA Vazio ou Inválido")
 	private String senha;
 	@Transient
 	private String cnfSenha;
