@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+	type="text/css">
+<link rel="stylesheet"
+	href="https://static.pingendo.com/bootstrap/bootstrap-4.3.1.css">
+<title>Alteração :: Perfil</title>
+</head>
+<body>
+
+	<div class="py-5 text-left" style="background-image: url(imagens/fundoFotter.jpg); background-size: cover; background-repeat: repeat; overflow: hidden;">
+		<div class="row">
+			<div class="mx-auto bg-white p-5 col-12 col-md-6 bg-dark text-body"
+				style="border: 10px solid gray; background-image: linear-gradient(to bottom, rgb(211, 211, 211), rgb(211, 211, 211)); background-position: top left; background-size: 100%; background-repeat: repeat;">
+				
+				<br><br>
+				<form method="post" th:action="@{/editUser}" th:object="${userEdit}">
+				
+						
+						<!-- EDIÇÃO PERFIL -->
+						<div id="alerta" class="alert alert-success" th:if="${!#strings.isEmpty(msgUserEdit)}">
+							<center><h1><strong>ALTERAÇÃO REALIZADA COM SUCESSO! <br> CLIQUE AQUI PARA <a th:href="@{usuarioPerfil}">VOLTAR</a>.</strong></h1></center>
+						</div>
+						<!-- ALERTA MENSAGEM DE ERRO -->	
+						<div id="alerta" class="alert alert-danger" th:if="${#fields.hasAnyErrors()}" >
+							<strong><p th:each="err : ${#fields.allErrors()}" th:text="${err}"></p></strong>
+						</div>
+						<br><br>	
+				</form>
+		<!-- DIVS IMPORTANTES RESPONSAVEL IMG FNDO -->
+			</div>		
+		</div>
+</body>
+</html>

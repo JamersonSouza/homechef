@@ -21,7 +21,7 @@
 					<b>ALTERAÇÃO DO PERFIL</b>
 				</h1>
 				<br>
-				<form method="post" th:action="@{/addUsuario}" th:object="${usuario}">
+				<form method="post" th:action="@{/editUser}" th:object="${userEdit}">
 				
 						<!-- ALERTA MENSAGEM DE USUARIO CADASTRADO -->
 						<div id="alerta" class="alert alert-success" th:if="${!#strings.isEmpty(mensagem)}">

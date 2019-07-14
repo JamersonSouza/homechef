@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+	type="text/css">
+<link rel="stylesheet"
+	href="https://static.pingendo.com/bootstrap/bootstrap-4.3.1.css">
+<title>Complemento :: Usuário</title>
+</head>
+<body>
+
+	<div class="py-2 text-left" style="background-image: url(imagens/fundoFotter.jpg); background-size: cover; background-repeat: repeat; overflow: hidden;">
+		<div class="row">
+			<div class="mx-auto bg-white p-4 col-12 col-md-6 bg-dark text-body"
+				style="border: 10px solid gray; background-image: linear-gradient(to bottom, rgb(211, 211, 211), rgb(211, 211, 211)); background-position: top left; background-size: 100%; background-repeat: repeat;">
+				<h1 class="mb-4 text-center text-dark">
+					<b>COMPLETE SEU PERFIL</b>
+				</h1>
+				<br>
+				<form th:action="@{/salvarComplemento}" th:object="${userComplete}">
+						<!-- INPUT ENDEREÇO -->
+						<div class="form-group col-md-12">
+							<label for="inputEnd"><strong>ENDEREÇO:</strong></label> 
+							<input type="text"  placeholder="Ex: Av. Recife, nº 10" class="form-control border border-dark rounded-sm"
+							id="inputEnd">
+						</div>
+						
+						<!-- INPUT COMPLEMENTO -->
+						<div class="form-group col-md-12">
+							<label for="inputCmp"><strong>COMPLEMENTO:</strong></label> 
+						<input type="text"  placeholder="Ex: aptº 372 - bloco A" class="form-control border border-dark rounded-sm"
+						id="inputCmp">
+						</div>
+						
+						<!-- INPUT CEP -->
+						<div class="form-group col-md-12">
+								<label for="cep"><strong>CEP:</strong></label> 
+						<input type="text"  maxlength="9" placeholder="Ex:10101-011 " class="form-control border border-dark rounded-sm"
+						id="cep">
+						</div>
+						
+							<!-- INPUT TELEFONE -->
+						<div class="form-group col-md-12">
+								<label for="inputTel"><strong>TELEFONE:</strong></label> 
+						<input type="text" maxlength="11"  placeholder="Exemplo: (81)91111-2222" class="form-control border border-dark rounded-sm"
+						id="inputTel">
+						</div>
+						<br>
+						<div class="col-md-6 offset-md-3">
+								<button type="submit" class="btn btn-success btn-block w-60"><strong>SALVAR</strong></button>
+						</div>
+					</form>
+</body>
+</html>

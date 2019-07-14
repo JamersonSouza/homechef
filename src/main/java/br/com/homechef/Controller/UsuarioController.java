@@ -33,7 +33,7 @@ public class UsuarioController {
 		mv.addObject("usuario", new Usuario());
 		return mv;
 	}
-	
+//====================== METODO PARA INSERIR UM USUARIO NO BANCO ==================================
 	@PostMapping("/addUsuario")
 	public ModelAndView addUsuario(@Valid @ModelAttribute Usuario usuario, Errors errors) {
 		
@@ -49,17 +49,34 @@ public class UsuarioController {
 		return mv;
 		
 	}
-
+//==================== FUNCIONALIDADE PARA EDITAR PERFIL =============================
+	@PostMapping("/editUser")
+	public ModelAndView editUser(@Valid @ModelAttribute Usuario userEdit, Errors errors) {
+		
+		ModelAndView mv = new ModelAndView("cadastroEdit");
+		mv.addObject("userEdit", userEdit);
+		if(errors.hasErrors()) {
+			return mv;
+		}
+		usuarioDao.save(userEdit);
+		System.out.println(userEdit);
+		mv.addObject("userEdit", new Usuario());
+		mv.addObject("msgUserEdit", "Usuario Editado");
+		return mv;
+		
+	}
+	
 	
 	@GetMapping("/editarPerfil")
 	public ModelAndView editar(@Valid @RequestParam Integer idUsuario) {
 		ModelAndView mv = new ModelAndView("alterarcadastro");
-		mv.addObject("usuario", usuarioDao.findById(idUsuario));
+		mv.addObject("userEdit", usuarioDao.findById(idUsuario));
 		usuarioDao.deleteById(idUsuario);
 		return mv;
 		
 	}
 	
+//========================= METODO PARA LISTAR USUARIO - OBS PRECISA SER MELHORADO ================================	
 	@GetMapping("/usuarioPerfil")
 	public ModelAndView perfilUser() {
 		ModelAndView mv = new ModelAndView("usuarioPerfil");
@@ -74,6 +91,15 @@ public class UsuarioController {
 		mv.addObject("usuario", new Usuario());
 		return mv;
 	}
+	
+//	============================ METODO PARA COMPLEMENTO DO PERFIL ==================================
+	@GetMapping("complemento-perfil")
+	public ModelAndView complementoPerfil() {
+		ModelAndView mv = new ModelAndView("complemento-perfil");
+		return mv;
+	}
+	
+//	============================= METODO PARA LOGAR COM O GOOGLE - PRECISA MELHORAR URGENTE ====================
 	
 	@RequestMapping(value = "/loginGoogle", method = RequestMethod.POST)
 	@ResponseBody

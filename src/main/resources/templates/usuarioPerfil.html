@@ -20,7 +20,7 @@
 <body style="	background-image: linear-gradient(to bottom, rgba(130,130,130,0.8), rgba(130,130,130,0.8));	background-position: top left;	background-size: 100%;	background-repeat: repeat;">
   <nav class="navbar navbar-expand-md navbar-dark bg-dark py-4 pb-4" style="">
     <div class="container"> <a class="navbar-brand" th:href="@{usuario_logado_index}">
-       <img alt="" src="/imagens/logo_homechef2.png" width="150px">
+        <img alt="" src="/imagens/logo_homechef2.png" width="150px">
       </a> <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse" data-target="#navbar10">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -47,16 +47,20 @@
         <div class="mx-auto p-4 col-md-5"> <img class="img-fluid d-block mb-1 mx-auto" src="imagens/user.png" style="	max-width: 65%;	max-height: 65%;">
          		<h1 th:text="${usuario.nome}"></h1>
          		<hr>
+         		
+         <div class="container">
           <div class="row">
-            <div class="col-md-4"><a class="btn btn-success" th:href="@{/editarPerfil(idUsuario=${usuario.idUsuario})}"><b>EDITAR PERFIL</b></a></div>
-            <div class="col-md-4"><a class="btn btn-success" href="lista_meus_eventos.html"><b>MEUS EVENTOS</b></a><a class="btn btn-sm mt-3 w-100 btn-danger" href="index.html"><b class="text-uppercase"><b>excluir conta</b></b></a></div>
-            <div class="col-md-4"><a class="btn btn-success" href="lista_chefes_favoritos.html"><b>CHEFS FAVORITOS</b></a></div>
-          </div>
-
-          
+            <div class="col-md-6"><a class="btn btn-success" th:href="@{complemento-perfil}"><b>COMPLEMENTE SEU PERFIL</b></a></div>
+            <div class="col-md-6"><a class="btn btn-success" href="lista_meus_eventos.html"><b>EVENTOS AGENDADOS</b></a></div>
+            <div class="col-md-6"><a class="btn btn-warning mt-3" th:href="@{/editarPerfil(idUsuario=${usuario.idUsuario})}"><b>EDITAR PERFIL</b></a></div>
+            <div class="col-md-6"><a class="btn btn-warning mt-3" href="lista_meus_eventos.html"><b>&#9733;FAVORITOS</b></a></div>
+          	<br>
+          	<div class="col-md-6 offset-md-3"><a class="btn btn-danger  mt-3" href="lista_meus_eventos.html"><b>EXCLUIR CONTA</b></a></div>
+		</div>	
+         </div> 
         </div>
       </div>
-    </div>
+   
   </div>
   <!-- FECHAMENTO DA DIV ABAIXO IMPORTANTE -->
   </div>
