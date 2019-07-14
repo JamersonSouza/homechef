@@ -3,6 +3,7 @@ package br.com.homechef.Controller;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -68,7 +69,7 @@ public class ChefController {
 	}
 	
 	@PostMapping("/logar")
-	public String logar(@Valid Chef chef, RedirectAttributes rt, Errors errors,HttpSession session, Model model) {
+	public String logar(@Valid Chef chef, RedirectAttributes rt, Errors errors,HttpSession session) {
 		Chef chefLogado;
 		try {
 			chefLogado = this.chefservice.efetuarLogin(chef.getEmail(), chef.getSenha());
@@ -77,13 +78,15 @@ public class ChefController {
 			
 		} catch (ServiceException e) {
 			rt.addFlashAttribute("mensagemErro", e.getMessage());
-			return "redirect:/index";
+			return "redirect:/loginchef";
 		}
 		
 	}
 	
 	@GetMapping("perfil-chef")
-	public String view() {
-		return "perfil-chef";
+	public ModelAndView PerfilChef() {
+		ModelAndView mv = new ModelAndView("perfil-chef");
+		mv.addObject("lista", chefservice.listarTodos());
+		return mv;
 	}
 }

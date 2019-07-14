@@ -4,7 +4,6 @@
 
 <head>
   <meta charset="utf-8">
-  <meta charset="utf-8">
   <meta name="google-signin-scope" content="profile email">
   <meta name="google-signin-client_id" content="614456256124-4g6ecblcehs1ur9e9es8b1agin8m3ps1.apps.googleusercontent.com">
   <script src="https://apis.google.com/js/platform.js" async defer></script>
@@ -13,9 +12,9 @@
   <link rel="stylesheet" href="https://static.pingendo.com/bootstrap/bootstrap-4.3.1.css">
   <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
-</head>
+ </head>
+<header>
 
-<body>
   <nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <div class="container"> <a class="navbar-brand" th:href="@{index}">
         <img alt="" src="/imagens/logo_homechef2.png" width="150px">
@@ -33,6 +32,8 @@
       </div>
     </div>
   </nav>
+ </header>
+  <body>
   <div class="py-1" style="	background-image: url(imagens/ct-home-chef-pat-vihtelic-bsi-20150625.jpg);	background-size: cover;	background-position: left top;	background-repeat: repeat;">
     <div class="container">
       <div class="row" style="">
@@ -55,7 +56,7 @@
 		<strong>USUÁRIO OU SENHA INVÁLIDA</strong>
 				</div>
           <center>
-           <button type="submit" class="btn btn-primary btn-mg">ENTRAR</button>
+           <button type="submit" class="btn btn-primary btn-mg"><strong>ENTRAR</strong></button>
            <hr>
          </center>
            
@@ -71,7 +72,7 @@
             <div class="col-md-12">
               <h6 class="text-center my-0 mt-4 mb-1"><b>Ainda não é cadastrado?</b></h6>
               <div class="row">
-                <div class="col-md-12 text-center"><a class="btn align-items-center text-center btn-success w-75" th:href="@{Escolher_Cadastro}" style="">Cadastre-se</a><a class="btn align-items-center text-center btn-light w-50 mt-2" th:href="@{index}" style="">VOLTAR</a></div>
+                <div class="col-md-12 text-center"><a class="btn align-items-center text-center btn-success w-75" th:href="@{Escolher_Cadastro}" style=""><strong>Cadastre-se</strong></a><a class="btn align-items-center text-center btn-light w-50 mt-2" th:href="@{index}" style="">VOLTAR</a></div>
               </div>
             </div>
           </div>

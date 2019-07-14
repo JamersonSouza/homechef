@@ -1,5 +1,9 @@
 package br.com.homechef.Controller;
 
+
+import java.util.List;
+
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +35,17 @@ public class ChefService {
 		
 		return chef;
 	}
+	
+	//listar todos 
+	public List<Chef> listarTodos(){
+		return chefdao.findAll();
+	}
+	
+	//listar por Id
+	public Chef findById(Integer idChef) {
+		return chefdao.findById(idChef).orElse(null);
+	}
+
 	
 
 

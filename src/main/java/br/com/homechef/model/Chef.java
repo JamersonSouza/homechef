@@ -17,7 +17,7 @@ public class Chef {
 	private Integer idChef;
 //	@NotBlank(message = "Campo NOME obrigatório!")
 	private String nome;
-	@NotBlank(message = "Campo EMAIL Vazio ou Inválido")
+//	@NotBlank(message = "Campo EMAIL Vazio ou Inválido")
 	private String email;
 //	@Size(min = 8, message = "SENHA COM NO MÍNIMO 8 DIGITOS")
 //	@NotBlank(message = "Campo SENHA Vazio ou Inválido")

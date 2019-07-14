@@ -47,4 +47,11 @@ public class LoginController {
 
 	}	
 
+	//AINDA NÃO FOI TOTALMENTE IMPLEMENTADO!
+	@GetMapping("/acesso-negado")
+	public String acessoNegado() {
+		return "acesso-negado";
+	}
+	
+	
 }
