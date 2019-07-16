@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import br.com.homechef.DAO.ComplementoUsuarioDao;
 import br.com.homechef.DAO.UsuarioDAO;
 import br.com.homechef.model.Usuario;
+import br.com.homechef.model.UsuarioComplemento;
 
 @Controller
 public class UsuarioController {
@@ -29,6 +31,9 @@ public class UsuarioController {
 	
 	@Autowired
 	private UsuarioService usuarioService;
+	
+	@Autowired
+	private ComplementoUsuarioDao usercomplemento;
 	
 	//Pagina de Cadastro de um usuario normal - View
 	@GetMapping("/cadastro")
@@ -106,6 +111,17 @@ public class UsuarioController {
 	@GetMapping("complemento-perfil")
 	public ModelAndView complementoPerfil() {
 		ModelAndView mv = new ModelAndView("complemento-perfil");
+		mv.addObject("userComplemento", new UsuarioComplemento());
+		return mv;
+	}
+	
+	@PostMapping("/salvarComplemento")
+	public ModelAndView saveComplemento(@ModelAttribute UsuarioComplemento userComplemento) {
+		ModelAndView mv = new ModelAndView("complemento-perfil");
+		mv.addObject("userComplemento", userComplemento);
+		mv.addObject("mensagem", "salvo com sucesso");
+		System.out.println(userComplemento);
+		usercomplemento.save(userComplemento);
 		return mv;
 	}
 	

@@ -24,14 +24,7 @@ public class Usuario {
 	private String senha;
 	@Transient 
 	private String cnfSenha;
-	//@NotBlank(message = "Campo ENDEREÇO Vazio ou Inválido")
-	private String endereco;
-	//@NotBlank(message = "Campo CEP Vazio ou Inválido")
-	private String cep;
-	//@NotBlank(message = "Campo COMPLEMENTO Vazio ou Inválido")
-	private String complemento;
-	//@NotBlank(message = "Campo TELEFONE Vazio ou Inválido")
-	private String telefone;
+	
 	
 	public Integer getIdUsuario() {
 		return idUsuario;
@@ -63,31 +56,6 @@ public class Usuario {
 	public void setCnfSenha(String cnfSenha) {
 		this.cnfSenha = cnfSenha;
 	}
-	public String getEndereco() {
-		return endereco;
-	}
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
-	}
-	public String getCep() {
-		return cep;
-	}
-	public void setCep(String cep) {
-		this.cep = cep;
-	}
-	public String getComplemento() {
-		return complemento;
-	}
-	public void setComplemento(String complemento) {
-		this.complemento = complemento;
-	}
-	public String getTelefone() {
-		return telefone;
-	}
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
-	
-	
+		
 
 }

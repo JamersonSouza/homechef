@@ -11,6 +11,17 @@
 	href="https://static.pingendo.com/bootstrap/bootstrap-4.3.1.css">
 <title>Complemento :: Usuário</title>
 </head>
+<script type="text/javascript">
+function mascara(t, mask){
+	 var i = t.value.length;
+	 var saida = mask.substring(1,0);
+	 var texto = mask.substring(i)
+	 if (texto.substring(0,1) != saida){
+	 t.value += texto.substring(0,1);
+	 }
+	 }
+
+</script>
 <body>
 
 	<div class="py-2 text-left" style="background-image: url(imagens/fundoFotter.jpg); background-size: cover; background-repeat: repeat; overflow: hidden;">
@@ -21,32 +32,39 @@
 					<b>COMPLETE SEU PERFIL</b>
 				</h1>
 				<br>
-				<form th:action="@{/salvarComplemento}" th:object="${userComplete}">
+				<form th:action="@{/salvarComplemento}" th:object="${userComplemento}" method="post">
+				
+				
+						<!-- ALERTA MENSAGEM DE USUARIO CADASTRADO -->
+						<div id="alerta" class="alert alert-success" th:if="${!#strings.isEmpty(mensagem)}">
+							<strong>INFORMAÇÕES SALVA COM SUCESSO! <a th:href="@{usuarioPerfil}">VOLTAR.</a></strong>
+						</div>
+				
 						<!-- INPUT ENDEREÇO -->
 						<div class="form-group col-md-12">
 							<label for="inputEnd"><strong>ENDEREÇO:</strong></label> 
-							<input type="text"  placeholder="Ex: Av. Recife, nº 10" class="form-control border border-dark rounded-sm"
+							<input type="text" th:field="*{endereco}" placeholder="Ex: Av. Recife, nº 10" class="form-control border border-dark rounded-sm"
 							id="inputEnd">
 						</div>
 						
 						<!-- INPUT COMPLEMENTO -->
 						<div class="form-group col-md-12">
 							<label for="inputCmp"><strong>COMPLEMENTO:</strong></label> 
-						<input type="text"  placeholder="Ex: aptº 372 - bloco A" class="form-control border border-dark rounded-sm"
+						<input type="text" th:field="*{complemento}"  placeholder="Ex: aptº 372 - bloco A" class="form-control border border-dark rounded-sm"
 						id="inputCmp">
 						</div>
 						
 						<!-- INPUT CEP -->
 						<div class="form-group col-md-12">
 								<label for="cep"><strong>CEP:</strong></label> 
-						<input type="text"  maxlength="9" placeholder="Ex:10101-011 " class="form-control border border-dark rounded-sm"
+						<input type="text" th:field="*{cep}" maxlength="9"  onkeypress="mascara(this, '#####-###')" class="form-control border border-dark rounded-sm"
 						id="cep">
 						</div>
 						
 							<!-- INPUT TELEFONE -->
 						<div class="form-group col-md-12">
 								<label for="inputTel"><strong>TELEFONE:</strong></label> 
-						<input type="text" maxlength="11"  placeholder="Exemplo: (81)91111-2222" class="form-control border border-dark rounded-sm"
+						<input type="text" th:field="*{telefone}" maxlength="14"  onkeypress="mascara(this, '## # ####-####')" class="form-control border border-dark rounded-sm"
 						id="inputTel">
 						</div>
 						<br>
