@@ -46,7 +46,6 @@ public class ChefService {
 		return chefdao.findById(idChef).orElse(null);
 	}
 
-	
 
 
 }

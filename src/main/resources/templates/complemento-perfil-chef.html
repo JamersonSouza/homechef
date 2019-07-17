@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+	type="text/css">
+<link rel="stylesheet"
+	href="https://static.pingendo.com/bootstrap/bootstrap-4.3.1.css">
+<title>Complemento :: Chef</title>
+</head>
+<script type="text/javascript">
+function mascara(t, mask){
+	 var i = t.value.length;
+	 var saida = mask.substring(1,0);
+	 var texto = mask.substring(i)
+	 if (texto.substring(0,1) != saida){
+	 t.value += texto.substring(0,1);
+	 }
+	 }
+
+</script>
+<body>
+
+	<div class="py-2 text-left" style="background-image: url(imagens/fundoFotter.jpg); background-size: cover; background-repeat: repeat; overflow: hidden;">
+		<div class="row">
+			<div class="mx-auto bg-white p-4 col-12 col-md-6 bg-dark text-body"
+				style="border: 10px solid gray; background-image: linear-gradient(to bottom, rgb(211, 211, 211), rgb(211, 211, 211)); background-position: top left; background-size: 100%; background-repeat: repeat;">
+				<h1 class="mb-4 text-center text-dark">
+					<b>COMPLETE SEU PERFIL</b>
+				</h1>
+				<br>
+				<form th:action="@{/salvarComplementoChef}" th:object="${chefComplemento}" method="post">
+				
+					<input type="hidden" th:field="*{idChef}" id="idChef"/>
+				
+						
+						
+						ALERTA MENSAGEM DE CHEF CADASTRADO
+						<div id="alerta" class="alert alert-success" th:if="${!#strings.isEmpty(mensagem)}">
+							<strong>INFORMAÇÕES SALVA COM SUCESSO! <a th:href="@{perfil-chef}">VOLTAR.</a></strong>
+						</div>
+				
+						<!-- INPUT ENDEREÇO -->
+					<div class="form-group col-md-12">
+							<label for="inputLog"><strong>LOGRADOURO:</strong></label> 
+							<input type="text" th:field="*{endereco.logradouro}" placeholder="Ex: Av. Recife" class="form-control border border-dark rounded-sm"
+							id="inputLog">
+						</div>
+						
+						<!-- INPUT NUMERO -->
+						<div class="form-group col-md-6">
+							<label for="inputNum"><strong>NUMERO:</strong></label> 
+						<input type="text" th:field="*{endereco.numero}"  placeholder="Ex:372 " class="form-control border border-dark rounded-sm"
+						id="inputNum">
+						</div>
+						
+						<!-- INPUT COMPLEMENTO -->
+						<div class="form-group col-md-6">
+							<label for="inputCmp"><strong>COMPLEMENTO:</strong></label> 
+						<input type="text" th:field="*{endereco.complemento}"  placeholder="Ex: aptº 372 - bloco A" class="form-control border border-dark rounded-sm"
+						id="inputCmp">
+						</div>
+						
+						<!-- INPUT CEP -->
+						<div class="form-group col-md-12">
+								<label for="cep"><strong>CEP:</strong></label> 
+						<input type="text" th:field="*{endereco.cep}" maxlength="9"  onkeypress="mascara(this, '#####-###')" class="form-control border border-dark rounded-sm"
+						id="cep">
+						</div>
+						
+						<!-- INPUT CIDADE -->
+						<div class="form-group col-md-12">
+								<label for="cidade"><strong>CIDADE:</strong></label> 
+						<input type="text" th:field="*{endereco.cidade}" maxlength="9"  onkeypress="mascara(this, '#####-###')" class="form-control border border-dark rounded-sm"
+						id="cidade">
+						</div>
+						
+						<!-- INPUT ESTADO -->
+						<div class="form-group col-md-6">
+								<label for="estado"><strong>ESTADO:</strong></label> 
+						<input type="text" th:field="*{endereco.estado}" maxlength="9"  onkeypress="mascara(this, '#####-###')" class="form-control border border-dark rounded-sm"
+						id="estado">
+						</div>
+						
+							<!-- INPUT TELEFONE -->
+						<div class="form-group col-md-12">
+								<label for="inputTel"><strong>TELEFONE:</strong></label> 
+						<input type="text" th:field="*{telefone}" maxlength="14"  onkeypress="mascara(this, '## # ####-####')" class="form-control border border-dark rounded-sm"
+						id="inputTel">
+						</div>
+						<br>
+						<div class="col-md-6 offset-md-3">
+								<button type="submit" class="btn btn-success btn-block w-60"><strong>SALVAR</strong></button>
+						</div>
+					</form>
+</body>
+</html>

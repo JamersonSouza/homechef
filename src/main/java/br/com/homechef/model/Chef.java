@@ -1,5 +1,6 @@
 package br.com.homechef.model;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,9 +25,20 @@ public class Chef {
 	private String senha;
 	@Transient
 	private String cnfSenha;
-
+	private String telefone;
+	@Embedded
+	private Endereco endereco;
+	
 	public Integer getIdChef() {
 		return idChef;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
 
 	public void setIdChef(Integer idChef) {
@@ -65,4 +77,13 @@ public class Chef {
 		this.cnfSenha = cnfSenha;
 	}
 
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
+	
 }
