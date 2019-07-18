@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
@@ -25,20 +26,12 @@ public class Chef {
 	private String senha;
 	@Transient
 	private String cnfSenha;
-	private String telefone;
-	@Embedded
-	private Endereco endereco;
+	
+	@OneToOne
+	private ChefComplemento chefComplemento;
 	
 	public Integer getIdChef() {
 		return idChef;
-	}
-
-	public String getTelefone() {
-		return telefone;
-	}
-
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
 	}
 
 	public void setIdChef(Integer idChef) {
@@ -77,13 +70,14 @@ public class Chef {
 		this.cnfSenha = cnfSenha;
 	}
 
-	public Endereco getEndereco() {
-		return endereco;
+	public ChefComplemento getChefComplemento() {
+		return chefComplemento;
 	}
 
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
+	public void setChefComplemento(ChefComplemento chefComplemento) {
+		this.chefComplemento = chefComplemento;
 	}
+
 
 	
 }
