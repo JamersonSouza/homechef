@@ -9,7 +9,7 @@ public class AutorizadorInteceptor implements HandlerInterceptor {
 	
 	private static final boolean CONTROLAR_ACESSO = true;
 	
-	private static final String[] RECURSOS_LIVRES = {"loginchef"};
+	private static final String[] RECURSOS_LIVRES = { "/", "/index", "/login", "/acesso-negado"};
 	
 	private static final String PAGINA_ACESSO_NEGADO = "/acesso-negado";
 
@@ -29,7 +29,7 @@ public class AutorizadorInteceptor implements HandlerInterceptor {
 		}
 	}
 	
-	if (request.getSession().getAttribute("chefLogado") == null	) {
+	if (request.getSession().getAttribute("usuariologado") == null || request.getSession().getAttribute("chefLogado") == null) {
 		request.getRequestDispatcher(PAGINA_ACESSO_NEGADO).forward(request, response);
 		return false;
 	} else {

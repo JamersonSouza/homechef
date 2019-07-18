@@ -62,9 +62,7 @@ public class indexController {
 			public ModelAndView pratosSelectPreco() {
 				ModelAndView mv = new ModelAndView("lista-pratos-SelectPreco");
 				return mv;
-						}
-			
-	
-	
+		}
+		
 				
 }
