@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="https://static.pingendo.com/bootstrap/bootstrap-4.3.1.css">
+  <title>Cadastro :: Cardápio</title>
+</head>
+
+<body>
+  <div class="py-4 text-left" style="background-image: url(imagens/fundoFotter.jpg); background-size: cover; background-repeat: repeat; overflow: hidden;">
+    <div class="row">
+      <div class="mx-auto bg-white p-5 col-12 col-md-6 bg-dark text-body" style="border: 10px solid gray; background-image: linear-gradient(to bottom, rgb(211, 211, 211), rgb(211, 211, 211)); background-position: top left; background-size: 100%; background-repeat: repeat;">
+        <h1 class="mb-3 text-center text-dark">
+          <b>CADASTRAR CARDÁPIO</b><br><br></h1>
+        <h6 class="text-center my-0 mt-0 py-0" contenteditable="true">CHEF, CADASTRE AQUI SEUS MELHORES PRATOS</h6>
+        <br>
+        <form method="post" th:action="@{/addUsuario}" th:object="${usuario}" style="">
+          <!-- ALERTA MENSAGEM DE USUARIO CADASTRADO -->
+          <!-- ALERTA MENSAGEM DE ERRO NO CADASTRO -->
+          <!-- ALERTA MENSAGEM DE ERRO -->
+          <!-- INICIO DOS INPUT PARA CADASTRAMENTO -->
+          <div class="form-row">
+            <!-- INPUT NOME -->
+            <div class="form-group col-md-12 ">
+              <label for="inputNome">
+                <h5><strong>NOME:</strong></h5>
+              </label>
+              <input type="text" th:field="*{nomeCardapio}" placeholder="Exemplo: Feijoada Nordestina" class="form-control border border-dark rounded-sm" id="inputNome" required="required">
+            </div>
+
+            <div class="form-group col-md-12">
+              <label for="inputEmail">
+                <h5 contenteditable="true"><strong>DESCRIÇÃO DO CARDÁPIO:</strong></h5>
+              </label>
+              <input type="text" th:field="*{descricaoCardapio}" class="form-control border border-dark rounded-sm" id="inputDesc" placeholder="Entrada: Salada de Brócolis; Prato Principal: Lasanha" required="required">
+            </div>
+         
+            <div class="form-group col-md-6">
+              <label for="inputSenha">
+                <h5><strong>VALOR POR PESSOA:</strong></h5>
+              </label>
+              <input type="number" th:field="*{valorPessoa}" placeholder="Exemplo: R$ 34,90" class="form-control border border-dark rounded-sm" id="valorPessoa">
+            </div>
+      
+            <div class="form-group col-md-6">
+              <label for="inputCsenha">
+                <h5><strong>LIMITE DE PESSOAS:</strong></h5>
+              </label>
+              <input type="number" th:field="*{limitePessoas}" class="form-control border border-dark rounded-sm" id="limitePessoa" placeholder="Exemplo: 45">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class=""btn btn-secondary text-uppercase text-center w-100">
+               <button type="file" class="btn btn-success btn-block w-50">>ADICIONAR FOTO</a></div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="row d-flex justify-content-center">
+            <button type="submit" class="btn btn-success btn-block w-50">SALVAR CARDÁPIO</button>
+          </div>
+        </form>
+        <!-- DIVS IMPORTANTES RESPONSAVEL IMG FNDO -->
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
