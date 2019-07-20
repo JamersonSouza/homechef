@@ -7,69 +7,84 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Cardapio {
-	
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer idCardapio;
+	private Integer id;
 	@NotBlank(message = "Campo NOME obrigatório!")
-	private String nomeCardapio;
+	private String nome;
 	@Lob
-	private byte[] fotoCardapio;
+	private byte[] fileFoto;
 	@NotBlank(message = "Campo DESCRIÇÂO obrigatório!")
-	private String descricaoCardapio;
-	@NotBlank(message = "Campo VALOR obrigatório!")
+	private String descricao;
+	@NotNull(message = "CAMPO NÃO PODE FICAR VAZIO")
 	private double valorPessoa;
-	@NotBlank(message = "Campo LIMITE obrigatório!")
-	private int limitePessoas;
-	
-	
+	@Size(min = 1, message = "LIMITE DEVE SER SUPERIOR A 0")
+	private String limitePessoas;
+
 	@ManyToOne
 	private Chef chef;
-	
-	
-	
-	
-	
-	public Integer getIdCardapio() {
-		return idCardapio;
-	}
-	public void setIdCardapio(Integer idCardapio) {
-		this.idCardapio = idCardapio;
-	}
-	public String getNomeCardapio() {
-		return nomeCardapio;
-	}
-	public void setNomeCardapio(String nomeCardapio) {
-		this.nomeCardapio = nomeCardapio;
+
+	public Integer getId() {
+		return id;
 	}
 
-	public String getDescricaoCardapio() {
-		return descricaoCardapio;
+	public void setId(Integer id) {
+		this.id = id;
 	}
-	public void setDescricaoCardapio(String descricaoCardapio) {
-		this.descricaoCardapio = descricaoCardapio;
+
+	public String getNome() {
+		return nome;
 	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+
+	public byte[] getFileFoto() {
+		return fileFoto;
+	}
+
+	public void setFileFoto(byte[] fileFoto) {
+		this.fileFoto = fileFoto;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
 	public double getValorPessoa() {
 		return valorPessoa;
 	}
+
 	public void setValorPessoa(double valorPessoa) {
 		this.valorPessoa = valorPessoa;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+	public String getLimitePessoas() {
+		return limitePessoas;
+	}
+
+	public void setLimitePessoas(String limitePessoas) {
+		this.limitePessoas = limitePessoas;
+	}
+
+	public Chef getChef() {
+		return chef;
+	}
+
+	public void setChef(Chef chef) {
+		this.chef = chef;
+	}
 
 }

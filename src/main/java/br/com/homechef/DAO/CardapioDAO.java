@@ -7,7 +7,7 @@ import br.com.homechef.model.Cardapio;
 public interface CardapioDAO extends JpaRepository<Cardapio, Integer> {
 
 	
-	
+	public Cardapio findByNome(String nome);
 	
 	
 }

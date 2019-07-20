@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+	type="text/css">
+<link rel="stylesheet"
+	href="https://static.pingendo.com/bootstrap/bootstrap-4.3.1.css">
+<title>CARDAPIO :: CHEF</title>
+</head>
+<body>
+
+	<div class="py-2 text-left" style="background-image: url(imagens/fundoFotter.jpg); background-size: cover; background-repeat: repeat; overflow: hidden;">
+		<div class="row">
+			<div class="mx-auto bg-white p-4 col-12 col-md-6 bg-dark text-body"
+				style="border: 10px solid gray; background-image: linear-gradient(to bottom, rgb(211, 211, 211), rgb(211, 211, 211)); background-position: top left; background-size: 100%; background-repeat: repeat;">
+				<h1 class="mb-4 text-center text-dark">
+					<b>CADASTRE SEU CARDAPIO</b>
+				</h1>
+				<br>
+				<form th:action="@{/addCardapio}" th:object="${cardapio}" method="post" enctype="multipart/form-data">
+				
+				
+						<!-- ALERTA MENSAGEM DE CARDAPIO INSERIDO -->
+						<div id="alerta" class="alert alert-success" th:if="${!#strings.isEmpty(mensagem)}">
+							<strong>INFORMAÇÕES SALVA COM SUCESSO! <a th:href="@{perfil-chef}">VOLTAR.</a></strong>
+						</div>
+						
+						<!-- ALERTA MENSAGEM DE ERRO -->	
+						<div id="alerta" class="alert alert-danger" th:if="${#fields.hasAnyErrors()}" >
+							<strong><p th:each="err : ${#fields.allErrors()}" th:text="${err}"></p></strong>
+						</div>
+						
+				
+						<!-- INPUT NOME DO PRATO -->
+						<div class="form-group col-md-12">
+							<label for="inputEnd"><strong>NOME DO PRATO:</strong></label> 
+							<input type="text" th:field="*{nome}" class="form-control border border-dark rounded-sm" id="inputEnd">
+						</div>
+						
+						<!-- INPUT DESCRIÇÃO DO PRATO -->
+						<div class="form-group col-md-12">
+							<label for="inputCmp"><strong>DESCRIÇÃO:</strong></label> 
+						<textarea rows="4" cols="4" th:field="*{descricao}" class="md-textarea form-control border border-dark rounded-sm"></textarea>
+						</div>
+						
+						<div class="form-group col-md-12">
+								<label for="cep"><strong>FOTOS DO PRATO:</strong></label> 
+						<input  class="form-control  border border-dark rounded-sm" type="file" name="fileFoto2">
+					</div>
+						
+							<!-- INPUT VALOR -->
+						<div class="form-group col-md-12">
+								<label for="inputTel"><strong>VALOR POR PESSOA:</strong></label> 
+						<input type="text"  th:field="*{valorPessoa}" placeholder="Ex: R$ 50,00" class="form-control border border-dark rounded-sm">
+						</div>
+						
+						
+						<div class="form-group col-md-12">
+								<label for="inputTel"><strong>QUANTIDADE DE PESSOAS:</strong></label> 
+						<input type="text" th:field="*{limitePessoas}" placeholder="Ex: 100" class="form-control border border-dark rounded-sm">
+						</div>
+						
+						
+						<br>
+						<div class="col-md-6 offset-md-3">
+								<button type="submit" class="btn btn-success btn-block w-60"><strong>SALVAR</strong></button>
+						</div>
+					
+					
+					</form>
+</body>
+</html>
