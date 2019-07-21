@@ -65,6 +65,7 @@ public class UsuarioController {
 		}
 	}
 //==================== FUNCIONALIDADE PARA EDITAR PERFIL =============================
+	
 	@PostMapping("/editUser")
 	public ModelAndView editUser(@Valid @ModelAttribute Usuario userEdit, Errors errors) {
 		
@@ -81,9 +82,16 @@ public class UsuarioController {
 		
 	}
 	
+	@GetMapping("alterarcadastro")
+	public ModelAndView altCadastastro(@ModelAttribute Usuario userEdit) {
+		ModelAndView mv = new ModelAndView("alterarcadastro");
+		mv.addObject("userEdit", userEdit);
+		mv.addObject("userEdit", new Usuario());
+		return mv;
+	}
 	
-	@GetMapping("/editarPerfil")
-	public ModelAndView editar(@Valid @RequestParam Integer idUsuario) {
+	@GetMapping("/edituser")
+	public ModelAndView editar(@RequestParam Integer idUsuario) {
 		ModelAndView mv = new ModelAndView("alterarcadastro");
 		mv.addObject("userEdit", usuarioDao.findById(idUsuario));
 		usuarioDao.deleteById(idUsuario);
