@@ -156,7 +156,18 @@ public class ChefController {
 	}
 	
 	
+//	============ EXCLUIR CONTA DO CHEF ============
+	@GetMapping("/contaExcluida")
+	public String conta() {
+		return "contaExcluida";
+	}
 	
+	@GetMapping("/ExcluirConta")
+	public ModelAndView excluirConta(@RequestParam Integer idChef) {
+		ModelAndView mv = new ModelAndView("redirect:contaExcluida");
+		chefDAO.deleteById(idChef);
+		return mv;
+	}
 	
 	
 }
