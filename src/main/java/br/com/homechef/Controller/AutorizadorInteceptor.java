@@ -9,7 +9,9 @@ public class AutorizadorInteceptor implements HandlerInterceptor {
 	
 	private static final boolean CONTROLAR_ACESSO = true;
 	
-	private static final String[] RECURSOS_LIVRES = { "/", "/index", "/static/**", "/login", "/acesso-negado", "/cadastro","/Escolher_Cadastro", "/loginchef", "/contato", "/cadastroChef", "/CadasrtoCardapio"};
+	private static final String[] RECURSOS_LIVRES = { "/", "/index", "/login", "/acesso-negado", "/cadastro","/Escolher_Cadastro", "/loginchef", "/contato", "/cadastroChef", "/CadasrtoCardapio"};
+	
+	private final String[] PAGINAS_ESTATICAS = {"/css/", "/imagens/"};
 	
 	private static final String PAGINA_ACESSO_NEGADO = "/acesso-negado";
 
@@ -18,13 +20,22 @@ public class AutorizadorInteceptor implements HandlerInterceptor {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 	throws Exception {
 		System.out.println(" >>> INFO:: Interceptor antes da chamada <<< ");
+		
+		String pagRequisitada = request.getServletPath();
 	
-	if(!CONTROLAR_ACESSO) {
+		if(!CONTROLAR_ACESSO) {
 		return true;
 	}
 	
 	for (String recurso : RECURSOS_LIVRES) {
 		if (request.getRequestURL().toString().endsWith(recurso)) {
+			return true;
+		}
+	}
+	
+	for (String paginaEstatica : PAGINAS_ESTATICAS) {
+		if (pagRequisitada.contains(paginaEstatica)) {
+			//System.out.println("Permitido (estática): "+urlRequisitada);
 			return true;
 		}
 	}
@@ -35,7 +46,6 @@ public class AutorizadorInteceptor implements HandlerInterceptor {
 	} else {
 		return true;
 	}
-
 }
-	
+
 }

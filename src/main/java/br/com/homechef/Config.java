@@ -11,8 +11,7 @@ public class Config implements WebMvcConfigurer{
 
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(new AutorizadorInteceptor()).addPathPatterns("/static/imagens/*");
-		registry.addInterceptor(new AutorizadorInteceptor()).addPathPatterns("/static/*");
+		registry.addInterceptor(new AutorizadorInteceptor());
 	}
 
 }
