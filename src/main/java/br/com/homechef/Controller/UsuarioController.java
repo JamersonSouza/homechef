@@ -167,5 +167,21 @@ public class UsuarioController {
 	}	
 	
 	
+	//Método para recuperação de senha
+		@GetMapping("/redefinirSenhaUsuario")
+		public ModelAndView redefcUsuario() {
+			ModelAndView mv = new ModelAndView("redefinirSenhaUsuario");
+			return mv;
+		}	
+	
+	
+	@PostMapping("/recuperaSenha")
+	public ModelAndView recuperaSenha (@ModelAttribute Usuario email) {
+		
+		return null;
+		
+	}
+
+	
 	
 }

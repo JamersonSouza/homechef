@@ -177,4 +177,11 @@ public class ChefController {
 		}	
 	
 	
+		
+		//Método para recuperação de senha
+		@GetMapping("/redefinirSenhaChef")
+		public ModelAndView redefChef() {
+			ModelAndView mv = new ModelAndView("redefinirSenhaChef");
+			return mv;
+		}	
 }
