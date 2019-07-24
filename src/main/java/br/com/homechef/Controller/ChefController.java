@@ -169,5 +169,12 @@ public class ChefController {
 		return mv;
 	}
 	
+	//Método para recuperação de senha
+		@GetMapping("/recuperarChef")
+		public ModelAndView recChef() {
+			ModelAndView mv = new ModelAndView("recuperarChef");
+			return mv;
+		}	
+	
 	
 }

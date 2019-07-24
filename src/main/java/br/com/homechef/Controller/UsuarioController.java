@@ -158,4 +158,14 @@ public class UsuarioController {
 		
 	}
 	
+
+	//Método para recuperação de senha
+	@GetMapping("/recuperarUsuario")
+	public ModelAndView recUsuario() {
+		ModelAndView mv = new ModelAndView("recuperarUsuario");
+		return mv;
+	}	
+	
+	
+	
 }
