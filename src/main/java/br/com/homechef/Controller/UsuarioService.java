@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import br.com.homechef.DAO.ChefDAO;
 import br.com.homechef.DAO.UsuarioDAO;
 import br.com.homechef.excecoes.EmailExistsException;
+import br.com.homechef.excecoes.UsuarioInexistenteException;
 import br.com.homechef.model.Usuario;
 
 @Service
@@ -24,6 +25,21 @@ public class UsuarioService {
 		}
 		usuarioDAO.save(usuario);
 	}
+	
+	public Usuario recuperarSenha(Usuario usuario) throws Exception{
+		Usuario var = this.usuarioDAO.PesquisarEmail(usuario.getEmail());
+		if(var == null) {
+			throw new UsuarioInexistenteException
+			("Não existe um usuario com este email: " + usuario.getEmail());
+			
+		}
+		
+		return var;
+	}
+	
+	
+	
+	
 	
 	
 }

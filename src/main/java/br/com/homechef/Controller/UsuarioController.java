@@ -178,6 +178,7 @@ public class UsuarioController {
 	@GetMapping("/recuperarUsuario")
 	public ModelAndView recUsuario() {
 		ModelAndView mv = new ModelAndView("recuperarUsuario");
+		mv.addObject("usuario", new Usuario());
 		return mv;
 	}	
 	
@@ -191,12 +192,26 @@ public class UsuarioController {
 	
 	
 	@PostMapping("/recuperaSenha")
-	public ModelAndView recuperaSenha (@ModelAttribute Usuario email) {
+	public ModelAndView recuperaSenha (@ModelAttribute Usuario usuario) {
+		ModelAndView mv = new ModelAndView("redefinirSenhaUsuario");
+		Usuario var;
 		
-		return null;
+		try {
+			var = usuarioService.recuperarSenha(usuario);
+			mv.addObject("usuario", var);
+			return mv;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			ModelAndView mav = new ModelAndView ("recuperarUsuario");
+			mav.addObject("msg", "Email não Encontrado");
+			return mav;
+		} 
+			
+		
+		
+	
 		
 	}
-
-	
 	
 }
