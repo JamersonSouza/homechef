@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import br.com.homechef.DAO.ChefDAO;
 import br.com.homechef.DAO.UsuarioDAO;
+import br.com.homechef.model.Chef;
 import br.com.homechef.model.Usuario;
 
 @Controller
@@ -18,13 +20,15 @@ public class LoginController {
 	
 	@Autowired
 	private UsuarioDAO cadastrousuarioDAO;
-
+	
 	
 	@GetMapping("/login")
 	public String login(Usuario usuario, Model model) {
 		model.addAttribute("usuario", new Usuario());
 		return "login";
 	}
+	
+	
 	
 	@PostMapping("/login")
 	public String efetuarLogin(@ModelAttribute("usuario") Usuario usuario, BindingResult br, Model model, HttpSession sessao) {
@@ -39,7 +43,7 @@ public class LoginController {
 			model.addAttribute("mensagem", "Usuario e senha invalido");
 		}else {
 			sessao.setAttribute("usuariologado", usuarioCosultado);
-			return "usuario_logado_index";
+			return "usuarioLogadoIndex";
 
 		}
 		

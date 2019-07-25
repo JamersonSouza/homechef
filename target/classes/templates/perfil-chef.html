@@ -29,14 +29,16 @@
   </nav>
 <body>
     <br>
+    
     <h1 class="text-center"> foto do usuario aqui</h1>
-         
+       
         <div class="container" style="margin-left: 30%;">
          <div class="col-sm-6">
+            
          <div th:each="chef : ${lista}">
-<!--       <h1 class="mt-3 text-center"><b><span th:text="|${session.chefLogado.nome}|">Teste</span></b></h1> -->
-     <span	th:text="|${session.usuariologado.nome}|"></span>
-							</a>
+      
+		 <h1 class="text-center" style="font-weight: 300;">Seja Bem Vindo(a),</h1>  <h1 style="font-weight: 380; text-transform: UPPERCASE" class="h1 text-center" th:text="|${session.chefLogado.nome}|"></h1>
+      
           <div class="form-row">
             <div class="col-sm-6"><a class="btn btn-success" th:href="@{complemento-perfil-chef}"><b>COMPLETE SEU PERFIL</b></a></div>
             <div class="col-sm-6"><a  style="color: #fff;" class="btn btn-success"><b>&#9745;EVENTOS AGENDADOS</b></a></div>

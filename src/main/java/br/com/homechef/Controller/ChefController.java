@@ -7,6 +7,8 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -23,6 +25,7 @@ import br.com.homechef.excecoes.ServiceException;
 import br.com.homechef.model.Cardapio;
 import br.com.homechef.model.Chef;
 import br.com.homechef.model.ChefComplemento;
+import br.com.homechef.model.Usuario;
 
 @Controller
 public class ChefController {
@@ -67,30 +70,30 @@ public class ChefController {
 		
 	}
 }
-	@GetMapping("loginchef")
-	public ModelAndView view(Chef chef, Errors erros) {
-		ModelAndView mv = new ModelAndView("loginchef");
-		mv.addObject("chef", new Chef());
-		mv.addObject("chef", chef);
-		if(erros.hasErrors()) {
-			return mv;
-		}
-		return mv;
+	@GetMapping("/loginchef")
+	public String login(Chef chef, Model model) {
+		model.addAttribute("chef", new Usuario());
+		return "loginchef";
 	}
 	
-	@PostMapping("/logar")
-	public String logar(@Valid Chef chef, RedirectAttributes rt, Errors errors,HttpSession session) {
-		Chef chefLogado;
-		try {
-			chefLogado = this.chefservice.efetuarLogin(chef.getEmail(), chef.getSenha());
-			session.setAttribute("chefLogado", chef);
-			return "redirect:/perfil-chef";
-			
-		} catch (ServiceException e) {
-			rt.addFlashAttribute("mensagemErro", e.getMessage());
-			return "redirect:/loginchef";
+	
+	@PostMapping("/loginchef")
+	public String efetuarLoginChef(@ModelAttribute("chef") Chef chef, BindingResult br, Model model, HttpSession sessao2) {
+		if(br.hasErrors()) {
+			System.out.println("resultado: "+br);
 		}
 		
+		Chef chefconsultado = chefDAO.efetuarLogin(chef.getEmail(), chef.getSenha());
+		
+		if(chefconsultado==null) {
+			model.addAttribute("mensagem", "Usuario ou Senha Inválidos");
+		}
+		else {
+			sessao2.setAttribute("chefLogado", chefconsultado);
+			return "chefLogadoIndex";
+		}
+		
+		return null;
 	}
 	
 	@GetMapping("perfil-chef")
@@ -157,7 +160,7 @@ public class ChefController {
 	
 	
 //	============ EXCLUIR CONTA DO CHEF ============
-	@GetMapping("/contaExcluida")
+	@GetMapping("/exclusaoConta")
 	public String conta() {
 		return "contaExcluida";
 	}

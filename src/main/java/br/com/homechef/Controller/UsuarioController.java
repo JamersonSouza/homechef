@@ -158,6 +158,21 @@ public class UsuarioController {
 		
 	}
 	
+//	==============================EXCLUIR CONTA USUARIO ======================================
+	@GetMapping("/contaExcluida")
+	public String conta() {
+		return "contaExcluida";
+	}
+	
+	@GetMapping("/ExcluirUsuario")
+	public ModelAndView excluirConta(@RequestParam Integer idUsuario) {
+		ModelAndView mv = new ModelAndView("redirect:contaExcluida");
+		usuarioDao.deleteById(idUsuario);
+		return mv;
+	}
+	
+	
+//	================================================================
 
 	//Método para recuperação de senha
 	@GetMapping("/recuperarUsuario")
