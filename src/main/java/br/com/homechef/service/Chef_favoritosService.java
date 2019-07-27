@@ -1,4 +1,4 @@
-package br.com.homechef.Controller;
+package br.com.homechef.service;
 
 import java.util.List;
 

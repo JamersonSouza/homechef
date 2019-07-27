@@ -187,4 +187,5 @@ public class ChefController {
 			ModelAndView mv = new ModelAndView("redefinirSenhaChef");
 			return mv;
 		}	
+	
 }
