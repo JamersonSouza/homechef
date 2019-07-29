@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Chef_favoritos {
@@ -12,8 +13,11 @@ public class Chef_favoritos {
 	private Integer id;
 	private String nomeChef;
 	private String especialidade;
-	//@ManyToOne
-	//private Chef chef;
+	@ManyToOne
+	private Chef chef;
+	@ManyToOne
+	private Usuario usuario;
+	
 	
 	public Integer getId() {
 		return id;
@@ -33,12 +37,18 @@ public class Chef_favoritos {
 	public void setEspecialidade(String especialidade) {
 		this.especialidade = especialidade;
 	}
-	//public Chef getChef() {
-		//return chef;
-	//}
-	//public void setChef(Chef chef) {
-		//this.chef = chef;
-	//}
+	public Chef getChef() {
+		return chef;
+	}
+	public void setChef(Chef chef) {
+		this.chef = chef;
+	}
+	public Usuario getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
 	
 	
 }

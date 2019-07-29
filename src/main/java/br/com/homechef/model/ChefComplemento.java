@@ -25,7 +25,7 @@ public class ChefComplemento {
 	@Lob
 	private byte[] foto;
 	private String descricao;
-	
+	private String especialidade;
 	
 	public String getLogradouro() {
 		return logradouro;
@@ -106,7 +106,13 @@ public class ChefComplemento {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-
+	public String getEspecialidade() {
+		return especialidade;
+	}
+	public void setEspecialidade(String especialidade) {
+		this.especialidade = especialidade;
+	}
+	
 	
 	
 	

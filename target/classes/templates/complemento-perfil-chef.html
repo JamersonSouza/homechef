@@ -143,9 +143,16 @@ function mascara(t, mask){
 						<input class="form-control  border border-dark rounded-sm" type="file" name="fileFoto">
 						</div>
 						
+							<!-- INPUT ESPECIALIDADE -->
+					<div class="col-md-12 mt-2">
+								<label for="inputEsp "><strong>ESPECIALIDADE:</strong></label> 
+						<input type="text" th:field="*{especialidade}" maxlength="14" placeholder="Ex: cozinha brasileira" class="form-control border border-dark rounded-sm"
+						id="inputEsp">
+						</div>
+						
 						<div class="col-md-12 mt-3">
-								<label><strong>FAÇA UMA BREVE DESCRIÇÃO SOBRE SUAS ESPECIALIDADES</strong></label>
-							<textarea th:field="*{descricao}" class="md-textarea form-control" rows="8" cols="5">
+								<label><strong>FAÇA UMA BREVE DESCRIÇÃO SOBRE VOCÊ E SUAS ESPECIALIDADES</strong></label>
+							<textarea th:field="*{descricao}" class="md-textarea form-control" rows="6" cols="5">
 							</textarea>
 						</div>
 						
