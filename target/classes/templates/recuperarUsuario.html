@@ -41,24 +41,26 @@
           
           
           
-          <form method="post" th:action="@{recuperaSenha}" th:object="${usuario}">
+          <form method="post" th:action="@{redefinirSenhaUsuario}" th:object="${usuario}">
           
             <div class="form-group"> <input type="email" th:field="*{email}" class="form-control border border-dark rounded-sm" placeholder="Email" id="form9" required="required"> </div>
-<!--             <div class="form-group mb-3"> <input type="email" class="form-control border border-dark rounded-sm" id="form10" placeholder="Confirmar Email" required="required"> <small class="form-text text-muted text-right"></small> </div> -->
+
+				<button type="submit" class="btn btn-primary btn-block w-100"><strong>Recuperar senha</strong></button>
+
           </form>
           
           
+        
+           <div class="row">
+           
           
-          <div class="row">
-            <div class="col-md-12"><a href="login.html" class="btn btn-info w-100 mb-2">Recuperar Senha</a>
-              
-            </div>
           </div>
+          
           <div class="row">
             <div class="col-md-12">
               <h6 class="text-center my-0 mt-4 mb-1" contenteditable="true">Ainda não é cadastrado?</h6>
               <div class="row">
-                <div class="col-md-12 text-center"><a class="btn align-items-center btn-success w-100 text-center" href="Escolher_Cadastro.html" style="">Cadastre-se</a><a class="btn align-items-center text-center btn-light w-50 mt-3" href="login.html" style="">VOLTAR</a></div>
+                <div class="col-md-12 text-center"><a class="btn align-items-center btn-success w-100 text-center" th:href="Escolher_Cadastro" style="">Cadastre-se</a><a class="btn align-items-center text-center btn-light w-50 mt-3" th:href="login" style="">VOLTAR</a></div>
               </div>
             </div>
           </div>
