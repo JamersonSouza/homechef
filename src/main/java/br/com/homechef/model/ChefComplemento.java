@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.OneToOne;
 
 @Entity
 public class ChefComplemento {
@@ -26,6 +27,9 @@ public class ChefComplemento {
 	private byte[] foto;
 	private String descricao;
 	private String especialidade;
+	@OneToOne(mappedBy = "chefComplemento")
+	private Chef chef;
+	
 	
 	public String getLogradouro() {
 		return logradouro;
@@ -111,6 +115,12 @@ public class ChefComplemento {
 	}
 	public void setEspecialidade(String especialidade) {
 		this.especialidade = especialidade;
+	}
+	public Chef getChef() {
+		return chef;
+	}
+	public void setChef(Chef chef) {
+		this.chef = chef;
 	}
 	
 	

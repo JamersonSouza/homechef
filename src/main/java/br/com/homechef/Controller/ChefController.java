@@ -110,7 +110,7 @@ public class ChefController {
 		return mv;
 	}
 	@PostMapping("/salvarComplementoChef")
-	public ModelAndView saveComplementoChef(@ModelAttribute ChefComplemento chefComplemento, @RequestParam("fileFoto") MultipartFile file) {
+	public ModelAndView saveComplementoChef(@ModelAttribute ChefComplemento chefComplemento, @RequestParam("fileFoto") MultipartFile file, HttpSession session) {
 		ModelAndView mv = new ModelAndView("complemento-perfil-chef");
 			mv.addObject("chefComplemento", chefComplemento);
 			mv.addObject("mensagem", "salvo com sucesso");
@@ -121,7 +121,7 @@ public class ChefController {
 			} catch (IOException e) {
 				mv.addObject("mensagemErro", e.getMessage());
 			}
-			
+			chefComplemento.setChef((Chef) session.getAttribute("chefLogado"));
 			chefcomplemento.save(chefComplemento);
 			return mv;
 		}
