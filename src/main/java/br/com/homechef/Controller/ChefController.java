@@ -187,5 +187,12 @@ public class ChefController {
 			ModelAndView mv = new ModelAndView("redefinirSenhaChef");
 			return mv;
 		}	
+		//metodo listar chef para a view chef_encontrarChef
+			@GetMapping(value = "/chef_encontrarChef")
+				public ModelAndView viewChef() {
+					ModelAndView mv = new ModelAndView("chef_encontrarChef");
+					mv.addObject("lista", chefservice.listarTodos());
+						return mv;
+					}
 	
 }

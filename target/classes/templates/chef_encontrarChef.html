@@ -28,8 +28,36 @@
     <div class="container">
       <div class="row">
         <div class="p-0 order-2 order-lg-1 col-lg-4">
-          <p class="lead mb-3"><b>LOCAL:</b> Olinda, PE<br><br><b>SOBRE:</b> Admiradores e defensores da cozinha brasileira, compartilham aqui seu entusiasmo em apresentar pratos que definem sua cozinha com a afeição que têm pela gastronomia. Formados pelo SENAC.<br><br><b>ESPECIALIDADES:</b> Brasileira, Contemporânea, Fusão, Tradicional</p>
+        
+          <p class="lead mb-3">
+        <table>
+       	
+       	  <tr>
+          <th>NOME:</th>
+          <tr th:each="cont : ${lista}">
+          <td th:text="${cont.nome}"></td>
+          </tr>
+          <tr>
+<!--           atributo nao faz parte da Classe chef / verificar procedimento -->
+          <th>LOCAL:</th>
+          <tr th:each="cont : ${listaChef}"> <!-- realizar nova listagem em chefComplementos? -->
+          <td th:text="${cont.ChefComplemento.cidade}"></td>
+          </tr>
+          <tr>
+          <th>SOBRE:</th>
+          <tr th:each="cont : ${listaChef}">
+          <td th:text="${cont.ChefComplemento.descricao}"></td>
+          </tr>
+          <tr>
+          <th>ESPECIALIDADE:</th>
+         <tr th:each="cont : ${listaChef}">	
+          <td th:text="${cont.especialidade}"></td>
+          </tr>
+       		
+        </table>
+        </p>
         </div>
+        
         <div class="d-flex flex-column justify-content-center p-3 col-lg-4 order-1 order-lg-2">
           <div class="row">
             <div class="col-md-12">
@@ -47,7 +75,14 @@
           </div>
           <div class="row">
             <div class="col-md-6"><a class="btn text-center btn-success w-100" href="#"><b>CONTRATAR</b><br><i class="fa fa-shopping-cart fa-fw"></i> </a></div>
-            <div class="col-md-6"><a class="btn text-left my-1 btn-outline-danger py-1 w-100" href="#"><i class="fa fa-star fa-fw fa-1x py-1 text-left w-50">&nbsp;FAVORITAR</i></a></div>
+            
+            <form th:action="@{/salvarFavoritos}" th:object="${chefFavoritoAdefinir}" method="post">
+            <div class="col-md-6">
+            <button type="submit" class="btn text-left my-1 btn-outline-danger py-1 w-100" >
+            <i class="fa fa-star fa-fw fa-1x py-1 text-left w-50">&nbsp;FAVORITAR</i>
+            </button>
+            </div>
+            </form>
           </div>
         </div>
         <div class="col-md-4">
@@ -90,7 +125,7 @@
     <div class="container">
       <div class="row">
         <div class="px-lg-5 d-flex flex-column justify-content-center col-lg-6">
-          <h1 class="text-uppercase"><b>Eduardo&nbsp; &amp; Silvia</b></h1>
+          <h1 class="text-uppercase" ><b>Eduardo&nbsp; &amp; Silvia</b></h1>
           <p class="mb-3 lead text-left text-dark text-capitalize"><b>Uma culinária que vai da mais tradicional a mais moderna, misturando cores, texturas e sabores.</b></p>
         </div>
         <div class="col-lg-6"> <img class="img-fluid d-block" src="imagens/chef.jpg"> </div>

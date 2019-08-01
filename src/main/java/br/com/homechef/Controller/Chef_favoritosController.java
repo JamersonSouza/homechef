@@ -14,13 +14,6 @@ public class Chef_favoritosController {
 	@Autowired
 	private Chef_favoritosService chef_favoritosService;
 	
-	//metodo apenas para exibir a view a pagina que possue o botao favoritar
-		@GetMapping("/chef_encontrarChef")
-		public ModelAndView chefEncontarChef() {
-			ModelAndView mv = new ModelAndView("chef_encontrarChef");
-			mv.addObject("chef_favoritos", new Chef_favoritos());
-			return mv;
-		}
 	
 	//metodo listar chef favorito do usuario
 		@GetMapping("/lista_chefes_favoritos")
