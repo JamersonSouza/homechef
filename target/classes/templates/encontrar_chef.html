@@ -45,7 +45,8 @@
       <div class="row">
         <div class="col-md-12 text-center">
           <h1><b>CHEFS CADASTRADOS</b></h1>
-        </div>
+       
+		</div>
       </div>
       <div class="row justify-content-center">
         <div class="col-lg-3 col-6 p-4" > 
@@ -53,22 +54,90 @@
           <h4> <b>Eduarda &amp; Matheus</b></h4>
           <p><b>Local:</b>&nbsp; Olinda, PE<br><b>Especialidades:</b> Brasileira, Fusão.&nbsp;</p><a class="btn btn-outline-primary" th:href="@{chef_encontrarChef}">+saiba mais</a>
         </div>
+        
+   	
+   	<div class="col-lg-3 col-6 p-4">
+        <table>
+        <tr>
+          <th>FOTO:<img class="img-fluid d-block" src="https://static.pingendo.com/img-placeholder-1.svg"></th>
+          <tr th:each="cont : ${lista}">
+          <td th:text="${cont.foto}"></td>
+          </tr>
+        <tr>
+          <th>NOME:</th>
+          <tr th:each="cont : ${lista}">
+          <td th:text="${cont.nome}"></td>
+          </tr>
+          <tr>
+          <th>LOCAL:</th>
+          <tr th:each="cont : ${lista}">
+          <td th:text="${cont.cidade}"></td>
+          </tr>
+           <tr>
+          <th>ESPECIALIDADE:</th>
+          <tr th:each="cont : ${lista}">
+          <td th:text="${cont.especialidade}"></td>
+          </tr>
+          </table>
+        <a class="btn btn-outline-primary" th:href="@{chef_encontrarChef}">+saiba mais</a>
+        </<table>
+        </div>
+        
         <div class="col-lg-3 col-6 p-4">
-          <img class="img-fluid d-block" src="https://static.pingendo.com/img-placeholder-1.svg">
-          <h4> <b>nome_chef</b></h4>
-          <p>I am alone, and feel the charm of existence in this spot.</p><a class="btn btn-outline-primary" href="#" contenteditable="true">+saiba mais</a>
+        <table>
+        <tr>
+          <th>FOTO:<img class="img-fluid d-block" src="https://static.pingendo.com/img-placeholder-1.svg"></th>
+          <tr th:each="cont : ${lista}">
+          <td th:text="${cont.foto}"></td>
+          </tr>
+        <tr>
+          <th>NOME:</th>
+          <tr th:each="cont : ${lista}">
+          <td th:text="${cont.nome}"></td>
+          </tr>
+          <tr>
+          <th>LOCAL:</th>
+          <tr th:each="cont : ${lista}">
+          <td th:text="${cont.cidade}"></td>
+          </tr>
+           <tr>
+          <th>ESPECIALIDADE:</th>
+          <tr th:each="cont : ${lista}">
+          <td th:text="${cont.especialidade}"></td>
+          </tr>
+          </table>
+        <a class="btn btn-outline-primary" th:href="@{chef_encontrarChef}">+saiba mais</a>
+        </<table>
         </div>
+        
         <div class="col-lg-3 col-6 p-4">
-          <img class="img-fluid d-block" src="https://static.pingendo.com/img-placeholder-1.svg">
-          <h4><b>nome_chef</b></h4>
-          <p>I feel that I never was a greater artist than now. When.</p><a class="btn btn-outline-primary" href="#">+saiba mais</a>
+        <table>
+        <tr>
+          <th>FOTO:<img class="img-fluid d-block" src="https://static.pingendo.com/img-placeholder-1.svg"></th>
+          <tr th:each="cont : ${lista}">
+          <td th:text="${cont.foto}"></td>
+          </tr>
+        <tr>
+          <th>NOME:</th>
+          <tr th:each="cont : ${lista}">
+          <td th:text="${cont.nome}"></td>
+          </tr>
+          <tr>
+          <th>LOCAL:</th>
+          <tr th:each="cont : ${lista}">
+          <td th:text="${cont.cidade}"></td>
+          </tr>
+           <tr>
+          <th>ESPECIALIDADE:</th>
+          <tr th:each="cont : ${lista}">
+          <td th:text="${cont.especialidade}"></td>
+          </tr>
+          </table>
+        <a class="btn btn-outline-primary" th:href="@{chef_encontrarChef}">+saiba mais</a>
+        </<table>
         </div>
-        <div class="col-lg-3 col-6 p-4"> <img class="img-fluid d-block" src="https://static.pingendo.com/img-placeholder-1.svg">
-          <h4> <b>nome_chef</b></h4>
-          <p>Oh, would I could describe these conceptions.</p><a class="btn btn-outline-primary" href="#">+saiba mais</a>
-        </div>
-      </div>
-    </div>
+
+    
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-lg-3 col-6 p-4"> <img class="img-fluid d-block" src="https://static.pingendo.com/img-placeholder-1.svg">
