@@ -19,15 +19,6 @@ public class indexController {
 		ModelAndView mv = new ModelAndView("usuario_logado_index");
 		return mv;
 	}
-	
-	//Pagina do Perfil do Usuário - View
-	
-	//encontrar chef
-	@GetMapping("/encontrar_chef")
-	public ModelAndView buscaChef() {
-		ModelAndView mv = new ModelAndView("encontrar_chef");
-		return mv;
-	}
 
 	//sobre nos
 	@GetMapping("/sobre_nos")
