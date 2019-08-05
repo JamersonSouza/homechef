@@ -25,7 +25,7 @@ public class Usuario {
 	private String senha;
 	@Transient 
 	private String cnfSenha;
-	
+	private String imagem;
 	
 	public Integer getIdUsuario() {
 		return idUsuario;
@@ -56,6 +56,12 @@ public class Usuario {
 	}
 	public void setCnfSenha(String cnfSenha) {
 		this.cnfSenha = cnfSenha;
+	}
+	public String getImagem() {
+		return imagem;
+	}
+	public void setImagem(String imagem) {
+		this.imagem = imagem;
 	}
 		
 

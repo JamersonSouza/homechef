@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -44,7 +45,7 @@ public class UsuarioController {
 	}
 //====================== METODO PARA INSERIR UM USUARIO NO BANCO ==================================
 	@PostMapping("/addUsuario")
-		public ModelAndView addUser(@Valid @ModelAttribute Usuario user, Errors erros, RedirectAttributes rt) {
+		public ModelAndView addUser(@Valid @ModelAttribute Usuario user, Errors erros, RedirectAttributes rt, @RequestParam("file") MultipartFile imagem) {
 			ModelAndView mv = new ModelAndView("cadastro");
 			mv.addObject("usuario", user);
 			if(erros.hasErrors()) {
@@ -52,6 +53,9 @@ public class UsuarioController {
 			}else {
 				
 			try {
+				if (Util.fazerUploadImagem(imagem)) {
+					user.setImagem(imagem.getOriginalFilename());
+					}
 				usuarioService.salvarUsuario(user);
 				rt.addFlashAttribute("mensagem", "Usuario salvo");
 				mv.addObject("mensagem", "usuario salvo");
