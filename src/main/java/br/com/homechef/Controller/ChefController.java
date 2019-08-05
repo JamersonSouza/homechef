@@ -13,15 +13,12 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import br.com.homechef.DAO.ChefComplementoDAO;
 import br.com.homechef.DAO.ChefDAO;
-import br.com.homechef.excecoes.ServiceException;
 import br.com.homechef.model.Cardapio;
 import br.com.homechef.model.Chef;
 import br.com.homechef.model.ChefComplemento;
@@ -50,7 +47,7 @@ public class ChefController {
 	}
 	
 	@PostMapping("/addChef")
-	public ModelAndView addUser(@Valid @ModelAttribute Chef chef, Errors erros, RedirectAttributes rt) {
+	public ModelAndView addUser(@Valid @ModelAttribute Chef chef, Errors erros, RedirectAttributes rt, @RequestParam("file") MultipartFile imagem) {
 		ModelAndView mv = new ModelAndView("cadastroChef");
 		mv.addObject("chef", chef);
 		if(erros.hasErrors()) {
@@ -58,6 +55,9 @@ public class ChefController {
 		}else {
 			
 		try {
+			if (Util.fazerUploadImagem(imagem)) {
+				chef.setImagem(imagem.getOriginalFilename());
+				}
 			chefservice.salvarChef(chef);
 			rt.addFlashAttribute("mensagem", "chef salvo");
 			mv.addObject("mensagem", "chef salvo");

@@ -9,6 +9,7 @@
 	type="text/css">
 <link rel="stylesheet"
 	href="https://static.pingendo.com/bootstrap/bootstrap-4.3.1.css">
+	<link rel="stylesheet" href="/css/uikit.min.css">
 <title>Cadastro :: Chef</title>
 </head>
 <body>
@@ -22,7 +23,7 @@
 					<b>CADASTRE-SE</b>
 				</h1>
 				<br>
-				<form method="post" th:action="@{/addChef}" th:object="${chef}">
+				<form method="post" th:action="@{/addChef}" th:object="${chef}" enctype="multipart/form-data">
 				
 						<!-- ALERTA MENSAGEM DE USUARIO CADASTRADO -->
 						<div id="alerta" class="alert alert-success" th:if="${!#strings.isEmpty(mensagem)}">
@@ -70,12 +71,19 @@
 						<input type="password" th:field="*{cnfSenha}" placeholder="Digite novamente sua senha" class="form-control border border-dark rounded-sm"
 						id="SenhaRepeat">
 						</div>
-						</div>
+						
+						<!-- INPUT FOTO -->
+						<div class="form-group col-md-12">
+						<label for="inputFoto"><h5><strong>ESCOLHA SUA FOTO:</strong></h5></label> 
 						<br>
-						<div class="row d-flex justify-content-center">
-						<button type="submit" class="btn btn-success btn-block w-50"><strong>CRIAR CONTA</strong></button>
+						<input type="file" name="file">
+						<br><br>
+						<center>
+						<hr style="width: 50%">
+						</center>
 						</div>
 						
+						<button type="submit" style="margin-left: 40%;" class="btn btn-success"><strong>CRIAR CONTA</strong></button>
 				</form>
 				
 		<!-- DIVS IMPORTANTES RESPONSAVEL IMG FNDO -->
@@ -83,6 +91,6 @@
 		</div>
 
 
-
+<script src="js/uikit.min.js"></script>
 </body>
 </html>
