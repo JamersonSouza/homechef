@@ -43,6 +43,9 @@
   
   			<div class="container" style="margin-left: 30%;">
          <div class="col-sm-6"><br>
+         <center>
+          <img th:attr="src=@{'/photos/'+ ${session.usuariologado.imagem}}" style="width: 250px; height: 250px; border-radius: 50%; border: 3px solid #fa8231;"/>
+        </center>
          <div th:each="user : ${listaUsuario}">
    <h1 class="text-center" style="font-weight: 300;">Seja Bem Vindo(a),</h1>  <h1 style="font-weight: 380; text-transform: UPPERCASE" class="h1 text-center" th:text="|${session.usuariologado.nome}|"></h1>
           <div class="form-row">

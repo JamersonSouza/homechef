@@ -146,7 +146,7 @@ public class UsuarioController {
 		ModelAndView mv = new ModelAndView("cadastro");
 		Usuario usuario = usuarioDao.findByEmail(email);
 		if(usuario!=null) {
-			session.setAttribute("usuarioLogado", usuario);
+			session.setAttribute("usuariologado", usuario);
 			return "usuario_logado_index";
 		}else {
 			usuario = new Usuario();
@@ -154,8 +154,8 @@ public class UsuarioController {
 			usuario.setEmail(email);
 			usuarioDao.save(usuario);
 			usuario = usuarioDao.findByEmail(email);
-			session.setAttribute("usuarioLogado", usuario);
-			return "usuario_logado_index";
+			session.setAttribute("usuariologado", usuario);
+			return "usuarioLogadoIndex";
 		}
 		
 		

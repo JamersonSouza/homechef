@@ -33,7 +33,9 @@
        
         <div class="container" style="margin-left: 30%;">
          <div class="col-sm-6">
-            
+         <center>
+            <img th:attr="src=@{'/photos/'+ ${session.chefLogado.imagem}}" style="width: 200px; height: 250px; border-radius: 50%; border: 3px solid #fa8231;"/>
+         </center>
          <div th:each="chef : ${lista}">
       
 		 <h1 class="text-center" style="font-weight: 300;">Seja Bem Vindo(a),</h1>  <h1 style="font-weight: 380; text-transform: UPPERCASE" class="h1 text-center" th:text="|${session.chefLogado.nome}|"></h1>
