@@ -18,4 +18,12 @@ public class Chef_favoritosService {
 		return chef_favoritosDAO.findAll();
 	}
 
+	//metodo salvar chef_favoritos
+			public void salvarChef_favorito(Chef_favoritos chef_favoritos) {
+				if(this.chef_favoritosDAO.findByNomeChef(chef_favoritos.getNomeChef())==null) {
+					
+				this.chef_favoritosDAO.save(chef_favoritos);
+				
+				}
+			}
 }

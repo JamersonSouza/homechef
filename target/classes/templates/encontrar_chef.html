@@ -34,7 +34,7 @@
       </div>
       <div class="row">
         <div class="col-md-8">
-          <div class="form-group"><input type="text" class="form-control form-control-lg mr-5 text-left border border-info rounded-sm w-100" placeholder="Ex: Recife"></div>
+          <div class="form-group" th:action="@{/pesquisarChef}" method="post"><input type="text" name="cidadePesquisa" id="cidadePesquisa" class="form-control form-control-lg mr-5 text-left border border-info rounded-sm w-100" placeholder="Ex: Recife"></div>
         </div>
         <div class="col-md-4"><button type="submit" class="btn btn-primary btn-lg w-75">PESQUISAR</button></div>
       </div>

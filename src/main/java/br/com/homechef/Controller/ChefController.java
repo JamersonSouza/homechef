@@ -1,6 +1,7 @@
 package br.com.homechef.Controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -12,17 +13,22 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import br.com.homechef.DAO.ChefComplementoDAO;
 import br.com.homechef.DAO.ChefDAO;
 import br.com.homechef.model.Cardapio;
 import br.com.homechef.model.Chef;
 import br.com.homechef.model.ChefComplemento;
 import br.com.homechef.model.Usuario;
+import br.com.homechef.service.ChefComplementoService;
 
 @Controller
 public class ChefController {
@@ -38,6 +44,9 @@ public class ChefController {
 	
 	@Autowired
 	private ChefComplementoDAO chefcomplemento;
+	
+	@Autowired
+	private ChefComplementoService chefComplementoService;
 	
 	@GetMapping("/cadastroChef")
 	public ModelAndView cadastroChef() {
@@ -204,5 +213,17 @@ public class ChefController {
 				return mv;
 		}
 			
-	
+		//pesquisar chef por cidade
+		
+	    @PostMapping("/pesquisarChef")  
+		public String pesquisarCidade(@PathVariable("cidade") String cidade, Model model) {
+	            //List<ChefComplemento> listaChef = chefComplementoService.findByCidadeIgnoreCase(cidade);
+	         List<ChefComplemento>listaChef = chefComplementoService.pesquisarCidade(cidade);   
+			 if (listaChef != null) {
+	                  model.addAttribute("chefComplemento", listaChef);
+	            }
+	            return "encontar_chef";
+		 }
+
+		
 }
