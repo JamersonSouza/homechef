@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="https://static.pingendo.com/bootstrap/bootstrap-4.3.1.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark py-1 pb-1" style="">
+    <div class="container"> <a class="navbar-brand" th:href="@{index}">
+       <img alt="" src="/imagens/logo_homechef2.png" width="150px">
+      </a> <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse" data-target="#navbar10">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbar10">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item text-warning"> <a class="nav-link" th:href="@{encontrar_chef}"><b class="text-dark"><b class="text-warning">ENCONTRAR UM CHEF</b></b></a> </li>
+          <li class="nav-item text-danger"> <a class="nav-link text-decoration-none" th:href="@{sobre_nos}"><span><b class="text-dark"><b class="text-white">SOBRE NÓS</b></b></span></a> </li>
+          <li class="nav-item text-dark" style=""> <a class="nav-link text-decoration-none" th:href="@{contato}"><b class="text-dark"><b class="text-white h-50">CONTATO</b></b></a> </li>
+        </ul> <a class="btn navbar-btn ml-md-2 btn-light text-dark" th:href="@{login}"><i class="fa fa-user fa-fw"></i>ENTRAR<br></a>
+      </div>
+    </div>
+  </nav>
+  <div class="py-5 mt-4" style="	background-image: url(imagens/fundoFotter.jpg);	background-position: top left;	background-size: 100%;	background-repeat: repeat;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <p class="lead"><b>ENCONTRE UM CHEF NA SUA CIDADE!</b></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8">
+          <div class="form-group" th:action="@{/pesquisarChef}" method="post"><input type="text" name="cidadePesquisa" id="cidadePesquisa" class="form-control form-control-lg mr-5 text-left border border-info rounded-sm w-100" placeholder="Ex: Recife"></div>
+        </div>
+        <div class="col-md-4"><button type="submit" class="btn btn-primary btn-lg w-75">PESQUISAR</button></div>
+      </div>
+    </div>
+  </div>
+  <div class="py-3 text-center">
+        <div class="col-md-12 text-center">
+          <h1><b>CHEFS CADASTRADOS</b></h1>
+          </div>
+          </div>
+                     
+<!--     aqui é outro container -->
+<div style="padding: 15px;">
+      <div class="row">
+      	<dl th:each="cont : ${listachef}">
+      		<dl th:each="contador : ${lista}">
+       			 <div class="col-lg-6 col-6 p-2"> 
+        <img th:attr="src=@{'/photos/'+ ${cont.imagem}}" style="width: 150px; height: 150px; border: 3px solid #c1c1c1;"/>
+        <br>
+          <b>Nome do Chef: </b><span style="font-weight: 350; font-size: 18px; text-align: center;" th:text=${cont.nome}></span>
+          <b>Especialidade: </b><span style="font-weight: 350; font-size: 18px;" th:text=${contador.especialidade}></span><br>
+          <b>Cidade: </b><span style="font-weight: 350; font-size: 18px;" th:text=${contador.cidade}></span><br><br>
+          <a class="btn btn-outline-primary" href="#">+saiba mais</a>
+        </div>
+        </dl>
+        </dl>
+      </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+ 
+</body>
+
+</html>

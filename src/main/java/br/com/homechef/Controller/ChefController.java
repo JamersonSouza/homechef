@@ -119,17 +119,11 @@ public class ChefController {
 		return mv;
 	}
 	@PostMapping("/salvarComplementoChef")
-	public ModelAndView saveComplementoChef(@ModelAttribute ChefComplemento chefComplemento, @RequestParam("fileFoto") MultipartFile file, HttpSession session) {
+	public ModelAndView saveComplementoChef(@ModelAttribute ChefComplemento chefComplemento, HttpSession session) {
 		ModelAndView mv = new ModelAndView("complemento-perfil-chef");
 			mv.addObject("chefComplemento", chefComplemento);
 			mv.addObject("mensagem", "salvo com sucesso");
 			System.out.println(chefComplemento);
-			try {
-				chefComplemento.setFoto(file.getBytes());
-				
-			} catch (IOException e) {
-				mv.addObject("mensagemErro", e.getMessage());
-			}
 			chefComplemento.setChef((Chef) session.getAttribute("chefLogado"));
 			chefcomplemento.save(chefComplemento);
 			return mv;
@@ -198,18 +192,19 @@ public class ChefController {
 		}	
 		
 //============= metodo listar chef para a view chef_encontrarChef
-		@GetMapping(value = "/chef_encontrarChef")
+		@GetMapping(value = "/ContratarChef")
 		public ModelAndView viewChef() {
-			ModelAndView mv = new ModelAndView("chef_encontrarChef");
+			ModelAndView mv = new ModelAndView("ContratarChef");
 			mv.addObject("lista", chefservice.listarTodos());
 				return mv;
 		}
 			
-		//metodo listar chef na view encontrar chef
-		@GetMapping("/encontrar_chef")
-		public ModelAndView encontrarChef() {
-			ModelAndView mv = new ModelAndView("encontrar_chef");
-			mv.addObject("lista", chefservice.listarTodos());
+		//metodo listar chef na view encontrar chef 
+		@GetMapping("/EncontrarChef")
+		public ModelAndView encontrarChef(@ModelAttribute ChefComplemento chef) {
+			ModelAndView mv = new ModelAndView("EncontrarChef");
+			mv.addObject("listachef", chefservice.listarTodos());
+			mv.addObject("lista", chefcomplemento.findAll());
 				return mv;
 		}
 			

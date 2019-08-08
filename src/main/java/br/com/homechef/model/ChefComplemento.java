@@ -25,8 +25,6 @@ public class ChefComplemento {
 	private String telefone;	
 	private boolean possuiCertificado;
 	private String nomeCertificado;
-	@Lob
-	private byte[] foto;
 	private String descricao;
 	private String especialidade;
 	
@@ -103,12 +101,6 @@ public class ChefComplemento {
 	}
 	public void setId(Integer id) {
 		this.id = id;
-	}
-	public byte[] getFoto() {
-		return foto;
-	}
-	public void setFoto(byte[] foto) {
-		this.foto = foto;
 	}
 	public String getDescricao() {
 		return descricao;

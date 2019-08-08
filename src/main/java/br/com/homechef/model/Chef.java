@@ -27,6 +27,7 @@ public class Chef {
 	
 	private String imagem;
 	
+	
 	//@OneToOne(cascade = CascadeType.ALL)
 	//@JoinColumn(name = "fk_chefComplemento",nullable=false)
 	@OneToOne
