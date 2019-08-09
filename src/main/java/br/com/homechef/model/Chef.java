@@ -26,15 +26,99 @@ public class Chef {
 	private String cnfSenha;
 	
 	private String imagem;
+		
+	private String estado;
+	private String bairro;
+	private String cidade;
+	private String cep;
+	private String telefone;	
+	
+	private boolean possuiCertificado;
+	private String nomeCertificado;
+	private String descricao;
+	private String especialidade;
 	
 	
 	//@OneToOne(cascade = CascadeType.ALL)
-	//@JoinColumn(name = "fk_chefComplemento",nullable=false)
-	@OneToOne
-	private ChefComplemento chefComplemento;
+//	//@JoinColumn(name = "fk_chefComplemento",nullable=false)
+//	@OneToOne
+//	private ChefComplemento chefComplemento;
+
 	
 	public Integer getIdChef() {
 		return idChef;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+	public String getBairro() {
+		return bairro;
+	}
+
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
+	}
+
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+
+	public String getCep() {
+		return cep;
+	}
+
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+	public boolean isPossuiCertificado() {
+		return possuiCertificado;
+	}
+
+	public void setPossuiCertificado(boolean possuiCertificado) {
+		this.possuiCertificado = possuiCertificado;
+	}
+
+	public String getNomeCertificado() {
+		return nomeCertificado;
+	}
+
+	public void setNomeCertificado(String nomeCertificado) {
+		this.nomeCertificado = nomeCertificado;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public String getEspecialidade() {
+		return especialidade;
+	}
+
+	public void setEspecialidade(String especialidade) {
+		this.especialidade = especialidade;
 	}
 
 	public void setIdChef(Integer idChef) {
@@ -71,14 +155,6 @@ public class Chef {
 
 	public void setCnfSenha(String cnfSenha) {
 		this.cnfSenha = cnfSenha;
-	}
-
-	public ChefComplemento getChefComplemento() {
-		return chefComplemento;
-	}
-
-	public void setChefComplemento(ChefComplemento chefComplemento) {
-		this.chefComplemento = chefComplemento;
 	}
 
 	public String getImagem() {

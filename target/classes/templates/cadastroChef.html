@@ -10,87 +10,195 @@
 <link rel="stylesheet"
 	href="https://static.pingendo.com/bootstrap/bootstrap-4.3.1.css">
 	<link rel="stylesheet" href="/css/uikit.min.css">
+	<link rel="stylesheet" href="/css/chef.css">
 <title>Cadastro :: Chef</title>
+
 </head>
+<script type="text/javascript">
+function mascara(t, mask){
+	 var i = t.value.length;
+	 var saida = mask.substring(1,0);
+	 var texto = mask.substring(i)
+	 if (texto.substring(0,1) != saida){
+	 t.value += texto.substring(0,1);
+	 }
+}
+</script>
+<script>
+function getEndereco() {
+	// Se o campo CEP não estiver vazio
+	if($.trim($("#cep").val()) != ""){
+		/* 
+			Para conectar no serviço e executar o json, precisamos usar a função
+			getScript do jQuery, o getScript e o dataType:"jsonp" conseguem fazer o cross-domain, os outros
+			dataTypes não possibilitam esta interação entre domínios diferentes
+			Estou chamando a url do serviço passando o parâmetro "formato=javascript" e o CEP digitado no formulário
+			http://cep.republicavirtual.com.br/web_cep.php?formato=javascript&cep="+$("#cep").val()
+		*/
+		$.getScript("http://cep.republicavirtual.com.br/web_cep.php?formato=javascript&cep="+$("#cep").val(), function(){
+			// o getScript dá um eval no script, então é só ler!
+			//Se o resultado for igual a 1
+			if(resultadoCEP["resultado"]){
+				// troca o valor dos elementos
+				$("#rua").val(unescape(resultadoCEP["tipo_logradouro"])+": "+unescape(resultadoCEP["logradouro"])+", ");
+				$("#bairro").val(unescape(resultadoCEP["bairro"]));
+				$("#cidade").val(unescape(resultadoCEP["cidade"]));
+				$("#estado").val(unescape(resultadoCEP["uf"]));
+				document.form.rua.focus();
+			}else{
+				alert("Endereço não encontrado");
+			}
+		});				
+	}			
+}
+
+</script>
 <body>
 
 
 	<div style="background-image: url(imagens/chef.jpg); background-size: cover; background-repeat: repeat; overflow: hidden;">
 		<div class="row">
-			<div class="mx-auto bg-white p-4 col-12 col-md-6 bg-dark text-body"
-				style="border: 10px solid gray; background-image: linear-gradient(to bottom, rgb(211, 211, 211), rgb(211, 211, 211)); background-position: top left; background-size: 100%; background-repeat: repeat;">
-				<h1 class="mb-4 text-center text-dark">
-					<b>CADASTRE-SE</b>
+			<div class="mx-auto p-4 col-12 col-md-9"
+				style="border: 10px solid gray; background-color: #dfe4ea; background-position: top left; background-size: 100%; background-repeat: repeat;">
+				<h1 class="text-center text-dark">
+					<span class="text-center">CADASTRE-SE</span>
 				</h1>
-				<br>
-				<form method="post" th:action="@{/addChef}" th:object="${chef}" enctype="multipart/form-data">
+				        <!---------------- FIM DO CABEÇALHO E INICIO DO FORMULARIO ---------->
+        <form method="POST" th:action="@{/addChef}" th:object="${chef}" enctype="multipart/form-data" id="formulario" style="margin-bottom: 81%">
+           
+           
+            <ul id="progress">
+                <li class="ativo">Criar Conta</li>
+                <li>Informações Pessoais</li>
+                <li>Detalhes Finais</li>
+            </ul>
+            <div class="passo1 form-row">
+                <h2>CRIAR CONTA</h2>
+             	
+             		<!-- INPUT NOME -->
+                <label for="inputNome"><h5><strong>NOME:</strong></h5></label>
+				<input type="text" th:field="*{nome}" placeholder="Exemplo: Lucas Almeida" class="form-control border border-dark rounded-sm" id="inputNome">
+             	
+             		<!-- INPUT EMAIL -->
+                <label for="inputEmail"><h5><strong>EMAIL:</strong></h5></label> 
+				<input type="email" th:field="*{email}" placeholder="exemplo@gmail.com" class="form-control border border-dark rounded-sm" id="inputEmail">
 				
-						<!-- ALERTA MENSAGEM DE USUARIO CADASTRADO -->
-						<div id="alerta" class="alert alert-success" th:if="${!#strings.isEmpty(mensagem)}">
-							<strong>CONTA CRIADA COM SUCESSO! CLIQUE AQUI PARA <a th:href="@{loginchef}">LOGAR</a>.</strong>
-						</div>
+					<!-- INPUT SENHA-->
+                <label for="inputSenha"><h5><strong>SENHA:</strong></h5></label> 
+				<input type="password" th:field="*{senha}" placeholder="Insira sua senha" class="form-control border border-dark rounded-sm" id="SenhaAtual">
+              	
+              		 <!-- INPUT CONFIRMA SENHA-->
+				<label for="inputCsenha"><h5><strong>CONFIRME SUA SENHA:</strong></h5></label> 
+				<input type="password" th:field="*{cnfSenha}" placeholder="Digite novamente sua senha" class="form-control border border-dark rounded-sm" id="SenhaRepeat">
+
+                <input type="submit" class="button_passo2" value="Proximo"/>          
+                
+                
+            </div>
+
+            <div class="passo2 form-row col-md-10">
+                <h2>INFORMAÇÕES PESSOAIS</h2>
+						<!-- INPUT CERTIFIÇÃO -->
+						<label for="inputTel"><h5><strong>POSSUI CERTIFICAÇÃO?</strong></h5></label> 
+						<select th:field="*{possuiCertificado}" class="form-control border border-dark rounded-sm">
+								<option value="true">SIM</option>
+								<option value="false">NÃO</option>
+						</select>
 						
+             			<!-- Input TIPO DE CERTIFICAÇÃO -->
+             			<label for="inputCerti"><h5><strong>QUAL:</strong></h5></label> 
+						<input th:field="*{nomeCertificado}" type="text" placeholder="Informe sua certificação" class="form-control border border-dark rounded-sm"
+						id="inputCerti">
 						
-						<!-- ALERTA MENSAGEM DE USUARIO CADASTRADO -->
-						<div id="alerta" class="alert alert-warning" th:if="${!#strings.isEmpty(mensagemErro)}">
-							<strong>EMAIL JÁ EXISTE. TENTE OUTRO DIFERENTE</strong>
-						</div>
+						<!-- INPUT ESPECIALIDADE -->
 						
-						<!-- ALERTA MENSAGEM DE ERRO -->	
-				
-						<div id="alerta" class="alert alert-danger" th:if="${#fields.hasAnyErrors()}" >
-							<strong><p th:each="err : ${#fields.allErrors()}" th:text="${err}"></p></strong>
-						</div>
+						<label for="inputEsp"><h5><strong>QUAL SUA ESPECIALIDADE:</strong></h5></label> 
+						<input type="text" th:field="*{especialidade}" placeholder="Ex: Comida Nordestina" class="form-control border border-dark rounded-sm"
+						id="inputEsp">
 						
-						<!-- INICIO DOS INPUT PARA CADASTRAMENTO -->
-						<div class="form-row">
-							<!-- INPUT NOME -->
-						<div class="form-group col-md-12">
-							<label for="inputNome"><h5><strong>NOME:</strong></h5></label> 
-						<input type="text" th:field="*{nome}" placeholder="Exemplo: Carlos Andrade" class="form-control border border-dark rounded-sm"
-						id="inputNome">
-						</div>
+						<!-- INPUT DESCRIÇÃO -->
 						
-						<!-- INPUT EMAIL -->
-						<div class="form-group col-md-12">
-							<label for="inputEmail"><h5><strong>EMAIL:</strong></h5></label> 
-							<input type="email" th:field="*{email}" placeholder="exemplo@gmail.com" class="form-control border border-dark rounded-sm"
-							id="inputEmail">
-						</div>
-						
-							<!-- INPUT SENHA -->
-						<div class="form-group col-md-12">
-								<label for="inputSenha"><h5><strong>SENHA:</strong></h5></label> 
-						<input type="password" th:field="*{senha}" placeholder="Insira sua senha" class="form-control border border-dark rounded-sm"
-						id="SenhaAtual">
-						</div>
-						
-							<!-- INPUT CONFIRMAR SENHA -->
-						<div class="form-group col-md-12">
-								<label for="inputCsenha"><h5><strong>CONFIRME SUA SENHA:</strong></h5></label> 
-						<input type="password" th:field="*{cnfSenha}" placeholder="Digite novamente sua senha" class="form-control border border-dark rounded-sm"
-						id="SenhaRepeat">
-						</div>
+						<label for="desc"><h5><strong>FAÇA UMA BREVE DESCRIÇÃO SOBRE VOCÊ E SUAS ESPECIALIDADES</strong></h5></label>
+						<textarea id="desc"  th:field="*{descricao}" class="md-textarea form-control" rows="6" cols="5">
+						</textarea>
 						
 						<!-- INPUT FOTO -->
-						<div class="form-group col-md-12">
-						<label for="inputFoto"><h5><strong>ESCOLHA SUA FOTO:</strong></h5></label> 
-						<br>
-						<input type="file" name="file">
-						<br><br>
-						<center>
-						<hr style="width: 50%">
-						</center>
-						</div>
-						
-						<button type="submit" style="margin-left: 40%;" class="btn btn-success"><strong>CRIAR CONTA</strong></button>
-				</form>
+						<label for="inputFoto"><h5><strong>ESCOLHA SUA FOTO:</strong></h5></label>
+						<input type="file" name="file">			
+
+                <!-- BOTÕES DE AÇÃO -->
+                <input type="submit" class="button_passo1" value="Anterior"/>
+                <input type="submit" class="button_passo3" value="Proximo"/>
+            </div>
+
+            <div class="passo3 form-row col-md-10">
+                <h2>DETALHES FINAIS</h2>
+                	
+                	<!-- INPUT TELEFONE -->
+                <label for="inputTel"><h5><strong>TELEFONE:</strong></h5></label> 
+				<input type="text" th:field="*{telefone}" maxlength="14"  onkeypress="mascara(this, '## # ####-####')" class="form-control border border-dark rounded-sm"
+				id="inputTel">
 				
-		<!-- DIVS IMPORTANTES RESPONSAVEL IMG FNDO -->
-			</div>		
-		</div>
+				 	<!-- INPUT CEP -->
+				<label for="cep"><h5><strong>CEP:</strong></h5></label> 
+				<input type="text" th:field="*{cep}" maxlength="9" onkeypress="mascara(this, '#####-###')" class="form-control border border-dark rounded-sm" id="cep">
+				<small><a style=" border-radius: 400px;" onclick="getEndereco()"><h5 style="color: blue;"><strong>[Clique Para Buscar seu CEP]</strong></h5></a></small><br>	
+                <!-- INPUT ESTADO -->
+                	<label for="estado"><h5><strong>ESTADO:</strong></h5></label> 
+				<input type="text" th:field="*{estado}" class="form-control border border-dark rounded-sm" id="estado">
+					
+					<!-- INPUT CIDADE -->                
+                <label for="cidade"><h5><strong>CIDADE:</strong></h5></label> 
+				<input type="text" th:field="*{cidade}" maxlength="9" class="form-control border border-dark rounded-sm" id="cidade">
+				
+				
+				<!-- INPUT BAIRRO -->
+				
+				<label for="bairro"><h5><strong>BAIRRO:</strong></h5></label> 
+				<input type="text" th:field="*{bairro}" class="form-control border border-dark rounded-sm" id="bairro">
+						
+				
+						
+                <input type="submit" class="button_passo2" value="Anterior"/>
+                <button type="submit" class="btn btn-primary" id="confirm" value="Confirmar">CONFIRMAR</button>
+                  <!--<input type="submit" id="confirm" value="Confirmar"/>-->
+            </div>
+        </form>
+    		<br><br><br>
+       </div>
+       </div>
+       </div>
+        
+				
+           <!-------------------- IMPORTANDO BOOTSTRAP -------------------->
+        
+        
+        <script src="/js/jquery-3.4.1.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        
+        <!------------------------------ JQUERY -------------------->
+        <script>
+            $(function() {
+                $('.button_passo1').click(function() {
+                    $('.passo1').show();
+                    $('.passo2, .passo3').hide();
+                    return false;
+                });
 
+                $('.button_passo2').click(function() {
+                    $('.passo2').show();
+                    $('.passo1, .passo3').hide();
+                    return false;
+                });
 
+                $('.button_passo3').click(function() {
+                    $('.passo3').show();
+                    $('.passo1, .passo2').hide();
+                    return false;
+                });
+            });
+        </script>
+				
 <script src="js/uikit.min.js"></script>
 </body>
 </html>

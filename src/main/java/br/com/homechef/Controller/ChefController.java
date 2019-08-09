@@ -3,32 +3,29 @@ package br.com.homechef.Controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import br.com.homechef.DAO.ChefComplementoDAO;
 import br.com.homechef.DAO.ChefDAO;
+import br.com.homechef.excecoes.EspecExistsException;
 import br.com.homechef.model.Cardapio;
 import br.com.homechef.model.Chef;
-import br.com.homechef.model.ChefComplemento;
 import br.com.homechef.model.Usuario;
-import br.com.homechef.service.ChefComplementoService;
 
 @Controller
 public class ChefController {
@@ -42,12 +39,6 @@ public class ChefController {
 	@Autowired
 	private CardapioService cardapioService;
 	
-	@Autowired
-	private ChefComplementoDAO chefcomplemento;
-	
-	@Autowired
-	private ChefComplementoService chefComplementoService;
-	
 	@GetMapping("/cadastroChef")
 	public ModelAndView cadastroChef() {
 		ModelAndView mv = new ModelAndView("cadastroChef");
@@ -57,7 +48,7 @@ public class ChefController {
 	
 	@PostMapping("/addChef")
 	public ModelAndView addUser(@Valid @ModelAttribute Chef chef, Errors erros, RedirectAttributes rt, @RequestParam("file") MultipartFile imagem) {
-		ModelAndView mv = new ModelAndView("cadastroChef");
+		ModelAndView mv = new ModelAndView("contaCriada");
 		mv.addObject("chef", chef);
 		if(erros.hasErrors()) {
 			return mv;
@@ -92,42 +83,37 @@ public class ChefController {
 			System.out.println("resultado: "+br);
 		}
 		
-		Chef chefconsultado = chefDAO.efetuarLogin(chef.getEmail(), chef.getSenha());
+		Chef chefLogado = chefDAO.efetuarLogin(chef.getEmail(), chef.getSenha());
 		
-		if(chefconsultado==null) {
+		if(chefLogado==null) {
 			model.addAttribute("mensagem", "Usuario ou Senha Inválidos");
 		}
 		else {
-			sessao2.setAttribute("chefLogado", chefconsultado);
+			sessao2.setAttribute("chefLogado", chefLogado);
 			return "chefLogadoIndex";
 		}
 		
 		return null;
 	}
 	
-	@GetMapping("perfil-chef")
-	public ModelAndView PerfilChef() {
-		ModelAndView mv = new ModelAndView("perfil-chef");
-		mv.addObject("lista", chefservice.listarTodos());
+//=========================== PÁGINA DO PERFIL ===============================
+	
+	@GetMapping("perfilChef")
+	public ModelAndView perfilchef(HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView("perfilChef");
+		Chef chefLogado = (Chef) request.getSession().getAttribute("chefLogado");
+		mv.addObject("perfilChefLista", chefDAO.findAll(Sort.by("nome")));
 		return mv;
 	}
-	//metodo complemento de perfil
-	@GetMapping("complemento-perfil-chef")
-	public ModelAndView complementoPerfilChef() {
-	ModelAndView mv = new ModelAndView("complemento-perfil-chef");
-	mv.addObject("chefComplemento", new ChefComplemento());
-		return mv;
-	}
-	@PostMapping("/salvarComplementoChef")
-	public ModelAndView saveComplementoChef(@ModelAttribute ChefComplemento chefComplemento, HttpSession session) {
-		ModelAndView mv = new ModelAndView("complemento-perfil-chef");
-			mv.addObject("chefComplemento", chefComplemento);
-			mv.addObject("mensagem", "salvo com sucesso");
-			System.out.println(chefComplemento);
-			chefComplemento.setChef((Chef) session.getAttribute("chefLogado"));
-			chefcomplemento.save(chefComplemento);
+	
+	public ModelAndView listar() {
+		ModelAndView mv = new ModelAndView();
+			mv.addObject("perfilChefLista", chefDAO.findAll(Sort.by("nome")));
+			mv.addObject("chef", new Chef());
 			return mv;
 		}
+	
+
 	
 //	=================== CARDAPIO DO CHEF =========================
 	@GetMapping("Cardapio")
@@ -201,24 +187,24 @@ public class ChefController {
 			
 		//metodo listar chef na view encontrar chef 
 		@GetMapping("/EncontrarChef")
-		public ModelAndView encontrarChef(@ModelAttribute ChefComplemento chef) {
+		public ModelAndView encontrarChef(@ModelAttribute Chef chef) {
 			ModelAndView mv = new ModelAndView("EncontrarChef");
 			mv.addObject("listachef", chefservice.listarTodos());
-			mv.addObject("lista", chefcomplemento.findAll());
+			mv.addObject("lista", chefDAO.findAll());
 				return mv;
 		}
 			
 		//pesquisar chef por cidade
 		
-	    @PostMapping("/pesquisarChef")  
-		public String pesquisarCidade(@PathVariable("cidade") String cidade, Model model) {
-	            //List<ChefComplemento> listaChef = chefComplementoService.findByCidadeIgnoreCase(cidade);
-	         List<ChefComplemento>listaChef = chefComplementoService.pesquisarCidade(cidade);   
-			 if (listaChef != null) {
-	                  model.addAttribute("chefComplemento", listaChef);
-	            }
-	            return "encontar_chef";
-		 }
+//	    @PostMapping("/pesquisarChef")  
+//		public String pesquisarCidade(@PathVariable("cidade") String cidade, Model model) {
+//	            //List<ChefComplemento> listaChef = chefComplementoService.findByCidadeIgnoreCase(cidade);
+//	         List<ChefComplemento>listaChef = chefComplementoService.pesquisarCidade(cidade);   
+//			 if (listaChef != null) {
+//	                  model.addAttribute("chefComplemento", listaChef);
+//	            }
+//	            return "encontar_chef";
+//		 }
 
 		
 }

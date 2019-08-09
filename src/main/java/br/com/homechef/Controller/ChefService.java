@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.homechef.DAO.ChefDAO;
 import br.com.homechef.excecoes.EmailExistsException;
+import br.com.homechef.excecoes.EspecExistsException;
 import br.com.homechef.excecoes.ServiceException;
 import br.com.homechef.model.Chef;
 
@@ -17,6 +18,14 @@ public class ChefService {
 	
 	@Autowired
 	private ChefDAO chefdao;
+	
+	public void salvarComplemento(Chef chef) throws Exception{
+		if(this.chefdao.findByEmail(chef.getEspecialidade()) != null) {
+			throw new EspecExistsException
+			("Erro ao Editar seus dados!");
+		}
+		chefdao.save(chef);
+	}
 	
 	public void salvarChef(Chef chef) throws Exception {
 		if(this.chefdao.findByEmail(chef.getEmail()) != null) {

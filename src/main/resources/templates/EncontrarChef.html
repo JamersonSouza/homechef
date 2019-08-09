@@ -50,13 +50,12 @@
 <div style="padding: 15px;">
       <div class="row">
       	<dl th:each="cont : ${listachef}">
-      		<dl th:each="contador : ${lista}">
        			 <div class="col-lg-6 col-6 p-2"> 
         <img th:attr="src=@{'/photos/'+ ${cont.imagem}}" style="width: 150px; height: 150px; border: 3px solid #c1c1c1;"/>
         <br>
           <b>Nome do Chef: </b><span style="font-weight: 350; font-size: 18px; text-align: center;" th:text=${cont.nome}></span>
-          <b>Especialidade: </b><span style="font-weight: 350; font-size: 18px;" th:text=${contador.especialidade}></span><br>
-          <b>Cidade: </b><span style="font-weight: 350; font-size: 18px;" th:text=${contador.cidade}></span><br><br>
+          <b>Especialidade: </b><span style="font-weight: 350; font-size: 18px;" th:text=${cont.especialidade}></span><br>
+          <b>Cidade: </b><span style="font-weight: 350; font-size: 18px;" th:text=${cont.cidade}></span><br><br>
           <a class="btn btn-outline-primary" href="#">+saiba mais</a>
         </div>
         </dl>

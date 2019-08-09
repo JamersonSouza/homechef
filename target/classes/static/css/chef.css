@@ -1,0 +1,138 @@
+@charset "UTF-8";
+/* FORMATAÇÃO ID FORMULARIO ---- */
+#formulario{
+    width: 800px;
+    margin: auto;
+    text-align: center;
+    position: relative;
+   
+}
+
+/* FORMATAÇÃO DOS H2 E H3 ---- */
+#formulario h2{
+    font: 22px "Trebuchet MS", tahoma, arial;
+    color: #1C86EE;
+    width: 100%;
+    float: left;
+    text-align: left;
+    margin-bottom: 8%;
+    text-align: center;
+}
+/* FORMATAÇÃO DOS FORMULÁRIOS ---- */
+
+#formulario div{
+    background: white;
+    border: 0 none;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    box-shadow: 0 0 15 1px rgba(0,0,0,0.4);
+    padding: 40px 30px;
+    box-sizing:  border-box;,
+    width: 80%;
+    margin: 0 10%;
+    position: absolute;
+}
+/* FORMATAÇÃO QUE DIZ PARA O FIELDSET NAO FORMATA NADA ALEM DO FIRST(PRIMEIRO) ---- */
+.passo2, .passo3{
+    display: none;
+}
+/* FORMATAÇÃO do input e AREA DE INSERÇÃO DE TEXTO ---- */
+#formulario input, formulario textarea{
+    padding: 10px;
+    border: 1px solid #104E8B;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    outline: none;
+    box-sizing: border-box;
+    width: 100%;
+    font: 14px "Trebuchet MS", tahoma, arial;
+    color: black;
+    margin-bottom: 15px;
+}
+
+/* FORMATAÇÃO DA CLASS NEXT ACAO ---- */
+
+#formulario .button_passo1, 
+#formulario .button_passo2,
+#formulario .button_passo3,
+#formulario #confirm{
+    width: 100px;
+    background: #1E90FF;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 12px 0px;
+    margin-top: 3%;
+    margin-bottom: 0px;
+}
+.passo1 .button_passo2,
+#formulario #confirm{
+    float: right;
+}
+.passo2 .button_passo1 {
+    float: left;
+}
+.passo2 .button_passo3 {
+    float: right;
+}
+.passo3 .button_passo2 {
+    float: left;
+}
+
+#formulario .button_passo1:hover, 
+#formulario .button_passo2:hover,
+#formulario .button_passo3:hover,
+#formulario #confirm:hover{background:rgba(52, 117, 140, 0.9); cursor: pointer}
+
+/* FORMATAÇÃO DA BARRA DE PROGRESSO ---- */
+
+#formulario #progress{
+    margin-bottom: 30px;
+    overflow: hidden;   
+    counter-reset: step;
+}
+#formulario #progress li{
+    list-style-type: none;
+    color: #2f3640;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 13px;
+    float: left;
+    width: 33.33%;
+    position: relative;
+}
+#formulario #progress li:before{
+    content: counter(step);
+    counter-increment: step;
+    width: 20px;
+    display: block;
+    line-height: 20px;
+    background: white;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    margin: 0 auto 10px auto;
+}
+#formulario #progress li:after{
+    content: '';
+    width: 100%;
+    background: #104E8B;
+    height: 2px;
+    position: absolute;
+    top: 9px;
+    left: -50%;
+    z-index: -1; /* tras a linha para a camada debaixo dos numeros */
+}
+#formulario #progress li:first-child:after{
+    content: none;
+}
+#formulario #progress li.ativo:before, #formulario #progress li.ativo:first-child:after{
+    background:#009ACD;
+    color: white;
+    text-shadow: 0 1px 0;
+    
+}
+
+/*---------- FIM DA FORMATAÇÃO DA BARRA */
