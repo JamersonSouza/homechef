@@ -3,8 +3,8 @@ package br.com.homechef.Controller;
 
 import java.util.List;
 
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import br.com.homechef.DAO.ChefDAO;
@@ -47,7 +47,7 @@ public class ChefService {
 	
 	//listar todos 
 	public List<Chef> listarTodos(){
-		return chefdao.findAll();
+		return chefdao.findAll(Sort.by("nome"));
 	}
 	
 	//listar por Id
@@ -55,7 +55,14 @@ public class ChefService {
 		return chefdao.findById(idChef).orElse(null);
 	}
 
-	
-
+	//listar por nome
+		public List<Chef> findByNome(String nome) {
+			return chefdao.findByNomeContainingIgnoreCase(nome);
+		}
+		
+	//listar por nome
+	public List<Chef> findByCidade(String cidade) {
+		return chefdao.findByCidadeContainingIgnoreCase(cidade);
+	}
 
 }

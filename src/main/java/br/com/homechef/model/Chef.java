@@ -1,12 +1,9 @@
 package br.com.homechef.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 @Entity
@@ -38,11 +35,7 @@ public class Chef {
 	private String descricao;
 	private String especialidade;
 	
-	
-	//@OneToOne(cascade = CascadeType.ALL)
-//	//@JoinColumn(name = "fk_chefComplemento",nullable=false)
-//	@OneToOne
-//	private ChefComplemento chefComplemento;
+
 
 	
 	public Integer getIdChef() {

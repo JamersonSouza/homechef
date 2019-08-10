@@ -17,7 +17,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbar10">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item text-warning"> <a class="nav-link" th:href="@{encontrar_chef}"><b class="text-dark"><b class="text-warning">ENCONTRAR UM CHEF</b></b></a> </li>
+          <li class="nav-item text-warning"> <a class="nav-link" th:href="@{EncontrarChef}"><b class="text-dark"><b class="text-warning">ENCONTRAR UM CHEF</b></b></a> </li>
           <li class="nav-item text-danger"> <a class="nav-link text-decoration-none" th:href="@{sobre_nos}"><span><b class="text-dark"><b class="text-white">SOBRE NÓS</b></b></span></a> </li>
           <li class="nav-item text-dark" style=""> <a class="nav-link text-decoration-none" th:href="@{contato}"><b class="text-dark"><b class="text-white h-50">CONTATO</b></b></a> </li>
         </ul> <a class="btn navbar-btn ml-md-2 btn-light text-dark" th:href="@{login}"><i class="fa fa-user fa-fw"></i>ENTRAR<br></a>
@@ -40,17 +40,17 @@
           <tr>
 <!--           atributo nao faz parte da Classe chef / verificar procedimento -->
           <th>LOCAL:</th>
-          <tr th:each="cont : ${listaChef}"> <!-- realizar nova listagem em chefComplementos? -->
-          <td th:text="${cont.ChefComplemento.cidade}"></td>
+          <tr th:each="cont : ${lista}"> <!-- realizar nova listagem em chefComplementos? -->
+          <td th:text="${cont.cidade}"></td>
           </tr>
           <tr>
           <th>SOBRE:</th>
-          <tr th:each="cont : ${listaChef}">
-          <td th:text="${cont.ChefComplemento.descricao}"></td>
+          <tr th:each="cont : ${lista}">
+          <td th:text="${cont.descricao}"></td>
           </tr>
           <tr>
           <th>ESPECIALIDADE:</th>
-         <tr th:each="cont : ${listaChef}">	
+         <tr th:each="cont : ${lista}">	
           <td th:text="${cont.especialidade}"></td>
           </tr>
        		

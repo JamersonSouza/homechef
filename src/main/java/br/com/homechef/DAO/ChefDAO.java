@@ -16,7 +16,9 @@ public interface ChefDAO extends JpaRepository<Chef, Integer> {
 	@Query("select u from Chef u where u.email = :email and u.senha = :senha")
 	public Chef efetuarLogin(String email, String senha);
 	
-	//metodo para fazer pesquisa,comentado pq sistema nao consegue encontrar cidade,devido a chave estrangeira
 	//public List<Chef> findByCidadeIgnoreCase(String cidade);
+	public List<Chef> findByCidadeContainingIgnoreCase(String cidadePesquisa);
+	
+	public List<Chef> findByNomeContainingIgnoreCase(String nomePesquisa);
 	
 }

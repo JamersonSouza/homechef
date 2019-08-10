@@ -18,7 +18,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbar10">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item text-warning"> <a class="nav-link" th:href="@{encontrar_chef}"><b class="text-dark"><b class="text-warning">ENCONTRAR UM CHEF</b></b></a> </li>
+          <li class="nav-item text-warning"> <a class="nav-link" th:href="@{EncontrarChef}"><b class="text-dark"><b class="text-warning">ENCONTRAR UM CHEF</b></b></a> </li>
           <li class="nav-item text-danger"> <a class="nav-link text-decoration-none" th:href="@{sobre_nos}"><span><b class="text-dark"><b class="text-white">SOBRE NÓS</b></b></span></a> </li>
           <li class="nav-item text-dark" style=""> <a class="nav-link text-decoration-none" th:href="@{contato}"><b class="text-dark"><b class="text-white h-50">CONTATO</b></b></a> </li>
         </ul> <a class="btn navbar-btn ml-md-2 btn-light text-dark" th:href="@{login}"><i class="fa fa-user fa-fw"></i>ENTRAR<br></a>
@@ -32,12 +32,21 @@
           <p class="lead"><b>ENCONTRE UM CHEF NA SUA CIDADE!</b></p>
         </div>
       </div>
-      <div class="row">
+      
+    	<!-- Form para pesquisa chef  -->  
+  <form th:action="@{/pesquisarChef}" method="post">  
+      <div class="row">    
         <div class="col-md-8">
-          <div class="form-group" th:action="@{/pesquisarChef}" method="post"><input type="text" name="cidadePesquisa" id="cidadePesquisa" class="form-control form-control-lg mr-5 text-left border border-info rounded-sm w-100" placeholder="Ex: Recife"></div>
+          <div class="form-group" ><input type="text" name="cidadePesquisa" id="cidadePesquisa" class="form-control form-control-lg mr-5 text-left border border-info rounded-sm w-100" placeholder="Ex: Recife">
+          </div>
         </div>
-        <div class="col-md-4"><button type="submit" class="btn btn-primary btn-lg w-75">PESQUISAR</button></div>
-      </div>
+        <span class="col-md-4"><button type="submit" class="btn btn-primary btn-lg w-75">PESQUISAR</button>
+        </span>
+    </div>
+    </form> 
+    
+		
+		
     </div>
   </div>
   <div class="py-3 text-center">
@@ -56,7 +65,7 @@
           <b>Nome do Chef: </b><span style="font-weight: 350; font-size: 18px; text-align: center;" th:text=${cont.nome}></span>
           <b>Especialidade: </b><span style="font-weight: 350; font-size: 18px;" th:text=${cont.especialidade}></span><br>
           <b>Cidade: </b><span style="font-weight: 350; font-size: 18px;" th:text=${cont.cidade}></span><br><br>
-          <a class="btn btn-outline-primary" href="#">+saiba mais</a>
+          <a class="btn btn-outline-primary" th:href="@{ContratarChef}">+saiba mais</a>
         </div>
         </dl>
         </dl>

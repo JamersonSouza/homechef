@@ -190,21 +190,22 @@ public class ChefController {
 		public ModelAndView encontrarChef(@ModelAttribute Chef chef) {
 			ModelAndView mv = new ModelAndView("EncontrarChef");
 			mv.addObject("listachef", chefservice.listarTodos());
-			mv.addObject("lista", chefDAO.findAll());
-				return mv;
+			return mv;
 		}
 			
 		//pesquisar chef por cidade
+		@PostMapping("/pesquisarChef")
+		public ModelAndView pesquisarChef(@RequestParam(required=false) String cidadePesquisa) {
+			ModelAndView mv = new ModelAndView("/EncontrarChef");		
+			List<Chef> listachef;
+			if (cidadePesquisa == null || cidadePesquisa.trim().isEmpty()) {
+				listachef = this.chefservice.listarTodos();	
+			} else {
+				listachef = this.chefDAO.findByCidadeContainingIgnoreCase(cidadePesquisa);
+			}
+			mv.addObject("listachef", listachef);
+			return mv;
+		}
 		
-//	    @PostMapping("/pesquisarChef")  
-//		public String pesquisarCidade(@PathVariable("cidade") String cidade, Model model) {
-//	            //List<ChefComplemento> listaChef = chefComplementoService.findByCidadeIgnoreCase(cidade);
-//	         List<ChefComplemento>listaChef = chefComplementoService.pesquisarCidade(cidade);   
-//			 if (listaChef != null) {
-//	                  model.addAttribute("chefComplemento", listaChef);
-//	            }
-//	            return "encontar_chef";
-//		 }
 
-		
 }
