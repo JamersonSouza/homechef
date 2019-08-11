@@ -4,13 +4,13 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import br.com.homechef.model.Chef_favoritos;
+import br.com.homechef.model.Chef_favorito;
 
-public interface Chef_favoritosDAO extends JpaRepository<Chef_favoritos, Integer> {
+public interface Chef_favoritosDAO extends JpaRepository<Chef_favorito, Integer> {
 	
-	public Chef_favoritos findByNomeChef(String nomeChef);
+	public Chef_favorito findByNomeChef(String nomeChef);
 	
 	//metodo para pesquisar chef_fav
-		public List<Chef_favoritos> findByNomeChefContainingIgnoreCase(String nomePesquisa);
+		public List<Chef_favorito> findByNomeChefContainingIgnoreCase(String nomePesquisa);
 
 }

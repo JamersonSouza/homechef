@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.com.homechef.model.Chef_favoritos;
+import br.com.homechef.model.Chef_favorito;
 import br.com.homechef.service.Chef_favoritosService;
 
 @Controller
@@ -26,10 +26,11 @@ public class Chef_favoritosController {
 			}
 
 		//salvar no bd o que foi favoritado 
-		@PostMapping("/chef_encontrarChef")
-			public String salvarChefFavorito(@ModelAttribute Chef_favoritos chef_favoritos) {
+		@PostMapping("/favoritarChef") 
+			public ModelAndView salvarChefFavorito(@ModelAttribute Chef_favorito chef_favoritos) {
+				ModelAndView mv=new ModelAndView("ContratarChef");
 				System.out.println(chef_favoritos);
 				chef_favoritosService.salvarChef_favorito(chef_favoritos);
-				return "/chef_encontrarChef";
+				return mv;
 			}
 }

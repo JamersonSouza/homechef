@@ -62,10 +62,11 @@
        			 <div class="col-lg-6 col-6 p-2"> 
         <img th:attr="src=@{'/photos/'+ ${cont.imagem}}" style="width: 150px; height: 150px; border: 3px solid #c1c1c1;"/>
         <br>
+        	
           <b>Nome do Chef: </b><span style="font-weight: 350; font-size: 18px; text-align: center;" th:text=${cont.nome}></span>
           <b>Especialidade: </b><span style="font-weight: 350; font-size: 18px;" th:text=${cont.especialidade}></span><br>
           <b>Cidade: </b><span style="font-weight: 350; font-size: 18px;" th:text=${cont.cidade}></span><br><br>
-          <a class="btn btn-outline-primary" th:href="@{ContratarChef}">+saiba mais</a>
+          <a class="btn btn-outline-primary" th:href="@{ContratarChef(idChef=${chef.idChef})}">+saiba mais</a> <!-- teste para pegar pelo id -->
         </div>
         </dl>
         </dl>

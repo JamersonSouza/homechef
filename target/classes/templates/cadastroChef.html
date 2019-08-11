@@ -74,7 +74,7 @@ function getEndereco() {
             </ul>
             <div class="passo1 form-row">
                 <h2>CRIAR CONTA</h2>
-             	
+             	<input type="hidden" id="idchef" th:field="*{idChef}" />
              		<!-- INPUT NOME -->
                 <label for="inputNome"><h5><strong>NOME:</strong></h5></label>
 				<input type="text" th:field="*{nome}" placeholder="Exemplo: Lucas Almeida" class="form-control border border-dark rounded-sm" id="inputNome">

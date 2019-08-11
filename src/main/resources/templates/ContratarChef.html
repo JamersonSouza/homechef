@@ -38,10 +38,9 @@
           <td th:text="${cont.nome}"></td>
           </tr>
           <tr>
-<!--           atributo nao faz parte da Classe chef / verificar procedimento -->
           <th>LOCAL:</th>
-          <tr th:each="cont : ${lista}"> <!-- realizar nova listagem em chefComplementos? -->
-          <td th:text="${cont.cidade}"></td>
+          <tr th:each="cont : ${lista}">
+           <td th:text="${cont.cidade}"></td> 
           </tr>
           <tr>
           <th>SOBRE:</th>
@@ -76,13 +75,18 @@
           <div class="row">
             <div class="col-md-6"><a class="btn text-center btn-success w-100" href="#"><b>CONTRATAR</b><br><i class="fa fa-shopping-cart fa-fw"></i> </a></div>
             
-            <form th:action="@{/chef_encontrarChef}" th:object="${chef_favoritos}" method="post">
+            
             <div class="col-md-6">
+           <form th:action="@{/favoritarChef}" th:object="${chef_favoritos}" method="post"> 
+<!--             <input type="hidden" id="idchef" th:field="*{idChef}" /> -->
+<!-- 				<input type="hidden" id="nomeChef" th:field="*{nomeChef}" /> -->
+<!-- 				<input type="hidden" id="especialidadeChef" th:field="*{especialidade}" /> -->
             <button type="submit" class="btn text-left my-1 btn-outline-danger py-1 w-100" >
             <i class="fa fa-star fa-fw fa-1x py-1 text-left w-50">&nbsp;FAVORITAR</i>
             </button>
-            </div>
             </form>
+            </div>
+            
           </div>
         </div>
         <div class="col-md-4">
@@ -124,9 +128,10 @@
   <div class="py-5" style="	background-image: url(imagens/fundoFotter.jpg);	background-position: top left;	background-size: 100%;	background-repeat: repeat;">
     <div class="container">
       <div class="row">
-        <div class="px-lg-5 d-flex flex-column justify-content-center col-lg-6">
-          <h1 class="text-uppercase" ><b>Eduardo&nbsp; &amp; Silvia</b></h1>
-          <p class="mb-3 lead text-left text-dark text-capitalize"><b>Uma culinária que vai da mais tradicional a mais moderna, misturando cores, texturas e sabores.</b></p>
+        <div class="px-lg-5 d-flex flex-column justify-content-center col-lg-6" th:each="cont : ${lista}">
+<!--           <h1 class="text-uppercase" ><b>Eduardo&nbsp; &amp; Silvia</b></h1> -->
+				<h1 class="text-uppercase" ><b th:text=${cont.nome}></b></h1>
+          <p class="mb-3 lead text-left text-dark text-capitalize" ><b th:text=${cont.descricao}></b></p>
         </div>
         <div class="col-lg-6"> <img class="img-fluid d-block" src="imagens/chef.jpg"> </div>
       </div>

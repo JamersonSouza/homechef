@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Chef_favoritos {
+public class Chef_favorito {
 
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
