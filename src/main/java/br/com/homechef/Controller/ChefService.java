@@ -60,7 +60,7 @@ public class ChefService {
 			return chefdao.findByNomeContainingIgnoreCase(nome);
 		}
 		
-	//listar por nome
+	//listar por cidade
 	public List<Chef> findByCidade(String cidade) {
 		return chefdao.findByCidadeContainingIgnoreCase(cidade);
 	}

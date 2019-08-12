@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -14,8 +15,10 @@ public class Chef_favorito {
 	private String nomeChef;
 	private String especialidade;
 	@ManyToOne
+	@JoinColumn
 	private Chef chef;
 	@ManyToOne
+	@JoinColumn
 	private Usuario usuario;
 	
 	

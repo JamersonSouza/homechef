@@ -161,15 +161,13 @@ public class ChefController {
 		return mv;
 	}
 	
-	//Método para recuperação de senha
+// =============Método para recuperação de senha ========================
 		@GetMapping("/recuperarChef")
 		public ModelAndView recChef() {
 			ModelAndView mv = new ModelAndView("recuperarChef");
 			return mv;
 		}	
 	
-	
-		
 		//Método para recuperação de senha
 		@GetMapping("/redefinirSenhaChef")
 		public ModelAndView redefChef() {
@@ -177,7 +175,7 @@ public class ChefController {
 			return mv;
 		}	
 		
-//============= metodo listar chef para a view chef_encontrarChef
+//============= metodo listar chef para a view contratarChef
 		@GetMapping(value = "/ContratarChef")
 		public ModelAndView viewChef() {
 			ModelAndView mv = new ModelAndView("ContratarChef");

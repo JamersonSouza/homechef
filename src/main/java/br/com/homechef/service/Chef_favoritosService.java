@@ -19,11 +19,18 @@ public class Chef_favoritosService {
 	}
 
 	//metodo salvar chef_favoritos
-			public void salvarChef_favorito(Chef_favorito chef_favoritos) {
-				if(this.chef_favoritosDAO.findByNomeChef(chef_favoritos.getNomeChef())==null) {
-					
-				this.chef_favoritosDAO.save(chef_favoritos);
+//			public void salvarChef_favorito(Chef_favorito chef_favoritos) {
+	//			if(this.chef_favoritosDAO.findByNomeChef(chef_favoritos.getNomeChef())==null) {			
+	//			this.chef_favoritosDAO.save(chef_favoritos);
 				
-				}
-			}
+	//			}
+		//	}
+//}
+//metodo salvar chef_favoritos
+public void salvarChef_favorito(Chef_favorito chef_favoritos) {
+	this.chef_favoritosDAO.findByNomeChef(chef_favoritos.getNomeChef());
+	this.chef_favoritosDAO.save(chef_favoritos);
+	
+	}
+
 }
