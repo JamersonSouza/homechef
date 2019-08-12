@@ -18,17 +18,17 @@ public class Cardapio {
 	private Integer id;
 	@NotBlank(message = "Campo NOME obrigatório!")
 	private String nome;
-	@Lob
-	private byte[] fileFoto;
-	@NotBlank(message = "Campo DESCRIÇÂO obrigatório!")
 	private String descricao;
 	@NotNull(message = "CAMPO NÃO PODE FICAR VAZIO")
 	private double valorPessoa;
 	@Size(min = 1, message = "LIMITE DEVE SER SUPERIOR A 0")
 	private String limitePessoas;
 
+	private String imagemPrato;
 	@ManyToOne
-	private Chef chef;
+	private Chef chefCardapio;
+	
+	
 
 	public Integer getId() {
 		return id;
@@ -47,13 +47,7 @@ public class Cardapio {
 	}
 
 
-	public byte[] getFileFoto() {
-		return fileFoto;
-	}
-
-	public void setFileFoto(byte[] fileFoto) {
-		this.fileFoto = fileFoto;
-	}
+	
 
 	public String getDescricao() {
 		return descricao;
@@ -79,12 +73,22 @@ public class Cardapio {
 		this.limitePessoas = limitePessoas;
 	}
 
-	public Chef getChef() {
-		return chef;
+	public String getImagem() {
+		return imagemPrato;
 	}
 
-	public void setChef(Chef chef) {
-		this.chef = chef;
+	public void setImagem(String imagem) {
+		this.imagemPrato = imagem;
 	}
+
+	public Chef getChefCardapio() {
+		return chefCardapio;
+	}
+
+	public void setChefCardapio(Chef chefCardapio) {
+		this.chefCardapio = chefCardapio;
+	}
+
+
 
 }

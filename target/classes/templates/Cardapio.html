@@ -26,7 +26,7 @@
 				
 						<!-- ALERTA MENSAGEM DE CARDAPIO INSERIDO -->
 						<div id="alerta" class="alert alert-success" th:if="${!#strings.isEmpty(mensagem)}">
-							<strong>INFORMAÇÕES SALVA COM SUCESSO! <a th:href="@{perfil-chef}">VOLTAR.</a></strong>
+							<strong>INFORMAÇÕES SALVA COM SUCESSO! <a th:href="@{perfilChef}">VOLTAR.</a></strong>
 						</div>
 						
 						<!-- ALERTA MENSAGEM DE ERRO -->	
@@ -49,7 +49,7 @@
 						
 						<div class="form-group col-md-12">
 								<label for="cep"><strong>FOTOS DO PRATO:</strong></label> 
-						<input  class="form-control  border border-dark rounded-sm" type="file" name="fileFoto2">
+						<input  class="form-control  border border-dark rounded-sm" type="file" name="file" multiple="multiple">
 					</div>
 						
 							<!-- INPUT VALOR -->

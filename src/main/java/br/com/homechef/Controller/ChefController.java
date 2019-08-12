@@ -124,15 +124,17 @@ public class ChefController {
 	}
 	
 	@PostMapping("/addCardapio")
-	public ModelAndView addCardapio(@Valid @ModelAttribute Cardapio cardapio, Errors errors, RedirectAttributes rt, @RequestParam("fileFoto2") MultipartFile file) throws IOException {
+	public ModelAndView addCardapio(@Valid @ModelAttribute Cardapio cardapio, Errors errors, RedirectAttributes rt, @RequestParam("file") MultipartFile imagemPrato){
 		ModelAndView mv = new ModelAndView("Cardapio");
 		mv.addObject("cardapio", cardapio);
 		if(errors.hasErrors()) {
 			return mv;
 		}else {
 			try {
+				if (Util.fazerUploadImagem(imagemPrato)) {
+					cardapio.setImagem(imagemPrato.getOriginalFilename());
+					}
 				cardapioService.salvarCardapio(cardapio);
-				cardapio.setFileFoto(file.getBytes());
 				System.out.println(cardapio);
 				rt.addFlashAttribute("mensagem", "salvo");
 				mv.addObject("mensagem", "salvo");
