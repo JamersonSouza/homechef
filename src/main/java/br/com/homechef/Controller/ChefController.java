@@ -150,25 +150,41 @@ public class ChefController {
 	}
 	
 //	============== PRATOS DE BAIXO PREÇO =======================
+	
 	@GetMapping("/lista-pratos-baixoPreco")
-		public ModelAndView pratosBaixoPreco() {
-			ModelAndView mv = new ModelAndView("lista-pratos-baixoPreco");
-			mv.addObject("listaPratos", cardapioService.precosBaixo());
-			return mv;
+	public ModelAndView pratosBaixoPreco() {
+		ModelAndView mv = new ModelAndView("lista-pratos-baixoPreco");
+		mv.addObject("listaPratos", cardapioService.precosBaixo());
+		return mv;
 	}
 	
 	
 //	============= PRATOS DE PREÇO RAZOÁVEL ===================
 	
-	//comida medio preco
-			@GetMapping("/lista-pratos-MedioPreco")
-				public ModelAndView pratosMedioPreco() {
-					ModelAndView mv = new ModelAndView("lista-pratos-MedioPreco");
-					mv.addObject("listaPratosMedio", cardapioService.precosRazoavel());
-					return mv;
-			}
-						
+	@GetMapping("/lista-pratos-MedioPreco")
+	public ModelAndView pratosMedioPreco() {
+		ModelAndView mv = new ModelAndView("lista-pratos-MedioPreco");
+		mv.addObject("listaPratosMedio", cardapioService.precosRazoavel());
+		return mv;
+	}
 	
+//	============= PRATOS DE PREÇO ALTO ===================
+
+	@GetMapping("/lista-pratos-AltoPreco")
+	public ModelAndView pratosAltoPreco() {
+		ModelAndView mv = new ModelAndView("lista-pratos-AltoPreco");
+		mv.addObject("listaPratosAlto", cardapioService.precosAltos());
+		return mv;
+	}
+		
+//		============= PRATOS DE PREÇO SELECT  ===================
+	@GetMapping("/pratos-PrecoSelect")
+	public ModelAndView pratosSelectPreco() {
+		ModelAndView mv = new ModelAndView("pratos-PrecoSelect");
+		mv.addObject("listaPratosSelect", cardapioService.pratosSelect());
+		return mv;
+	}
+
 //	============ EXCLUIR CONTA DO CHEF ============
 	@GetMapping("/exclusaoConta")
 	public String conta() {

@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -19,8 +20,9 @@ public class Cardapio {
 	private String nome;
 	private String descricao;
 	@NotNull(message = "CAMPO NÃO PODE FICAR VAZIO")
+	@Min(value = 30, message = "O VALOR MÍNIMO DEVE SER R$ 30,00")
 	private double valorPessoa;
-	@Size(min = 1, message = "LIMITE DEVE SER SUPERIOR A 0")
+	@Size(min = 1, message = "LIMITE DE PESSOAS DEVE SER MAIOR QUE 0")
 	private String limitePessoas;
 
 	private String imagemPrato;

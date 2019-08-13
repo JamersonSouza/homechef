@@ -29,12 +29,19 @@ public class CardapioService {
 		return cardapioDAO.findByPrecoBaixo();
 	}
 	
-	public List<Cardapio> imagemPratos(){
-		return cardapioDAO.findAll();
-	}
-	
+	//Lista Preços Razoavel de pratos (Médios)
 	public List<Cardapio> precosRazoavel(){
 		return cardapioDAO.findByPrecoRazoavel();
 		}
+	
+	//Lista Preços Altos de Pratos
+	public List<Cardapio> precosAltos(){
+		return cardapioDAO.findByPrecoAlto();
+	}
+	
+	//Lista Preços Muitos Altos de Pratos
+	public List<Cardapio> pratosSelect(){
+		return cardapioDAO.findBySelect();
+	}
 	
 }

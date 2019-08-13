@@ -27,20 +27,6 @@ public class indexController {
 			return mv;
 	}
 
-		
-			
-	
-	//comida alto preco
-		@GetMapping("/lista-pratos-AltoPreco")
-			public ModelAndView pratosAltoPreco() {
-				ModelAndView mv = new ModelAndView("lista-pratos-AltoPreco");
-				return mv;
-							}
-	//comida preco altissimo
-		@GetMapping("/lista-pratos-SelectPreco")
-			public ModelAndView pratosSelectPreco() {
-				ModelAndView mv = new ModelAndView("lista-pratos-SelectPreco");
-				return mv;
-		}
+
 		
 }
