@@ -60,10 +60,15 @@
                 </div>
               </div>
               <img class="img-fluid d-block" width="300px" th:attr="src=@{'/photos/'+ ${pratos.imagemPrato}}"/>
+              <br>
               <ul class="pl-3">
-                <li class="my-1" style=""><b><b>Chefe responsável:</b> A.Barros</b></li>
-                <li class="my-1"><b><b>Culinária:</b> Brasileira</b></li>
-                <li><b>Até 20 pessoas</b></li>
+<!--                 <b style="font-weight: 600;">Chefe responsável:</b><li class="my-1"></li> -->
+                
+<!--                 th:text="${pratos.chefCardapio.nome}" ISSO NÃO FUNCIONA -->
+                
+               <li><b style="font-weight: 800; color: #000;">Culinária:</b> <b class="my-1" th:text="${pratos.descricao}"></b></li>
+               
+              <li><b style="font-weight: 800; color: #000;">Quantidade de Pessoas:</b> <b class="my-1" th:text="${pratos.limitePessoas}"></b></li> 
               </ul> <a class="btn btn-primary mt-3" href="chef_encontrarChef.html"><b>+ SAIBA MAIS</b></a>
             </div>
           </div>
