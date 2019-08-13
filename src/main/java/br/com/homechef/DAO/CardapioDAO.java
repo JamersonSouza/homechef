@@ -25,5 +25,7 @@ public interface CardapioDAO extends JpaRepository<Cardapio, Integer> {
 	
 	@Query("select u from Cardapio u where u.valorPessoa > 180")
 	public List<Cardapio> findBySelect();
+	
+	public List<Cardapio> findByNomeContainingIgnoreCase(String PesquisaComida);
 }
  

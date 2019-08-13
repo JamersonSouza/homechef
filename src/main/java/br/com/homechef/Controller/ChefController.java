@@ -149,6 +149,24 @@ public class ChefController {
 		
 	}
 	
+
+//	============== PESQUISAR PRATOS =======================
+	
+	@PostMapping("/pesquisarComida")
+	public ModelAndView pesquisarComida(@RequestParam(required=false) String PesquisaComida) {
+		ModelAndView mv = new ModelAndView("/lista-pratos-AltoPreco");
+		List<Cardapio> listaPratosAlto;
+		if (PesquisaComida == null || PesquisaComida.trim().isEmpty()) {
+			listaPratosAlto = this.cardapioService.listarTudo();
+		} else {
+			listaPratosAlto = this.cardapioService.findByNome(PesquisaComida);
+		}
+		mv.addObject("listaPratosAlto", listaPratosAlto);
+		return mv;
+	}
+	
+
+	
 //	============== PRATOS DE BAIXO PREÇO =======================
 	
 	@GetMapping("/lista-pratos-baixoPreco")
@@ -157,6 +175,7 @@ public class ChefController {
 		mv.addObject("listaPratos", cardapioService.precosBaixo());
 		return mv;
 	}
+	
 	
 	
 //	============= PRATOS DE PREÇO RAZOÁVEL ===================
