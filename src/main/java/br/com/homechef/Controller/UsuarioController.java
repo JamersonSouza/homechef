@@ -143,11 +143,11 @@ public class UsuarioController {
 	@ResponseBody
 	public String loginGoogle(@RequestParam String email, @RequestParam String nome,HttpSession session) {
 		
-		ModelAndView mv = new ModelAndView("cadastro");
+		ModelAndView mv = new ModelAndView("redirect:index");
 		Usuario usuario = usuarioDao.findByEmail(email);
 		if(usuario!=null) {
 			session.setAttribute("usuariologado", usuario);
-			return "usuario_logado_index";
+			return "index";
 		}else {
 			usuario = new Usuario();
 			usuario.setNome(nome);
@@ -155,7 +155,7 @@ public class UsuarioController {
 			usuarioDao.save(usuario);
 			usuario = usuarioDao.findByEmail(email);
 			session.setAttribute("usuariologado", usuario);
-			return "usuarioLogadoIndex";
+			return "index";
 		}
 		
 		

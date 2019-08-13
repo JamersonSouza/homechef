@@ -33,4 +33,8 @@ public class CardapioService {
 		return cardapioDAO.findAll();
 	}
 	
+	public List<Cardapio> precosRazoavel(){
+		return cardapioDAO.findByPrecoRazoavel();
+		}
+	
 }

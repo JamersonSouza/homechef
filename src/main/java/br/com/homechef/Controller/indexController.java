@@ -29,13 +29,7 @@ public class indexController {
 
 		
 			
-	//comida medio preco
-		@GetMapping("/lista-pratos-MedioPreco")
-			public ModelAndView pratosMedioPreco() {
-				ModelAndView mv = new ModelAndView("lista-pratos-MedioPreco");
-				return mv;
-					}
-					
+	
 	//comida alto preco
 		@GetMapping("/lista-pratos-AltoPreco")
 			public ModelAndView pratosAltoPreco() {

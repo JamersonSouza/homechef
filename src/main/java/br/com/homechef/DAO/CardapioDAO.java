@@ -16,5 +16,8 @@ public interface CardapioDAO extends JpaRepository<Cardapio, Integer> {
 	public List<Cardapio> findByPrecoBaixo();
 	
 	
+	@Query("select u from Cardapio u where u.valorPessoa > 50 and u.valorPessoa < 120")
+	public List<Cardapio> findByPrecoRazoavel();
+	
 }
  

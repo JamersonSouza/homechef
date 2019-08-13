@@ -158,6 +158,17 @@ public class ChefController {
 	}
 	
 	
+//	============= PRATOS DE PREÇO RAZOÁVEL ===================
+	
+	//comida medio preco
+			@GetMapping("/lista-pratos-MedioPreco")
+				public ModelAndView pratosMedioPreco() {
+					ModelAndView mv = new ModelAndView("lista-pratos-MedioPreco");
+					mv.addObject("listaPratosMedio", cardapioService.precosRazoavel());
+					return mv;
+			}
+						
+	
 //	============ EXCLUIR CONTA DO CHEF ============
 	@GetMapping("/exclusaoConta")
 	public String conta() {
