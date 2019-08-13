@@ -27,12 +27,6 @@ public class indexController {
 			return mv;
 	}
 
-	//comida baixo preco
-			@GetMapping("/lista-pratos-baixoPreco")
-				public ModelAndView pratosBaixoPreco() {
-					ModelAndView mv = new ModelAndView("lista-pratos-baixoPreco");
-					return mv;
-			}
 		
 			
 	//comida medio preco

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <meta charset="utf-8">
@@ -11,7 +12,7 @@
 <body>
   <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-5 py-4 pb-3" style="">
     <div class="container"> <a class="navbar-brand" href="index.html">
-        <b><b class="text-warning">HOME CHEF</b></b>
+           <img alt="" src="/imagens/logo_homechef2.png" width="150px">
       </a> <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse" data-target="#navbar10">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -48,16 +49,17 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-lg-4 col-md-4 p-3">
+		<dl th:each="pratos : ${listaPratos}">
+        <div class="col-lg-8 col-md-4 p-3">
           <div class="card bg-light">
             <div class="card-body p-4 bg-info" style="">
               <div class="row">
                 <div class="col-md-12">
-                  <h2 class="text-left" style="">Piquiras Empório Flamboyant</h2>
-                  <h4 class="text-success text-right" style=""><b>R$ 45,00</b></h4>
+                  <h2 class="text-left" th:text="${pratos.nome}"></h2>
+                  <h4 class="text-success text-right" th:text="|R$ ${pratos.valorPessoa}|"><b></b></h4>
                 </div>
               </div>
-              <img class="img-fluid d-block" src="imagens/Prato30a50.jpg">
+              <img class="img-fluid d-block" width="300px" th:attr="src=@{'/photos/'+ ${pratos.imagemPrato}}"/>
               <ul class="pl-3">
                 <li class="my-1" style=""><b><b>Chefe responsável:</b> A.Barros</b></li>
                 <li class="my-1"><b><b>Culinária:</b> Brasileira</b></li>
@@ -66,45 +68,15 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-4 col-md-4 p-3">
-          <div class="card-body p-4 bg-info mb-2">
-            <div class="row">
-              <div class="col-4 text-right col-md-12">
-                <h2 class="text-left" style="">Hakone</h2>
-                <h4 class="text-success" style=""><b>R$ 39,00</b></h4>
-              </div>
-            </div>
-            <img class="img-fluid d-block" src="imagens/prato30a50.png">
-            <ul class="pl-3">
-              <li class="my-1"><b><b>Chefe responsável:</b> M.Reus</b></li>
-              <li class="my-1"><b><b>Culinária:</b>&nbsp;Chinesa</b></li>
-              <li class="mb-0"><b>Até 30 pessoas</b></li>
-            </ul> <a class="btn btn-primary mt-3" href="chef_encontrarChef.html"><b>+ SAIBA MAIS</b></a>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-4 p-3">
-          <div class="card-body bg-info p-4">
-            <div class="row">
-              <div class="col-4 text-right col-md-12">
-                <h2 class="text-left" style="">Camarões</h2>
-                <h4 class="text-success" style=""><b>R$ 35,00</b></h4>
-              </div>
-            </div>
-            <img class="img-fluid d-block" src="imagens/c4aaaef5ffc4f7567a06d433742aa559.png">
-            <ul class="pl-3">
-              <li class="my-1"><b><b>Chefe responsável:</b> M.Reus</b></li>
-              <li class="my-1"><b><b>Culinária: </b>Pernambucana</b></li>
-              <li><b>Até 30 pessoas</b></li>
-            </ul> <a class="btn btn-primary mt-3" href="chef_encontrarChef.html"><b>+ SAIBA MAIS</b></a>
-          </div>
-        </div>
+   </dl>
       </div>
     </div>
   </div>
+  
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  <pingendo onclick="window.open('https://pingendo.com/', '_blank')" style="cursor:pointer;position: fixed;bottom: 20px;right:20px;padding:4px;background-color: #00b0eb;border-radius: 8px; width:220px;display:flex;flex-direction:row;align-items:center;justify-content:center;font-size:14px;color:white">Made with Pingendo Free&nbsp;&nbsp;<img src="https://pingendo.com/site-assets/Pingendo_logo_big.png" class="d-block" alt="Pingendo logo" height="16"></pingendo>
+
 </body>
 
 </html>

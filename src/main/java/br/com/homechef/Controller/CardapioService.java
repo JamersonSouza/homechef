@@ -1,5 +1,7 @@
 package br.com.homechef.Controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +24,13 @@ public class CardapioService {
 		cardapioDAO.save(cardapio);
 	}
 	
+	//listar Preço de Prato
+	public List<Cardapio> precosBaixo(){
+		return cardapioDAO.findByPrecoBaixo();
+	}
 	
-	
+	public List<Cardapio> imagemPratos(){
+		return cardapioDAO.findAll();
+	}
 	
 }

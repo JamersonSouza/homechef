@@ -1,6 +1,5 @@
 package br.com.homechef.Controller;
 
-import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,8 +20,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import br.com.homechef.DAO.CardapioDAO;
 import br.com.homechef.DAO.ChefDAO;
-import br.com.homechef.excecoes.EspecExistsException;
 import br.com.homechef.model.Cardapio;
 import br.com.homechef.model.Chef;
 import br.com.homechef.model.Usuario;
@@ -38,6 +37,7 @@ public class ChefController {
 	
 	@Autowired
 	private CardapioService cardapioService;
+	
 	
 	@GetMapping("/cadastroChef")
 	public ModelAndView cadastroChef() {
@@ -124,15 +124,15 @@ public class ChefController {
 	}
 	
 	@PostMapping("/addCardapio")
-	public ModelAndView addCardapio(@Valid @ModelAttribute Cardapio cardapio, Errors errors, RedirectAttributes rt, @RequestParam("file") MultipartFile imagemPrato){
+	public ModelAndView addCardapio(@Valid @ModelAttribute Cardapio cardapio, Errors errors, RedirectAttributes rt, @RequestParam("file") MultipartFile imagemPratos){
 		ModelAndView mv = new ModelAndView("Cardapio");
 		mv.addObject("cardapio", cardapio);
 		if(errors.hasErrors()) {
 			return mv;
 		}else {
 			try {
-				if (Util.fazerUploadImagem(imagemPrato)) {
-					cardapio.setImagem(imagemPrato.getOriginalFilename());
+				if (Util.fazerUploadImagem(imagemPratos)) {
+					cardapio.setImagemPrato(imagemPratos.getOriginalFilename());
 					}
 				cardapioService.salvarCardapio(cardapio);
 				System.out.println(cardapio);
@@ -147,6 +147,14 @@ public class ChefController {
 			}
 		}
 		
+	}
+	
+//	============== PRATOS DE BAIXO PREÇO =======================
+	@GetMapping("/lista-pratos-baixoPreco")
+		public ModelAndView pratosBaixoPreco() {
+			ModelAndView mv = new ModelAndView("lista-pratos-baixoPreco");
+			mv.addObject("listaPratos", cardapioService.precosBaixo());
+			return mv;
 	}
 	
 	

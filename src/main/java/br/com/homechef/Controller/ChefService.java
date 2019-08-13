@@ -7,10 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import br.com.homechef.DAO.CardapioDAO;
 import br.com.homechef.DAO.ChefDAO;
 import br.com.homechef.excecoes.EmailExistsException;
 import br.com.homechef.excecoes.EspecExistsException;
 import br.com.homechef.excecoes.ServiceException;
+import br.com.homechef.model.Cardapio;
 import br.com.homechef.model.Chef;
 
 @Service
@@ -18,6 +20,7 @@ public class ChefService {
 	
 	@Autowired
 	private ChefDAO chefdao;
+	
 	
 	public void salvarComplemento(Chef chef) throws Exception{
 		if(this.chefdao.findByEmail(chef.getEspecialidade()) != null) {
@@ -64,5 +67,7 @@ public class ChefService {
 	public List<Chef> findByCidade(String cidade) {
 		return chefdao.findByCidadeContainingIgnoreCase(cidade);
 	}
+	
+
 
 }

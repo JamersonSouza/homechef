@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -25,6 +24,9 @@ public class Cardapio {
 	private String limitePessoas;
 
 	private String imagemPrato;
+	
+	
+	
 	@ManyToOne
 	private Chef chefCardapio;
 	
@@ -73,12 +75,13 @@ public class Cardapio {
 		this.limitePessoas = limitePessoas;
 	}
 
-	public String getImagem() {
+
+	public String getImagemPrato() {
 		return imagemPrato;
 	}
 
-	public void setImagem(String imagem) {
-		this.imagemPrato = imagem;
+	public void setImagemPrato(String imagemPrato) {
+		this.imagemPrato = imagemPrato;
 	}
 
 	public Chef getChefCardapio() {
