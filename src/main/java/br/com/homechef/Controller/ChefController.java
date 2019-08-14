@@ -150,7 +150,7 @@ public class ChefController {
 	}
 	
 
-//	============== PESQUISAR PRATOS =======================
+//	============== PESQUISAR PRATOS COM PREÇO ALTO =======================
 	
 	@PostMapping("/pesquisarComida")
 	public ModelAndView pesquisarComida(@RequestParam(required=false) String PesquisaComida) {
@@ -165,7 +165,56 @@ public class ChefController {
 		return mv;
 	}
 	
+//	=============== PESQUISA PRATOS COM PREÇOS MÉDIOS ==========================
+	
+	
+	@PostMapping("/pesquisaComida")
+	public ModelAndView pesquisaComida(@RequestParam(required=false) String PesquisaComida) {
+		ModelAndView mv = new ModelAndView("/lista-pratos-MedioPreco");
+		List<Cardapio> listaPratosMedio;
+		if (PesquisaComida == null || PesquisaComida.trim().isEmpty()) {
+			listaPratosMedio = this.cardapioService.listarTudo();
+		} else {
+			listaPratosMedio = this.cardapioService.findByNome(PesquisaComida);
+		}
+		mv.addObject("listaPratosMedio", listaPratosMedio);
+		return mv;
+	}
+	
+	
+//	============ PESQUISA PRATOS COM PREÇO SELECT ===============================
+	
+	
+	@PostMapping("/pratosSelect")
+	public ModelAndView pratosSelect(@RequestParam(required=false) String PesquisaComida) {
+		ModelAndView mv = new ModelAndView("/pratos-PrecoSelect");
+		List<Cardapio> listaPratosSelect;
+		if (PesquisaComida == null || PesquisaComida.trim().isEmpty()) {
+			listaPratosSelect = this.cardapioService.listarTudo();
+		} else {
+			listaPratosSelect = this.cardapioService.findByNome(PesquisaComida);
+		}
+		mv.addObject("listaPratosSelect", listaPratosSelect);
+		return mv;
+	}
 
+
+//	============== PESQUISA PRATOS COM PREÇO BAIXO ===========================
+	
+	
+	@PostMapping("/pesquisa-pratos-baratos")
+	public ModelAndView pratosBaratos(@RequestParam(required=false) String PesquisaComida) {
+		ModelAndView mv = new ModelAndView("/lista-pratos-baixoPreco");
+		List<Cardapio> listaPratos;
+		if (PesquisaComida == null || PesquisaComida.trim().isEmpty()) {
+			listaPratos = this.cardapioService.listarTudo();
+		} else {
+			listaPratos = this.cardapioService.findByNome(PesquisaComida);
+		}
+		mv.addObject("listaPratos", listaPratos);
+		return mv;
+	}
+	
 	
 //	============== PRATOS DE BAIXO PREÇO =======================
 	

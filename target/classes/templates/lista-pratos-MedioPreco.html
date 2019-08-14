@@ -34,12 +34,14 @@
           <p class="lead"><b>ENCONTRE O MELHOR PRATO PRA VOCÊ!</b></p>
         </div>
       </div>
+     <form th:action="@{/pesquisaComida}" method="post">
       <div class="row">
         <div class="col-md-8">
-          <div class="form-group"><input type="text" class="form-control form-control-lg mr-5 text-left border border-info rounded-sm w-100" placeholder="Ex: Cachorro Quente"></div>
+          <div class="form-group"><input type="text" name="PesquisaComida" id="PesquisaComida" class="form-control form-control-lg mr-5 text-left border border-info rounded-sm w-100" placeholder="Ex: Cachorro Quente"></div>
         </div>
         <div class="col-md-4"><button type="submit" class="btn btn-primary btn-lg w-75">PESQUISAR</button></div>
       </div>
+      </form>
     </div>
   </div>
   <div class="py-2">
