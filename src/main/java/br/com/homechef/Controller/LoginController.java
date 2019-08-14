@@ -1,5 +1,7 @@
 package br.com.homechef.Controller;
 
+import java.security.NoSuchAlgorithmException;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,13 +33,13 @@ public class LoginController {
 	
 	
 	@PostMapping("/login")
-	public String efetuarLogin(@ModelAttribute("usuario") Usuario usuario, BindingResult br, Model model, HttpSession sessao) {
+	public String efetuarLogin(@ModelAttribute("usuario") Usuario usuario, BindingResult br, Model model, HttpSession sessao) throws NoSuchAlgorithmException {
 		if(br.hasErrors()) {
 			System.out.println("Resultado: " + br);
 		}
 		
 		
-		 Usuario usuarioCosultado = cadastrousuarioDAO.buscalogin(usuario.getEmail(), usuario.getSenha());
+		 Usuario usuarioCosultado = cadastrousuarioDAO.buscalogin(usuario.getEmail(), Util.md5(usuario.getSenha()));
 		
 		if(usuarioCosultado == null) {
 			model.addAttribute("mensagem", "Usuario e senha invalido");

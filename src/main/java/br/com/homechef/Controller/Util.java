@@ -3,6 +3,9 @@ package br.com.homechef.Controller;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -142,6 +145,15 @@ public class Util {
         return redirectUrl;
 
     }
+	
+	
+//	=================== HASH ==============
+	
+	public static String md5(String senha) throws NoSuchAlgorithmException {
+		MessageDigest messageDigest = MessageDigest.getInstance("MD5");
+		BigInteger hash = new BigInteger(1, messageDigest.digest(senha.getBytes()));
+		return hash.toString(16);
+	}
 
 
 }
