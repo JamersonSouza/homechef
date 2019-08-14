@@ -1,6 +1,7 @@
 package br.com.homechef.Controller;
 
 
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,10 +32,20 @@ public class ChefService {
 	}
 	
 	public void salvarChef(Chef chef) throws Exception {
-		if(this.chefdao.findByEmail(chef.getEmail()) != null) {
-			throw new EmailExistsException
-			("Já existe um Chef com este email: " + chef.getEmail());
+		
+		try {
+			
+			if(this.chefdao.findByEmail(chef.getEmail()) != null) {
+				throw new EmailExistsException
+				("Já existe um Chef com este email: " + chef.getEmail());
+			}
+			
+			chef.setSenha(Util.md5(chef.getSenha()));
+			
+		} catch (NoSuchAlgorithmException e) {
+			throw new ServiceException("Erro Na Criptografia");
 		}
+	
 		chefdao.save(chef);
 	}
 	

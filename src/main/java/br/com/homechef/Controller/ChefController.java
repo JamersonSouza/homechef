@@ -1,5 +1,6 @@
 package br.com.homechef.Controller;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -78,12 +79,12 @@ public class ChefController {
 	
 	
 	@PostMapping("/loginchef")
-	public String efetuarLoginChef(@ModelAttribute("chef") Chef chef, BindingResult br, Model model, HttpSession sessao2) {
+	public String efetuarLoginChef(@ModelAttribute("chef") Chef chef, BindingResult br, Model model, HttpSession sessao2) throws NoSuchAlgorithmException {
 		if(br.hasErrors()) {
 			System.out.println("resultado: "+br);
 		}
 		
-		Chef chefLogado = chefDAO.efetuarLogin(chef.getEmail(), chef.getSenha());
+		Chef chefLogado = chefDAO.efetuarLogin(chef.getEmail(), Util.md5(chef.getSenha()));
 		
 		if(chefLogado==null) {
 			model.addAttribute("mensagem", "Usuario ou Senha Inválidos");
