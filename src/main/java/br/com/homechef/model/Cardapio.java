@@ -29,9 +29,6 @@ public class Cardapio {
 	
 	
 	
-	@ManyToOne
-	private Chef chefCardapio;
-	
 	
 
 	public Integer getId() {
@@ -84,14 +81,6 @@ public class Cardapio {
 
 	public void setImagemPrato(String imagemPrato) {
 		this.imagemPrato = imagemPrato;
-	}
-
-	public Chef getChefCardapio() {
-		return chefCardapio;
-	}
-
-	public void setChefCardapio(Chef chefCardapio) {
-		this.chefCardapio = chefCardapio;
 	}
 
 

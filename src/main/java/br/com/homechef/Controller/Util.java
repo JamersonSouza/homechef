@@ -31,7 +31,7 @@ public class Util {
 		String nomeArquivo = imagem.getOriginalFilename();
 		try {
 		// Criando o diretório para armazenar o arquivo
-		String workspaceProjeto = "/home/neo/Documentos/homeChef/homechef/src/main/resources/static/photos";
+		String workspaceProjeto = "/home/neo/Documentos/PP2/homechef/src/main/resources/static/photos";
 		File dir = new File(workspaceProjeto);
 		if (!dir.exists()) {
 		dir.mkdirs();
