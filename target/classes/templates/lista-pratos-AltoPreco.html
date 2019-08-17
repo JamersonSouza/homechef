@@ -48,43 +48,32 @@
     <div class="container">
       <div class="row">
         <div class="text-center col-md-12">
-          <h1><b>AQUELE PRECINHO QUE CABE&nbsp;</b><br><b>NO SEU BOLSO!</b></h1>
+          <h1><b>AQUELE PRECINHO QUE CABE&nbsp;</b><br><b>NO SEU BOLSO!</b></h1> ${listaPratosAlto}
         </div>
-      </div>
-    <div class="row">
-      
-      <dl th:each="pratos : ${listaPratosAlto}">
-      
-            <div class="col-lg-8">
-          <div class="card bg-light">
-            <div class="card-body p-4 bg-info" style="">
-              <div class="row">
-                <div class="col-md-12">
-                  <h2 class="text-left" th:text="${pratos.nome}"></h2>
-                  <h4 class="text-success text-right" th:text="|R$ ${pratos.valorPessoa}|"><b></b></h4>
-                </div>
-              </div>
-              <img class="img-fluid d-block" width="300px" th:attr="src=@{'/photos/'+ ${pratos.imagemPrato}}"/>
-              <br>
-              <ul class="pl-3">
-<!--                 <b style="font-weight: 600;">Chefe responsável:</b><li class="my-1"></li> -->
-                
-<!--                 th:text="${pratos.chefCardapio.nome}" ISSO NÃO FUNCIONA -->
-                
-               <li><b style="font-weight: 800; color: #000;">Culinária:</b> <b class="my-1" th:text="${pratos.descricao}"></b></li>
-               
-              <li><b style="font-weight: 800; color: #000;">Quantidade de Pessoas:</b> <b class="my-1" th:text="${pratos.limitePessoas}"></b></li> 
-              </ul> <a class="btn btn-primary mt-3" href="chef_encontrarChef.html"><b>+ SAIBA MAIS</b></a>
-            </div>
-          </div>
-        </div>
-        
-</dl>
- 
       </div>
     </div>
-  </div>
-
+ </div>
+ 
+ <div class="row">
+	<div class="card mb-4" style="max-width: 600px; padding: 2%; margin-left: 120px; margin-bottom: 20px;" th:each="pratos : ${listaPratosAlto}">
+		<div class="row no-gutters">
+			<div class="col-md-4">
+				<br> <img class="img-fluid d-block" style="width: 300px; height: 150px; border: 3px solid #d35400;" th:attr="src=@{'/photos/'+ ${pratos.imagemPrato}}" />
+			</div>
+				<div class="col-md-4">
+					<div class="card-body">
+						<h3 class="text-left" th:text="${pratos.nome}"></h3>
+							<ul class="pl-3">
+				<li><b style="font-weight: 800; color: #000;">Culinária:</b>
+					<b class="my-1" th:text="${pratos.descricao}"></b></li>
+						<li><b style="font-weight: 800; color: #000;">Quantidade de Pessoas:</b> <b class="my-1" th:text="${pratos.limitePessoas}"></b></li>
+				</ul>
+					<a class="btn btn-warning mt-3" href="chef_encontrarChef.html"><b>+SAIBA MAIS</b></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
