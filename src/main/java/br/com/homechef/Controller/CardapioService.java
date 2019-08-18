@@ -3,13 +3,16 @@ package br.com.homechef.Controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ModelAndView;
 
 import br.com.homechef.DAO.CardapioDAO;
 import br.com.homechef.excecoes.CardapioExistsException;
 import br.com.homechef.model.Cardapio;
-import br.com.homechef.model.Chef;
 
 @Service
 public class CardapioService {
@@ -24,6 +27,12 @@ public class CardapioService {
 		}
 		
 		cardapioDAO.save(cardapio);
+	}
+	
+
+	//listar todos 
+	public Page<Cardapio> PratosEmAlta(org.springframework.data.domain.Pageable paginaReq){
+		return cardapioDAO.listaPratosEmAlta(paginaReq);
 	}
 	
 	//listar Preço de Prato
@@ -58,5 +67,7 @@ public class CardapioService {
 		public List<Cardapio> listarTudo(){
 			return cardapioDAO.findAll(Sort.by("nome"));
 		}
+
+	
 	
 }

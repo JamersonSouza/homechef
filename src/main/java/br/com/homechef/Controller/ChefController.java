@@ -8,6 +8,9 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -217,16 +220,17 @@ public class ChefController {
 	}
 	
 	
+	
 //	============== PRATOS DE BAIXO PREÇO =======================
 	
-	@GetMapping("/lista-pratos-baixoPreco")
-	public ModelAndView pratosBaixoPreco() {
-		ModelAndView mv = new ModelAndView("lista-pratos-baixoPreco");
-		mv.addObject("listaPratos", cardapioService.precosBaixo());
+	@GetMapping("/")
+	public ModelAndView pratosBaixoPreco(@RequestParam(defaultValue="1") int page) {
+		ModelAndView mv = new ModelAndView("listaPratosEmAlta");
+		Pageable paginaReq = PageRequest.of(page - 1, 6, Sort.by("nome"));
+		Page<Cardapio> paginaResult = this.cardapioService.PratosEmAlta(paginaReq);
+		mv.addObject("PratosEmAlta", paginaResult);
 		return mv;
 	}
-	
-	
 	
 //	============= PRATOS DE PREÇO RAZOÁVEL ===================
 	
