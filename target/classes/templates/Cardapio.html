@@ -37,37 +37,38 @@
 				
 						<!-- INPUT NOME DO PRATO -->
 						<div class="form-group col-md-12">
-							<label for="inputEnd"><strong>NOME DO PRATO:</strong></label> 
-							<input type="text" th:field="*{nome}" class="form-control border border-dark rounded-sm" id="inputEnd">
+							<label style="color: #000;" for="nomePrato"><strong>NOME DO PRATO:</strong></label> 
+							<input type="text" style="color: #000;" id="nomePrato" th:field="*{nome}" class="form-control border border-dark rounded-sm">
 						</div>
 						
 						<!-- INPUT DESCRIÇÃO DO PRATO -->
 						<div class="form-group col-md-12">
-							<label for="inputCmp"><strong>TIPO DO PRATO:</strong></label> 
-						<textarea rows="4" cols="4" th:field="*{descricao}" placeholder="Descreva qual a culinária do prato" class="md-textarea form-control border border-dark rounded-sm"></textarea>
+							<label style="color: #000;" for="TipoPrato"><strong>TIPO DO PRATO:</strong></label> 
+						<textarea rows="4" cols="4" style="color: #000;" id="TipoPrato" th:field="*{descricao}" placeholder="Descreva qual a culinária do prato" class="md-textarea form-control border border-dark rounded-sm"></textarea>
 						</div>
 						
 						<div class="form-group col-md-12">
-								<label for="cep"><strong>FOTO DO PRATO:</strong></label> 
-						<input  class="form-control  border border-dark rounded-sm" type="file" name="file" multiple="multiple">
+								<label style="color: #000;" for="foto"><strong>FOTO DO PRATO:</strong></label> 
+						<input style="color: #000;" class="form-control  border border-dark rounded-sm" type="file" name="file" multiple="multiple">
 					</div>
 						
 							<!-- INPUT VALOR -->
 						<div class="form-group col-md-12">
-								<label for="inputTel"><strong>VALOR POR PESSOA:</strong></label> 
-						<input type="text"  th:field="*{valorPessoa}" placeholder="Ex: R$ 50,00" class="form-control border border-dark rounded-sm">
+								<label style="color: #000;" for="valorPessoa"><strong>VALOR POR PESSOA:</strong></label> 
+						<input type="text" style="color: #000;" id="valorPessoa" th:field="*{valorPessoa}"  placeholder="Ex: R$ 50,00" class="form-control border border-dark rounded-sm">
 						</div>
 						
 						
 						<div class="form-group col-md-12">
-								<label for="inputTel"><strong>QUANTIDADE DE PESSOAS:</strong></label> 
-						<input type="text" th:field="*{limitePessoas}" placeholder="Ex: 100" class="form-control border border-dark rounded-sm">
+								<label style="color: #000;" for="qtd"><strong>QUANTIDADE DE PESSOAS:</strong></label> 
+						<input type="text" style="color: #000;" id="qtd" th:field="*{limitePessoas}" placeholder="Ex: 100" class="form-control border border-dark rounded-sm">
 						</div>
 						
 						
 						<br>
-						<div class="col-md-6 offset-md-3">
-								<button type="submit" class="btn btn-success btn-block w-60"><strong>SALVAR</strong></button>
+						<div class="col-md-12 btn-group">
+								<button   type="submit" class="btn btn-success offset-md-2 col-md-4"><strong>SALVAR</strong></button>&nbsp;&nbsp;&nbsp;
+								<a style="color: #7f8c8d;" th:href="@{/perfilChef}" class="btn btn-outline-warning  col-md-4"><strong>VOLTAR</strong></a>
 						</div>
 					
 					

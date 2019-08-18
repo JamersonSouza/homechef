@@ -224,7 +224,7 @@ public class ChefController {
 //	============== PRATOS DE BAIXO PREÇO =======================
 	
 	@GetMapping("/")
-	public ModelAndView pratosBaixoPreco(@RequestParam(defaultValue="1") int page) {
+	public ModelAndView pratosEmAlta(@RequestParam(defaultValue="1") int page) {
 		ModelAndView mv = new ModelAndView("listaPratosEmAlta");
 		Pageable paginaReq = PageRequest.of(page - 1, 6, Sort.by("nome"));
 		Page<Cardapio> paginaResult = this.cardapioService.PratosEmAlta(paginaReq);
@@ -232,6 +232,13 @@ public class ChefController {
 		return mv;
 	}
 	
+//	============== PRATOS DE BAIXO PREÇO =======================
+	@GetMapping("/lista-pratos-economicos")
+	public ModelAndView pratosBaixoPreco() {
+		ModelAndView mv = new ModelAndView("lista-pratos-baixoPreco");
+		mv.addObject("listaPratos", cardapioService.precosBaixo());
+		return mv;
+	}
 //	============= PRATOS DE PREÇO RAZOÁVEL ===================
 	
 	@GetMapping("/lista-pratos-MedioPreco")
