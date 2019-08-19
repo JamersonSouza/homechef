@@ -79,7 +79,7 @@ public class ChefController {
 }
 	@GetMapping("/loginchef")
 	public String login(Chef chef, Model model) {
-		model.addAttribute("chef", new Usuario());
+		model.addAttribute("chef", new Chef());
 		return "loginchef";
 	}
 	
@@ -229,19 +229,23 @@ public class ChefController {
 //	============== PRATOS DE BAIXO PREÇO =======================
 	
 	@GetMapping("/")
-	public ModelAndView pratosEmAlta(@RequestParam(defaultValue="1") int page) {
+	public ModelAndView pratosEmAlta(@RequestParam(defaultValue="1") int page, HttpServletRequest request, HttpSession session) {
 		ModelAndView mv = new ModelAndView("listaPratosEmAlta");
 		Pageable paginaReq = PageRequest.of(page - 1, 6, Sort.by("nome"));
 		Page<Cardapio> paginaResult = this.cardapioService.PratosEmAlta(paginaReq);
 		mv.addObject("PratosEmAlta", paginaResult);
+		Chef chefLogado = (Chef) request.getSession().getAttribute("chefLogado");
+		session.setAttribute("chefLogado", chefLogado);
 		return mv;
 	}
 	
 //	============== PRATOS DE BAIXO PREÇO =======================
 	@GetMapping("/lista-pratos-economicos")
-	public ModelAndView pratosBaixoPreco() {
+	public ModelAndView pratosBaixoPreco(HttpServletRequest request, HttpSession session) {
 		ModelAndView mv = new ModelAndView("lista-pratos-baixoPreco");
 		mv.addObject("listaPratos", cardapioService.precosBaixo());
+		Chef chefLogado = (Chef) request.getSession().getAttribute("chefLogado");
+		session.setAttribute("chefLogado", chefLogado);
 		return mv;
 	}
 //	============= PRATOS DE PREÇO RAZOÁVEL ===================
