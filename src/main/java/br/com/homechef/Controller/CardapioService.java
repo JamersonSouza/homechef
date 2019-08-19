@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import br.com.homechef.DAO.CardapioDAO;
 import br.com.homechef.excecoes.CardapioExistsException;
 import br.com.homechef.model.Cardapio;
+import br.com.homechef.model.Chef;
 
 @Service
 public class CardapioService {
@@ -29,6 +30,9 @@ public class CardapioService {
 		cardapioDAO.save(cardapio);
 	}
 	
+	public List<Cardapio> listarTodos(){
+		return cardapioDAO.findAll(Sort.by("nome"));
+	}
 
 	//listar todos 
 	public Page<Cardapio> PratosEmAlta(org.springframework.data.domain.Pageable paginaReq){
@@ -60,13 +64,18 @@ public class CardapioService {
 			return cardapioDAO.findByNomeContainingIgnoreCase(PesquisaComida);
 		}
 		
-		
+		//listar por Id
+		public Cardapio findById(Integer id) {
+			return cardapioDAO.findById(id).orElse(null);
+		}
 		
 
 		//listar todos 
 		public List<Cardapio> listarTudo(){
 			return cardapioDAO.findAll(Sort.by("nome"));
 		}
+		
+		
 
 	
 	

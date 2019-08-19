@@ -42,6 +42,9 @@ public class ChefController {
 	@Autowired
 	private CardapioService cardapioService;
 	
+	@Autowired
+	private CardapioDAO card;
+	
 	
 	@GetMapping("/cadastroChef")
 	public ModelAndView cadastroChef() {
@@ -112,7 +115,7 @@ public class ChefController {
 	
 	public ModelAndView listar() {
 		ModelAndView mv = new ModelAndView();
-			mv.addObject("perfilChefLista", chefDAO.findAll(Sort.by("nome")));
+			mv.addObject("perfilChefLista", chefservice.listarTodos());
 			mv.addObject("chef", new Chef());
 			return mv;
 		}
@@ -128,9 +131,11 @@ public class ChefController {
 	}
 	
 	@PostMapping("/addCardapio")
-	public ModelAndView addCardapio(@Valid @ModelAttribute Cardapio cardapio, Errors errors, RedirectAttributes rt, @RequestParam("file") MultipartFile imagemPratos){
+	public ModelAndView addCardapio(@Valid @ModelAttribute Cardapio cardapio,@ModelAttribute Chef chef, HttpServletRequest request,Errors errors, RedirectAttributes rt, @RequestParam("file") MultipartFile imagemPratos){
 		ModelAndView mv = new ModelAndView("Cardapio");
 		mv.addObject("cardapio", cardapio);
+		mv.addObject("chef", chef);
+		Chef chefLogado = (Chef) request.getSession().getAttribute("chefLogado");
 		if(errors.hasErrors()) {
 			return mv;
 		}else {
@@ -322,5 +327,29 @@ public class ChefController {
 			return mv;
 		}
 		
-
+// ========================== EDIÇÃO DO CARDAPIO ===================================
+		
+		@GetMapping("CardapioEdit")
+		public ModelAndView viewEdit() {
+			ModelAndView mv = new ModelAndView("CardapioEdit");
+			mv.addObject("listaCardapio", cardapioService.listarTodos());
+			return mv;
+		}
+		
+		@GetMapping("EditCardapio")
+		public ModelAndView editarCardapio(@RequestParam Integer id) {
+			ModelAndView mv = new ModelAndView("Cardapio");
+			mv.addObject("cardapio", cardapioService.findById(id));
+			card.deleteById(id);
+			return mv;
+		}
+		
+		@GetMapping("/removerCardapio")
+		public ModelAndView removerCardapio(@RequestParam Integer id) {
+		ModelAndView mv = new ModelAndView("CardapioEdit");
+		mv.addObject("card", new Cardapio());
+		card.deleteById(id);
+		return mv;
+		
+		}
 }
