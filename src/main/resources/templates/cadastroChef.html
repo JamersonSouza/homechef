@@ -92,8 +92,6 @@ function getEndereco() {
 				<input type="password" th:field="*{cnfSenha}" placeholder="Digite novamente sua senha" class="form-control border border-dark rounded-sm" id="SenhaRepeat">
 
                 <input type="submit" class="button_passo2" value="Proximo"/>          
-                
-                
             </div>
 
             <div class="passo2 form-row col-md-10">
@@ -157,7 +155,10 @@ function getEndereco() {
 				<label for="bairro"><h5><strong>BAIRRO:</strong></h5></label> 
 				<input type="text" th:field="*{bairro}" class="form-control border border-dark rounded-sm" id="bairro">
 						
+				<!-- INPUT Rua -->
 				
+				<label for="rua"><h5><strong>RUA:</strong></h5></label> 
+				<input type="text" th:field="*{rua}" class="form-control border border-dark rounded-sm" id="rua">
 						
                 <input type="submit" class="button_passo2" value="Anterior"/>
                 <button type="submit" class="btn btn-primary" id="confirm" value="Confirmar">CONFIRMAR</button>

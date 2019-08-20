@@ -35,9 +35,17 @@ public class Chef {
 	private String descricao;
 	private String especialidade;
 	
-
+	private String rua;
 
 	
+	public String getRua() {
+		return rua;
+	}
+
+	public void setRua(String rua) {
+		this.rua = rua;
+	}
+
 	public Integer getIdChef() {
 		return idChef;
 	}
