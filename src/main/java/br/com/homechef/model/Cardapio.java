@@ -27,9 +27,18 @@ public class Cardapio {
 
 	private String imagemPrato;
 	
+	@ManyToOne
+	private Chef chef;
 	
 	
-	
+
+	public Chef getChef() {
+		return chef;
+	}
+
+	public void setChef(Chef chef) {
+		this.chef = chef;
+	}
 
 	public Integer getId() {
 		return id;

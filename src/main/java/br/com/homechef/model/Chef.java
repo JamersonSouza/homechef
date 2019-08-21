@@ -1,9 +1,12 @@
 package br.com.homechef.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
 @Entity
@@ -37,7 +40,19 @@ public class Chef {
 	
 	private String rua;
 
+	@OneToMany
+	private List<Cardapio> cardapio;
 	
+	
+	
+	public List<Cardapio> getCardapio() {
+		return cardapio;
+	}
+
+	public void setCardapio(List<Cardapio> cardapio) {
+		this.cardapio = cardapio;
+	}
+
 	public String getRua() {
 		return rua;
 	}
