@@ -63,6 +63,8 @@
 					<div class="card-body">
 						<h3 class="text-left" th:text="${pratos.nome}"></h3>
 							<ul class="pl-3">
+							<li ><b style="font-weight: 800; color: #000;">Chef:</b>
+					<b class="my-1" th:text="${pratos.chef.nome}"></b></li>
 				<li><b style="font-weight: 800; color: #000;">Culinária:</b>
 					<b class="my-1" th:text="${pratos.descricao}"></b></li>
 						<li><b style="font-weight: 800; color: #000;">Quantidade de Pessoas:</b> <b class="my-1" th:text="${pratos.limitePessoas}"></b></li>
