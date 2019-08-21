@@ -27,8 +27,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.homechef.DAO.CardapioDAO;
 import br.com.homechef.DAO.ChefDAO;
+import br.com.homechef.DAO.GaleriaDAO;
 import br.com.homechef.model.Cardapio;
 import br.com.homechef.model.Chef;
+import br.com.homechef.model.GaleriaChef;
 import br.com.homechef.model.Usuario;
 
 @Controller
@@ -45,6 +47,9 @@ public class ChefController {
 	
 	@Autowired
 	private CardapioDAO card;
+	
+	@Autowired
+	private GaleriaDAO galeriadao;
 	
 	
 	@GetMapping("/cadastroChef")
@@ -362,6 +367,21 @@ public class ChefController {
 		@GetMapping("GaleriaChef")
 		public ModelAndView galeria() {
 			ModelAndView mv = new ModelAndView("GaleriaChef");
+			mv.addObject("listaFotos", galeriadao.findAll());
+			return mv;
+		}
+		
+		@PostMapping("fotosGaleria")
+		public ModelAndView galeriaUpload(@ModelAttribute GaleriaChef galeria, HttpSession session,@RequestParam("file") MultipartFile GaleriaImagem) {
+			ModelAndView mv = new ModelAndView("GaleriaChef");
+			mv.addObject("mensagem", "enviado");
+			mv.addObject("galeria", new GaleriaChef());
+			mv.addObject("galeria", galeria);
+			if(Util.fazerUploadImagem(GaleriaImagem)) {
+				galeria.setGaleriaImagem(GaleriaImagem.getOriginalFilename());
+			}
+			galeria.setChefGaleria((Chef) session.getAttribute("chefLogado"));
+			galeriadao.save(galeria);
 			return mv;
 		}
 }

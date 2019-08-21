@@ -17,7 +17,7 @@
 	<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-5 py-4 pb-3"
 		style="">
 		<div class="container">
-			<a class="navbar-brand" href="index.html"> <img alt=""
+			<a class="navbar-brand" th:href="@{index}"> <img alt=""
 				src="/imagens/logo_homechef2.png" width="150px">
 			</a>
 			<button class="navbar-toggler navbar-toggler-right border-0"
@@ -63,54 +63,35 @@
 	</div>
 	<hr width="50%">
 
-<form th:action="@{/fotosGaleria}" th:object="${galeria}" enctype="multipart/form-data">
+<form th:action="@{/fotosGaleria}" th:object="${galeria}" enctype="multipart/form-data" method="post">
+
+<!-- ALERTA MENSAGEM DE USUARIO CADASTRADO -->
+						<div id="alerta" class="alert alert-success text-center" th:if="${!#strings.isEmpty(mensagem)}">
+							<strong>FOTOS ENVIADA COM SUCESSO, VISUALIZE A ABAIXO</strong>
+						</div>
+						
 	<div class="container" style="margin-left: 30%;">
 		<div class="custom-file" style="width:  50%">
-			<input type="file" class="custom-file-input" id="inputGroupFile01"
+			<input type="file" name="file" class="custom-file-input" id="inputGroupFile01"
 				aria-describedby="inputGroupFileAddon01"> <label
-				class="custom-file-label" for="inputGroupFile01">Clique aqui para selecionar...</label>
+				class="custom-file-label" for="inputGroupFile01" style="color: #000; font-weight: 400;">Clique aqui para selecionar...</label>
 		</div>
 		<br>
-		<small>Selecione a 1º foto Para envio</small>
-		<br><br>
-			<div class="custom-file" style="width:  50%">
-			<input type="file" class="custom-file-input" id="inputGroupFile01"
-				aria-describedby="inputGroupFileAddon01"> <label
-				class="custom-file-label" for="inputGroupFile01">Clique aqui para selecionar...</label>
-		</div>
+		<small style="font-weight: 400;">Selecione suas fotos para envio</small>
 		<br>
-		<small>Selecione a 2º foto Para envio</small>
-		<br><br>
-			<div class="custom-file" style="width:  50%">
-			<input type="file" class="custom-file-input" id="inputGroupFile01"
-				aria-describedby="inputGroupFileAddon01"> <label
-				class="custom-file-label" for="inputGroupFile01">Clique aqui para selecionar...</label>
-		</div>
-		<br>
-		<small>Selecione a 3º foto Para envio</small>
-		<br><br>
-			<div class="custom-file" style="width:  50%">
-			<input type="file" class="custom-file-input" id="inputGroupFile01"
-				aria-describedby="inputGroupFileAddon01"> <label
-				class="custom-file-label" for="inputGroupFile01">Clique aqui para selecionar...</label>
-		</div>
-		<br>
-		<small>Selecione a 4º foto Para envio</small>
-		<br><br>
-			<div class="custom-file" style="width:  50%">
-			<input type="file" class="custom-file-input" id="inputGroupFile01"
-				aria-describedby="inputGroupFileAddon01"> <label
-				class="custom-file-label" for="inputGroupFile01">Clique aqui para selecionar...</label>
-		</div>
-		<br>
-		<small>Selecione a 5º foto Para envio</small>
 		<br>
 	</div>
+		<div class=" btn-group offset-sm-5 mt-3">
+			<button type="submit" class="btn btn-success"><strong>SALVAR</strong></button>&nbsp;&nbsp;&nbsp;&nbsp;
+			<a  class="btn btn-outline-primary" th:href="@{perfilChef}"><strong>VOLTAR</strong></a>
+			
+			</div>
 			<hr width="50%">
 </form>
+
 <div class="card card-panel">
 		<div class="card-heading" style="padding: 30px;">
-				<h3 class="card-title">Últimas Fotos Adicionadas</h3>
+				<h3 class="card-title" style="font-weight: 400;">Últimas Fotos Adicionadas</h3>
 		</div>
 </div>
 <br><br>
