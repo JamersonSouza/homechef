@@ -43,8 +43,18 @@ public class Chef {
 	@OneToMany
 	private List<Cardapio> cardapio;
 	
+	@OneToMany
+	private List<GaleriaChef> galeriachef;
 	
 	
+	public List<GaleriaChef> getGaleriachef() {
+		return galeriachef;
+	}
+
+	public void setGaleriachef(List<GaleriaChef> galeriachef) {
+		this.galeriachef = galeriachef;
+	}
+
 	public List<Cardapio> getCardapio() {
 		return cardapio;
 	}

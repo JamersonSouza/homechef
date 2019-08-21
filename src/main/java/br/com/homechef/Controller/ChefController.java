@@ -357,4 +357,11 @@ public class ChefController {
 		return mv;
 		
 		}
+		
+//		=============== GALERIA DO CHEF ================
+		@GetMapping("GaleriaChef")
+		public ModelAndView galeria() {
+			ModelAndView mv = new ModelAndView("GaleriaChef");
+			return mv;
+		}
 }
