@@ -8,6 +8,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -53,19 +54,19 @@ public class Util {
 		return sucessoUpload;
 		}
 	
-	public static String createPayment(String sum){
+	public static String createPayment(String sum, Integer usuario){
 
 		 String redirectUrl = "";
 
-		String clientId = "AWcK0IFdoSBpTwmzEkojt_zU918mrbOT7nP5-SfwCituIJDbnuF3QzLth52HxhJ7hJ_36f1OTCfV2KFi";
+		String clientId = "AQVCf312ixS7kE9bu-CTcCqA2VhCO_lH0mH0S1hxLP7tEkwpLgedEX69g55FI1YE1L6OHVwVcwCPAA2c";
 
-		String clientSecret = "EDlPgmlXlD0S-VbkQepqPfmhHyyniuIFBdiG2HXnN883Wx6rBGEl7fDCQPSUhbVq0-Ep0uhTLjUajY7x";
+		String clientSecret = "ECRKzpgc0NdPVOFhpYhSYgMwa9m8hDsCUhWGnzEGGdsD7AnSKLP_FcBKqWOawV1nriIYPRDUZyN4EVJf";
 
         Map<String, Object> response = new HashMap<String, Object>();
 
         Amount amount = new Amount();
 
-        amount.setCurrency("USD");
+        amount.setCurrency("BRL");
 
         amount.setTotal(sum);
 
@@ -99,7 +100,7 @@ public class Util {
 
         redirectUrls.setCancelUrl("http://localhost:8080/cancel");
 
-        redirectUrls.setReturnUrl("http://localhost:8080");
+        redirectUrls.setReturnUrl("http://localhost:8080/compraSucesso?usuario="+ usuario + "&valor=" + sum);
 
         payment.setRedirectUrls(redirectUrls);
 
@@ -154,6 +155,21 @@ public class Util {
 		BigInteger hash = new BigInteger(1, messageDigest.digest(senha.getBytes()));
 		return hash.toString(16);
 	}
+	
+//	======= obter momento atual ===========
+	public static String obterMomentoAtual() {
+		Calendar c = Calendar.getInstance();
+		int ano = c.get(Calendar.YEAR);
+		int mes = c.get(Calendar.MONTH);
+		int dia = c.get(Calendar.DAY_OF_MONTH);
+		int hora = c.get(Calendar.HOUR_OF_DAY);
+		int minuto = c.get(Calendar.MINUTE);
+		int segundo = c.get(Calendar.SECOND);
+		
+		
+ 		String momentoUpload = ano +"-"+ (mes+1) +"-"+ dia + "-" + hora +"-"+ minuto +"-"+ segundo;
+		return momentoUpload;
+		}
 
 
 }

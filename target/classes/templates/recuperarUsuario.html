@@ -41,11 +41,11 @@
           
           
           
-          <form method="post" th:action="@{redefinirSenhaUsuario}" th:object="${usuario}">
+          <form method="post"  th:object="${usuario}">
           
-            <div class="form-group"> <input type="email" th:field="*{email}" class="form-control border border-dark rounded-sm" placeholder="Email" id="form9" required="required"> </div>
+            <div class="form-group"> <input type="email"  class="form-control border border-dark rounded-sm" placeholder="Email" id="form9" required="required"> </div>
 
-				<button type="submit" class="btn btn-primary btn-block w-100"><strong>Recuperar senha</strong></button>
+				<a type="submit" th:href="@{recuperarUsuario}" class="btn btn-primary btn-block w-100"><strong>Recuperar senha</strong></a>
 
           </form>
           

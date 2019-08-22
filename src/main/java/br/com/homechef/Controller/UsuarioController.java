@@ -6,6 +6,8 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +25,7 @@ import br.com.homechef.DAO.ComplementoUsuarioDao;
 import br.com.homechef.DAO.UsuarioDAO;
 import br.com.homechef.model.Usuario;
 import br.com.homechef.model.UsuarioComplemento;
+import br.com.homechef.service.EmailService;
 
 @Controller
 public class UsuarioController {
@@ -35,6 +38,12 @@ public class UsuarioController {
 	
 	@Autowired
 	private ComplementoUsuarioDao usercomplemento;
+	
+	@Autowired
+	EmailService emailService;
+	
+	@Autowired
+	JavaMailSender emailSender;
 	
 	//Pagina de Cadastro de um usuario normal - View
 	@GetMapping("/cadastro")
@@ -177,24 +186,43 @@ public class UsuarioController {
 	
 	
 //	================================================================
-
-	//Método para recuperação de senha
-	@GetMapping("/recuperarUsuario")
-	public ModelAndView recUsuario() {
+	@GetMapping("recuperarUsuario")
+	public ModelAndView viewrece(@ModelAttribute Usuario usuario) {
 		ModelAndView mv = new ModelAndView("recuperarUsuario");
 		mv.addObject("usuario", new Usuario());
+		mv.addObject("usuario", usuario);
 		return mv;
-	}	
+	}
 	
+	@GetMapping("recuperarUsuario")
+	public ModelAndView viewrecovery(Usuario usuario) {
+		
+		SimpleMailMessage mail = new SimpleMailMessage();
+		 mail.setFrom("homechefjaboatao@gmail.com");
+		 mail.setSubject("Envio de Email funcionando agora");
+		if(this.usuarioDao.findByEmail(usuario.getEmail()) != null) {
+			mail.setTo(usuario.getEmail());
+			System.out.println("email enviado");
+			 mail.setText("A sua senha é" + usuario.getSenha());		 
+			 emailSender.send(mail);
+			 System.out.println("email enviado");
+		}
+		ModelAndView mv = new ModelAndView("CompraConcluida");
+		return mv;
+	}
 	
 	//Método para recuperação de senha
-		@GetMapping("/redefinirSenhaUsuario")
-		public ModelAndView redefcUsuario() {
-			ModelAndView mv = new ModelAndView("redefinirSenhaUsuario");
+		@PostMapping("/RecuperacaoSenha")
+		public ModelAndView recUsuario(String destinatario, Usuario usuario) {
+			
+			
+			
+			ModelAndView mv = new ModelAndView();
+			mv.addObject("usuario", new Usuario());
 			return mv;
 		}	
-	
-	
+
+		
 	@PostMapping("/recuperaSenha")
 	public ModelAndView recuperaSenha (@ModelAttribute Usuario usuario) {
 		ModelAndView mv = new ModelAndView("redefinirSenhaUsuario");

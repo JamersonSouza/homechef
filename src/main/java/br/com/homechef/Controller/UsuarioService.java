@@ -9,6 +9,7 @@ import br.com.homechef.DAO.UsuarioDAO;
 import br.com.homechef.excecoes.EmailExistsException;
 import br.com.homechef.excecoes.ServiceException;
 import br.com.homechef.excecoes.UsuarioInexistenteException;
+import br.com.homechef.model.Chef;
 import br.com.homechef.model.Usuario;
 
 @Service
@@ -49,8 +50,9 @@ public class UsuarioService {
 		return var;
 	}
 	
-	
-	
+	public Usuario findById(Integer idUsuario) {
+		return usuarioDAO.findById(idUsuario).orElse(null);
+	}
 	
 	
 	
