@@ -1,22 +1,15 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- PAGE settings -->
-  <link rel="icon" href="https://templates.pingendo.com/assets/Pingendo_favicon.ico">
-  <title>Recuperar senha</title>
-  <meta name="description" content="Wireframe design of a landing page by Pingendo">
-  <meta name="keywords" content="Pingendo bootstrap example template wireframe landing">
-  <meta name="author" content="Pingendo">
-  <!-- CSS dependencies -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
-  <link rel="stylesheet" href="/css/wireframe.css">
+  <link rel="stylesheet" href="css/theme.css" type="text/css">
 </head>
 
-<body class="">
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-5 py-1 pb-1" style="">
+<body class="bg-light" style="">
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark  py-1 pb-1" style="">
     <div class="container"> <a class="navbar-brand" th:href="@{index}">
         <img alt="" src="/imagens/logo_homechef2.png" width="150px">
       </a> <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse" data-target="#navbar10">
@@ -25,7 +18,7 @@
       <div class="collapse navbar-collapse" id="navbar10">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item"> <a class="nav-link" href="#"><b></b></a> </li>
-          <li class="nav-item text-warning"> <a class="nav-link" th:href="@{encontrar_chef}"><b class="text-dark"><b class="text-white">ENCONTRAR UM CHEF</b></b></a> </li>
+          <li class="nav-item text-warning"> <a class="nav-link" th:href="@{EncontrarChef}"><b class="text-dark"><b class="text-white">ENCONTRAR UM CHEF</b></b></a> </li>
           <li class="nav-item text-danger"> <a class="nav-link text-decoration-none" th:href="@{sobre_nos}"><span><b class="text-dark"><b class="text-white">SOBRE NÓS</b></b></span></a> </li>
           <li class="nav-item text-dark" style=""> <a class="nav-link text-decoration-none" th:href="@{contato}"><b class="text-dark"><b class="text-white h-50">CONTATO</b></b></a> </li>
         </ul> <a class="btn navbar-btn ml-md-2 btn-warning text-danger" th:href="@{loginchef}"><i class="fa fa-user fa-fw text-dark"></i><b class="text-body">CHEF</b></a>
@@ -33,19 +26,26 @@
       </div>
     </div>
   </nav>
-  <div class="py-5 text-left" style="	background-image: url(imagens/ct-home-chef-pat-vihtelic-bsi-20150625.jpg);	background-size: cover;	background-position: left top;	background-repeat: repeat;">
+
+  <div class="py-5 text-left" style="	background-color: #2c3e50;	background-size: cover;	background-repeat: repeat;">
     <div class="container">
       <div class="row" style="">
-        <div class="mx-auto bg-white p-5 col-12 col-md-6" style="box-shadow: grey 10px 5px 4px;">
+        <div class="mx-auto bg-white p-5 col-12 col-md-6" style="border: 4px solid #000;">
           <h1 class="mb-4 text-center text-uppercase"><b>Recuperar senha</b></h1>
           
           
           
-          <form method="post"  th:object="${usuario}">
-          
-            <div class="form-group"> <input type="email"  class="form-control border border-dark rounded-sm" placeholder="Email" id="form9" required="required"> </div>
+          <form method="post" th:action="@{RecuperarSenhaUsuario}" th:object="${usuario}">
+						<div id="alerta" class="alert alert-danger"
+							th:if="${#fields.hasAnyErrors()}">
+							<strong><p th:each="err : ${#fields.allErrors()}"
+									th:text="${err}"></p></strong>
+						</div>
+						<div class="form-group"> 
+            <input type="email"  class="form-control border border-dark rounded-sm" th:field="*{destinatario}" placeholder="Email" id="form9" required="required"> 
+            </div>
 
-				<a type="submit" th:href="@{recuperarUsuario}" class="btn btn-primary btn-block w-100"><strong>Recuperar senha</strong></a>
+				<button type="submit"  class="btn btn-primary btn-block w-100"><strong>Recuperar senha</strong></button>
 
           </form>
           

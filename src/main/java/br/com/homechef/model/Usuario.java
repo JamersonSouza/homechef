@@ -73,6 +73,10 @@ public class Usuario {
 	public void setImagem(String imagem) {
 		this.imagem = imagem;
 	}
-		
+		@Override
+		public String toString() {
+			// TODO Auto-generated method stub
+			return senha;
+		}
 
 }

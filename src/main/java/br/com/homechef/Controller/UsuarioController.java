@@ -191,59 +191,24 @@ public class UsuarioController {
 		ModelAndView mv = new ModelAndView("recuperarUsuario");
 		mv.addObject("usuario", new Usuario());
 		mv.addObject("usuario", usuario);
+		mv.addObject("err", "Email não Encontrado em nossa Base de Dados");
 		return mv;
 	}
 	
-	@GetMapping("recuperarUsuario")
-	public ModelAndView viewrecovery(Usuario usuario) {
-		
-		SimpleMailMessage mail = new SimpleMailMessage();
-		 mail.setFrom("homechefjaboatao@gmail.com");
-		 mail.setSubject("Envio de Email funcionando agora");
-		if(this.usuarioDao.findByEmail(usuario.getEmail()) != null) {
-			mail.setTo(usuario.getEmail());
+	@PostMapping("RecuperarSenhaUsuario")
+	public ModelAndView viewrecovery(@ModelAttribute Usuario usuario) {
+		if(this.usuarioDao.findByEmail(usuario.getEmail()) == this.usuarioDao.findByDestinatario(usuario.getDestinatario())) {
+//			System.out.println(usuario.getEmail()); Email do usuario fica null 
+			SimpleMailMessage mail = new SimpleMailMessage();
+			 mail.setFrom("homechefjaboatao@gmail.com");
+			 mail.setSubject("Envio de Email funcionando agora");
+			mail.setTo(usuario.getDestinatario());
 			System.out.println("email enviado");
-			 mail.setText("A sua senha é" + usuario.getSenha());		 
+			 mail.setText("A sua senha é" + usuario.getSenha());	// a senha esta sendo enviada com null	 
 			 emailSender.send(mail);
-			 System.out.println("email enviado");
 		}
-		ModelAndView mv = new ModelAndView("CompraConcluida");
+		ModelAndView mv = new ModelAndView("EmailEnviado");
+		
 		return mv;
 	}
-	
-	//Método para recuperação de senha
-		@PostMapping("/RecuperacaoSenha")
-		public ModelAndView recUsuario(String destinatario, Usuario usuario) {
-			
-			
-			
-			ModelAndView mv = new ModelAndView();
-			mv.addObject("usuario", new Usuario());
-			return mv;
-		}	
-
-		
-	@PostMapping("/recuperaSenha")
-	public ModelAndView recuperaSenha (@ModelAttribute Usuario usuario) {
-		ModelAndView mv = new ModelAndView("redefinirSenhaUsuario");
-		Usuario var;
-		
-		try {
-			var = usuarioService.recuperarSenha(usuario);
-			mv.addObject("usuario", var);
-			return mv;
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			ModelAndView mav = new ModelAndView ("recuperarUsuario");
-			mav.addObject("msg", "Email não Encontrado");
-			return mav;
-		} 
-			
-		
-		
-	
-		
-	}
-	
 }

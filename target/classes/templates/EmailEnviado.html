@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="css/theme.css" type="text/css">
+</head>
+
+<body class="bg-light" style="">
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-5 py-1 pb-1" style="">
+    <div class="container"> <a class="navbar-brand" th:href="@{index}">
+        <img alt="" src="/imagens/logo_homechef2.png" width="150px">
+      </a> <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse" data-target="#navbar10">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbar10">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"> <a class="nav-link" href="#"><b></b></a> </li>
+          <li class="nav-item text-warning"> <a class="nav-link" th:href="@{EncontrarChef}"><b class="text-dark"><b class="text-white">ENCONTRAR UM CHEF</b></b></a> </li>
+          <li class="nav-item text-danger"> <a class="nav-link text-decoration-none" th:href="@{sobre_nos}"><span><b class="text-dark"><b class="text-white">SOBRE NÓS</b></b></span></a> </li>
+          <li class="nav-item text-dark" style=""> <a class="nav-link text-decoration-none" th:href="@{contato}"><b class="text-dark"><b class="text-white h-50">CONTATO</b></b></a> </li>
+        </ul> <a class="btn navbar-btn ml-md-2 btn-warning text-danger" th:href="@{loginchef}"><i class="fa fa-user fa-fw text-dark"></i><b class="text-body">CHEF</b></a>
+        <a class="btn navbar-btn ml-md-2 btn-light text-danger" th:href="@{login}"><i class="fa fa-user fa-fw text-dark"></i><b class="text-body">USUÁRIO</b></a>
+      </div>
+    </div>
+  </nav>
+
+	<div class="container text-center" style="background-color: #95a5a6;">
+	<br><br>
+		<h1><strong>EMAIL ENVIADO COM SUCESSO!</strong></h1>
+		<h3 style="color: #000;">
+			Caro Usuário(a), solicitamos que verifique a sua caixa de entrada
+			acabamos de enviar um email para você com suas credencias. Para voltar <a style="color: #2c3e50;" th:href="@{login}"><strong>clique aqui</strong></a> para efetuar seu login<br><br>
+				<a class="btn btn-warning" style="text-decoration: none; color: #2c3e50;" th:href="@{login}"><strong>FAZER LOGIN</strong></a>
+			<br><br>
+		</h3>
+	</div>
+</body>
+</html>
