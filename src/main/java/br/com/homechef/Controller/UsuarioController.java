@@ -23,6 +23,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.homechef.DAO.ComplementoUsuarioDao;
 import br.com.homechef.DAO.UsuarioDAO;
+import br.com.homechef.model.EmailDestinatario;
 import br.com.homechef.model.Usuario;
 import br.com.homechef.model.UsuarioComplemento;
 import br.com.homechef.service.EmailService;
@@ -196,15 +197,15 @@ public class UsuarioController {
 	}
 	
 	@PostMapping("RecuperarSenhaUsuario")
-	public ModelAndView viewrecovery(@ModelAttribute Usuario usuario) {
-		if(this.usuarioDao.findByEmail(usuario.getEmail()) == this.usuarioDao.findByDestinatario(usuario.getDestinatario())) {
+	public ModelAndView viewrecovery(@ModelAttribute EmailDestinatario usuario, Usuario user) {
+		if(this.usuarioDao.findByEmail(user.getEmail()) != null) {
 //			System.out.println(usuario.getEmail()); Email do usuario fica null 
 			SimpleMailMessage mail = new SimpleMailMessage();
 			 mail.setFrom("homechefjaboatao@gmail.com");
 			 mail.setSubject("Envio de Email funcionando agora");
 			mail.setTo(usuario.getDestinatario());
 			System.out.println("email enviado");
-			 mail.setText("A sua senha é" + usuario.getSenha());	// a senha esta sendo enviada com null	 
+			 mail.setText("A sua senha é");	// a senha esta sendo enviada com null	 
 			 emailSender.send(mail);
 		}
 		ModelAndView mv = new ModelAndView("EmailEnviado");
