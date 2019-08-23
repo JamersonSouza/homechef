@@ -9,7 +9,7 @@
 </head>
 
 <body class="bg-light" style="">
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark  py-1 pb-1" style="">
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark   pb-1" style="">
     <div class="container"> <a class="navbar-brand" th:href="@{index}">
         <img alt="" src="/imagens/logo_homechef2.png" width="150px">
       </a> <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse" data-target="#navbar10">
@@ -30,7 +30,7 @@
   <div class="py-5 text-left" style="	background-color: #2c3e50;	background-size: cover;	background-repeat: repeat;">
     <div class="container">
       <div class="row" style="">
-        <div class="mx-auto bg-white p-5 col-12 col-md-6" style="border: 4px solid #000;">
+        <div class="mx-auto bg-white p-4 col-12 col-md-6" style="border: 4px solid #000;">
           <h1 class="mb-4 text-center text-uppercase"><b>Recuperar senha</b></h1>
           
           
@@ -42,7 +42,12 @@
 									th:text="${err}"></p></strong>
 						</div>
 						<div class="form-group"> 
-            <input type="email"  class="form-control border border-dark rounded-sm" th:field="*{destinatario}" placeholder="Email" id="form9" required="required"> 
+			<label>Nome:</label>
+          	<input type="text"  class="form-control border border-dark rounded-sm" th:field="*{nome}" placeholder="Insira seu Nome" id="form9" required="required"> 
+            <br>
+            <label>Email:</label>
+            <input type="email"  class="form-control border border-dark rounded-sm" th:field="*{email}" placeholder="Insira seu Email" id="form9" required="required"> 
+            
             </div>
 
 				<button type="submit"  class="btn btn-primary btn-block w-100"><strong>Recuperar senha</strong></button>

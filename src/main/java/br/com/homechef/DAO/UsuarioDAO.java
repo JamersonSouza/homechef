@@ -25,6 +25,9 @@ public interface UsuarioDAO extends JpaRepository<Usuario, Integer> {
 	
 	@Query("select u from Usuario u where u.destinatario = :destinatario")
 	public Usuario findByDestinatario(String destinatario);
+	
+	@Query("select u from Usuario u where u.email = :email")
+	public Usuario email(Usuario email);
 
 
 }

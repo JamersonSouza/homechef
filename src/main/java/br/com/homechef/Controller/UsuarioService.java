@@ -1,6 +1,8 @@
 package br.com.homechef.Controller;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -50,10 +52,14 @@ public class UsuarioService {
 		return var;
 	}
 	
+	public Usuario userEmaiL(Usuario email) {
+		return usuarioDAO.email(email);
+	}
+	
+	
 	public Usuario findById(Integer idUsuario) {
 		return usuarioDAO.findById(idUsuario).orElse(null);
 	}
-	
 	
 	
 }

@@ -1,6 +1,9 @@
 package br.com.homechef.Controller;
 
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -23,7 +26,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.homechef.DAO.ComplementoUsuarioDao;
 import br.com.homechef.DAO.UsuarioDAO;
-import br.com.homechef.model.EmailDestinatario;
 import br.com.homechef.model.Usuario;
 import br.com.homechef.model.UsuarioComplemento;
 import br.com.homechef.service.EmailService;
@@ -55,7 +57,7 @@ public class UsuarioController {
 	}
 //====================== METODO PARA INSERIR UM USUARIO NO BANCO ==================================
 	@PostMapping("/addUsuario")
-		public ModelAndView addUser(@Valid @ModelAttribute Usuario user, Errors erros, RedirectAttributes rt, @RequestParam("file") MultipartFile imagem) {
+		public ModelAndView addUser(@Valid @ModelAttribute Usuario user, Errors erros, RedirectAttributes rt, HttpServletRequest request,@RequestParam("file") MultipartFile imagem) {
 			ModelAndView mv = new ModelAndView("cadastro");
 			mv.addObject("usuario", user);
 			if(erros.hasErrors()) {
@@ -67,6 +69,7 @@ public class UsuarioController {
 					user.setImagem(imagem.getOriginalFilename());
 					}
 				usuarioService.salvarUsuario(user);
+				request.setAttribute("usuario", new Usuario());
 				rt.addFlashAttribute("mensagem", "Usuario salvo");
 				mv.addObject("mensagem", "usuario salvo");
 				return mv;
@@ -197,19 +200,28 @@ public class UsuarioController {
 	}
 	
 	@PostMapping("RecuperarSenhaUsuario")
-	public ModelAndView viewrecovery(@ModelAttribute EmailDestinatario usuario, Usuario user) {
-		if(this.usuarioDao.findByEmail(user.getEmail()) != null) {
-//			System.out.println(usuario.getEmail()); Email do usuario fica null 
+	public ModelAndView viewrecovery(Usuario usuario) throws Exception {
+		ModelAndView mva = new ModelAndView("EmailNaoEncontrado");
+		if(this.usuarioDao.findByEmail(usuario.getEmail()) != null) {
+			ModelAndView mv = new ModelAndView("EmailEnviado");
 			SimpleMailMessage mail = new SimpleMailMessage();
 			 mail.setFrom("homechefjaboatao@gmail.com");
-			 mail.setSubject("Envio de Email funcionando agora");
-			mail.setTo(usuario.getDestinatario());
-			System.out.println("email enviado");
-			 mail.setText("A sua senha é");	// a senha esta sendo enviada com null	 
+			 mail.setSubject("RECUPERAÇÃO DE CONTA - HOMECHEF");
+			mail.setTo(usuario.getEmail());
+			usuario.setEmail(usuario.getEmail());
+			usuario.setSenha(Util.md5("ifpe"));
+			usuarioDao.save(usuario);
+			System.out.println("email enviado" + usuario.getDestinatario());
+			mail.setText("A sua senha é " + usuario.getSenha());		 
+			 System.out.println(usuario.getSenha());
 			 emailSender.send(mail);
-		}
-		ModelAndView mv = new ModelAndView("EmailEnviado");
+			
+			return mv;
 		
-		return mv;
+		
+		
 	}
+		
+		return mva;
+}	
 }

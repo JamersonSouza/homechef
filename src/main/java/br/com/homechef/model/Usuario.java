@@ -26,9 +26,16 @@ public class Usuario {
 	@Transient 
 	private String cnfSenha;
 	private String imagem;
+	private String destinatario;
 	
 	
 	
+	public String getDestinatario() {
+		return destinatario;
+	}
+	public void setDestinatario(String destinatario) {
+		this.destinatario = destinatario;
+	}
 	public Integer getIdUsuario() {
 		return idUsuario;
 	}
