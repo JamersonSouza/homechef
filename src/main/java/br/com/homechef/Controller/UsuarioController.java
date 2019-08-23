@@ -209,10 +209,10 @@ public class UsuarioController {
 			 mail.setSubject("RECUPERAÇÃO DE CONTA - HOMECHEF");
 			mail.setTo(usuario.getEmail());
 			usuario.setEmail(usuario.getEmail());
-			usuario.setSenha(Util.md5("ifpe"));
+			usuario.setSenha(Util.md5("1fp3"));
 			usuarioDao.save(usuario);
 			System.out.println("email enviado" + usuario.getDestinatario());
-			mail.setText("A sua senha é " + usuario.getSenha());		 
+			mail.setText("A sua senha é " + " 1fp3");		 
 			 System.out.println(usuario.getSenha());
 			 emailSender.send(mail);
 			
