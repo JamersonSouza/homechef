@@ -19,7 +19,7 @@
       <div class="collapse navbar-collapse" id="navbar10">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item"> <a class="nav-link" href="#"><b></b></a> </li>
-          <li class="nav-item text-warning"> <a class="nav-link" th:href="@{encontrar_chef}"><b class="text-dark"><b class="text-white">ENCONTRAR UM CHEF</b></b></a> </li>
+          <li class="nav-item text-warning"> <a class="nav-link" th:href="@{EncontrarChef}"><b class="text-dark"><b class="text-white">ENCONTRAR UM CHEF</b></b></a> </li>
           <li class="nav-item text-danger"> <a class="nav-link text-decoration-none" th:href="@{sobre_nos}"><span><b class="text-dark"><b class="text-white">SOBRE NÓS</b></b></span></a> </li>
           <li class="nav-item text-dark" style=""> <a class="nav-link text-decoration-none" th:href="@{contato}"><b class="text-dark"><b class="text-white h-50">CONTATO</b></b></a> </li>
         </ul> <a class="btn navbar-btn ml-md-2 btn-light text-danger" th:href="@{login}"><i class="fa fa-user fa-fw text-dark"></i><b class="text-body">ENTRAR</b></a>
@@ -95,7 +95,7 @@
 		<!-- INPUT HORÁRIO DO EVENTO -->
 		<div class="col-md-3">
 			<label for="inputHora"><strong>Horáro:</strong></label>
-				<input id="inputHora" type="time" th:field="*{hora}" class="form-control">
+				<input id="inputHora" type="number" min="1" th:field="*{hora}" class="form-control">
 				<small>*Insira a duração do Evento em horas.</small>
 		</div>
 		<div class="container"><hr></div>
@@ -123,7 +123,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12 text-center align-self-center p-4">
-          <p class=""><b>Home Cheff Team.&nbsp;<br>Av.Barão de Lucena, 251 - Centro Jaboatão dos Guararapes,&nbsp;<br>PE 54110-051&nbsp;<br>Tel: (81) 9 5642-3532&nbsp;</b></p>
+          <p class=""><b>Home Chef Team.&nbsp;<br>Av.Barão de Lucena, 251 - Centro Jaboatão dos Guararapes,&nbsp;<br>PE 54110-051&nbsp;<br>Tel: (81) 9 5642-3532&nbsp;</b></p>
           <div class="row">
             <div class="col-md-12 d-flex align-items-center justify-content-around"> <a href="#">
                 <i class="d-block fa fa-facebook-official text-light fa-lg mx-2"></i>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="https://static.pingendo.com/bootstrap/bootstrap-4.3.1.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-5 py-4 pb-3" style="">
+    <div class="container"> <a class="navbar-brand" th:href="@{index}">
+           <img alt="" src="/imagens/logo_homechef2.png" width="150px">
+      </a> <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse" data-target="#navbar10">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbar10">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"> <a class="nav-link" href="#"><b></b></a> </li>
+          <li class="nav-item text-warning"> <a class="nav-link" th:href="@{EncontrarChef}"><b class="text-dark"><b class="text-white">ENCONTRAR UM CHEF</b></b></a> </li>
+          <li class="nav-item text-danger"> <a class="nav-link text-decoration-none" href="sobre_nos.html"><span><b class="text-dark"><b class="text-white">SOBRE NOS</b></b></span></a> </li>
+          <li class="nav-item text-dark" style=""> <a class="nav-link text-decoration-none" href="contato.html"><b class="text-dark"><b class="text-white h-50">CONTATO</b></b></a> </li>
+        </ul> <a class="btn navbar-btn ml-md-2 btn-warning text-danger" th:href="@{loginchef}"><i class="fa fa-user fa-fw text-dark"></i><b class="text-body">CHEF</b></a>
+        <a class="btn navbar-btn ml-md-2 btn-light text-danger" th:href="@{login}"><i class="fa fa-user fa-fw text-dark"></i><b class="text-body">USUÁRIO</b></a>
+      </div>
+    </div>
+  </nav>
+  <div class="py-5 mt-4" style="background-image: url(&quot;../../../Imagens/imagens_PP2/fundoFotter.jpg&quot;); background-position: left top; background-size: 100%; background-repeat: repeat;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <p class="lead"><b>ENCONTRE O MELHOR PRATO PRA VOCÊ!</b></p>
+        </div>
+      </div>
+      <form th:action="@{/pesquisa-pratos-baratos}" method="post">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="form-group"><input type="text" name="PesquisaComida" id="PesquisaComida" class="form-control form-control-lg mr-5 text-left border border-info rounded-sm w-100" placeholder="Ex: Cachorro Quente"></div>
+        </div>
+        <div class="col-md-4"><button type="submit" class="btn btn-warning btn-lg w-75">PESQUISAR</button></div>
+      </div>
+      </form>
+    </div>
+  </div>
+  <div class="py-2">
+    <div class="container">
+      <div class="row">
+        <div class="text-center col-md-12">
+          <h1><b>AQUELE PRECINHO QUE CABE&nbsp;</b><br><b>NO SEU BOLSO!</b></h1>
+        </div>
+      </div>
+</div>
+</div>
+
+<div class="row">
+	<div class="card mb-4" style="max-width: 600px; padding: 2%; margin-left: 120px; margin-bottom: 20px;" th:each="pratos : ${PratosEmAlta}">
+		<div class="row no-gutters">
+			<div class="col-md-4">
+				<br> <img class="img-fluid d-block" style="width: 300px; height: 150px; border: 3px solid #d35400;" th:attr="src=@{'/photos/'+ ${pratos.imagemPrato}}" />
+			</div>
+				<div class="col-md-4">
+					<div class="card-body">
+						<h3 class="text-left" th:text="${pratos.nome}"></h3>
+							<ul class="pl-3">
+
+<li ><b style="font-weight: 800; color: #000;">Chef:</b>
+					<b class="my-1" th:text="${pratos.chef.nome}"></b></li>
+				<li><b style="font-weight: 800; color: #000;">Culinária:</b>
+					<b class="my-1" th:text="${pratos.descricao}"></b></li>
+						<li><b style="font-weight: 800; color: #000;">Quantidade de Pessoas:</b> <b class="my-1" th:text="${pratos.limitePessoas}"></b></li>
+				</ul>
+					<a class="btn btn-warning mt-3" href="chef_encontrarChef.html"><b>+SAIBA MAIS</b></a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<br>
+				<div class="container" style="margin-left: 44%">
+			<ul class="nav nav-pills">
+				<li style="background-color: #f0932b; margin-left: 15px; border-radius: 200px; " class="nav-item" 
+				th:each="i : ${#numbers.sequence(1,PratosEmAlta.totalPages)}" > 
+				<a style="color: #fff;" th:text="${i}" th:href="@{/(page=${i})}" class="nav-link" ></a></li>
+			</ul>
+				</div>
+				
+			</div>
+			<br><br>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

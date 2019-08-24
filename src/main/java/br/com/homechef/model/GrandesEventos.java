@@ -20,6 +20,7 @@ public class GrandesEventos {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer idSolicitacao;
+	@NotBlank(message = "Campo nome é obrigatório.")
 	private String nome;
 	@NotBlank(message = "Campo EMAIL Vazio ou Inválido.")
 	private String email;
@@ -28,8 +29,8 @@ public class GrandesEventos {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@FutureOrPresent(message = "Data Anterior à DATA ATUAL não é PERMITIDA.")
 	private Date dataEvento;
-	@DateTimeFormat(pattern = "HH:mm")
-	private Date hora;
+	//@DateTimeFormat(pattern = "HH:mm")
+	private Integer hora;
 	@NotBlank(message = "Local do Evento Inválido ou Vazio")
 	private String local;
 	private String msg;
@@ -92,11 +93,11 @@ public class GrandesEventos {
 		this.dataEvento = dataEvento;
 	}
 
-	public Date getHora() {
+	public Integer getHora() {
 		return hora;
 	}
 
-	public void setHora(Date hora) {
+	public void setHora(Integer hora) {
 		this.hora = hora;
 	}
 
