@@ -59,6 +59,17 @@ public class AutorizadorInteceptor implements HandlerInterceptor {
 					return false;
 				}
 		}
+		
+		if (pagRequisitada.contains("/alterarcadastro") || pagRequisitada.contains("usuarioPerfil") || 
+				pagRequisitada.contains("complemento-perfil") || pagRequisitada.contains("contaExcluida")
+				|| pagRequisitada.contains("ChefsFavoritos") ) {
+			if (estaLogado) {
+					return true;
+				} else {
+					request.getRequestDispatcher(PAGINA_ACESSO_NEGADO).forward(request, response);
+					return false;
+				}
+		}
 
 
 		
