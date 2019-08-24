@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -17,8 +19,9 @@ public class UsuarioComplemento{
 		private String complemento;
 		private String telefone;
 		
-		@OneToOne
+		@ManyToOne
 		private Usuario usuario;
+		
 		
 		public Integer getId() {
 			return id;

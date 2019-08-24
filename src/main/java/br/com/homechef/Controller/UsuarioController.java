@@ -2,6 +2,7 @@ package br.com.homechef.Controller;
 
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -24,8 +25,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import br.com.homechef.DAO.ChefDAO;
 import br.com.homechef.DAO.ComplementoUsuarioDao;
+import br.com.homechef.DAO.FavoritarDAO;
 import br.com.homechef.DAO.UsuarioDAO;
+import br.com.homechef.model.Chef;
+import br.com.homechef.model.Favoritar;
 import br.com.homechef.model.Usuario;
 import br.com.homechef.model.UsuarioComplemento;
 import br.com.homechef.service.EmailService;
@@ -43,10 +48,16 @@ public class UsuarioController {
 	private ComplementoUsuarioDao usercomplemento;
 	
 	@Autowired
+	private ChefDAO chef;
+	
+	@Autowired
 	EmailService emailService;
 	
 	@Autowired
 	JavaMailSender emailSender;
+	
+	@Autowired
+	private FavoritarDAO favoritarDAO;
 	
 	//Pagina de Cadastro de um usuario normal - View
 	@GetMapping("/cadastro")
@@ -57,7 +68,7 @@ public class UsuarioController {
 	}
 //====================== METODO PARA INSERIR UM USUARIO NO BANCO ==================================
 	@PostMapping("/addUsuario")
-		public ModelAndView addUser(@Valid @ModelAttribute Usuario user, Errors erros, RedirectAttributes rt, HttpServletRequest request,@RequestParam("file") MultipartFile imagem) {
+		public ModelAndView addUser(@Valid @ModelAttribute Usuario user, Errors erros, RedirectAttributes rt, HttpSession session,HttpServletRequest request,@RequestParam("file") MultipartFile imagem) {
 			ModelAndView mv = new ModelAndView("cadastro");
 			mv.addObject("usuario", user);
 			if(erros.hasErrors()) {
@@ -141,11 +152,12 @@ public class UsuarioController {
 	}
 	
 	@PostMapping("/salvarComplemento")
-	public ModelAndView saveComplemento(@ModelAttribute UsuarioComplemento userComplemento) {
+	public ModelAndView saveComplemento(@ModelAttribute UsuarioComplemento userComplemento, HttpSession session) {
 		ModelAndView mv = new ModelAndView("complemento-perfil");
 		mv.addObject("userComplemento", userComplemento);
 		mv.addObject("mensagem", "salvo com sucesso");
 		System.out.println(userComplemento);
+		userComplemento.setUsuario((Usuario) session.getAttribute("usuariologado"));
 		usercomplemento.save(userComplemento);
 		return mv;
 	}
@@ -198,30 +210,50 @@ public class UsuarioController {
 		mv.addObject("err", "Email não Encontrado em nossa Base de Dados");
 		return mv;
 	}
-	
+
 	@PostMapping("RecuperarSenhaUsuario")
 	public ModelAndView viewrecovery(Usuario usuario) throws Exception {
 		ModelAndView mva = new ModelAndView("EmailNaoEncontrado");
-		if(this.usuarioDao.findByEmail(usuario.getEmail()) != null) {
+		if (this.usuarioDao.findByEmail(usuario.getEmail()) != null) {
 			ModelAndView mv = new ModelAndView("EmailEnviado");
 			SimpleMailMessage mail = new SimpleMailMessage();
-			 mail.setFrom("homechefjaboatao@gmail.com");
-			 mail.setSubject("RECUPERAÇÃO DE CONTA - HOMECHEF");
+			mail.setFrom("homechefjaboatao@gmail.com");
+			mail.setSubject("RECUPERAÇÃO DE CONTA - HOMECHEF");
 			mail.setTo(usuario.getEmail());
 			usuario.setEmail(usuario.getEmail());
 			usuario.setSenha(Util.md5("1fp3"));
 			usuarioDao.save(usuario);
 			System.out.println("email enviado" + usuario.getDestinatario());
-			mail.setText("A sua senha é " + " 1fp3");		 
-			 System.out.println(usuario.getSenha());
-			 emailSender.send(mail);
-			
+			mail.setText("A sua senha é " + " 1fp3");
+			System.out.println(usuario.getSenha());
+			emailSender.send(mail);
+
 			return mv;
-		
-		
-		
-	}
-		
+
+		}
+
 		return mva;
-}	
+	}
+	
+//	================== NOVO FAVORITAR CHEF =================
+	
+	@GetMapping("ChefsFavoritos")
+	public ModelAndView cheffavoritos(Favoritar chef, HttpSession session) {
+		ModelAndView mv = new ModelAndView("ChefsFavoritos");
+		chef.setUser((Usuario) session.getAttribute("usuariologado"));
+		mv.addObject("chefLista", this.favoritarDAO.findAll());
+		return mv;
+	}
+	
+	@PostMapping("/FavoritarChef")
+	public ModelAndView favoritar(Favoritar chef, HttpSession session, Chef nome) {
+		ModelAndView mv = new ModelAndView("ContratarChef");
+		chef.setUser((Usuario) session.getAttribute("usuariologado"));
+		Chef cheff = this.chef.findBynome();
+		chef.setChef(cheff);
+		this.favoritarDAO.save(chef);
+		return mv;
+	}
+	
+	
 }

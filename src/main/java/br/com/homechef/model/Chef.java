@@ -6,7 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 @Entity
@@ -39,14 +42,29 @@ public class Chef {
 	private String especialidade;
 	
 	private String rua;
-
+	
+	@OneToOne
+	private Usuario usuario;
+	
 	@OneToMany
 	private List<Cardapio> cardapio;
 	
 	@OneToMany
 	private List<GaleriaChef> galeriachef;
 	
+	@OneToMany
+	private List<Favoritar> favoritar;
 	
+	
+	
+	public List<Favoritar> getFavoritar() {
+		return favoritar;
+	}
+
+	public void setFavoritar(List<Favoritar> favoritar) {
+		this.favoritar = favoritar;
+	}
+
 	public List<GaleriaChef> getGaleriachef() {
 		return galeriachef;
 	}
@@ -191,6 +209,14 @@ public class Chef {
 		this.imagem = imagem;
 	}
 
+	public Usuario getUsuario() {
+		return usuario;
+	}
 
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	
 	
 }

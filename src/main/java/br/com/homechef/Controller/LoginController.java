@@ -25,7 +25,7 @@ public class LoginController {
 	
 	
 	@GetMapping("/login")
-	public String login(Usuario usuario, Model model) {
+	public String login(Usuario usuario, Model model, HttpSession session) {
 		model.addAttribute("usuario", new Usuario());
 		return "login";
 	}
@@ -45,6 +45,7 @@ public class LoginController {
 			model.addAttribute("mensagem", "Usuario e senha invalido");
 		}else {
 			sessao.setAttribute("usuariologado", usuarioCosultado);
+
 			return "usuarioLogadoIndex";
 
 		}

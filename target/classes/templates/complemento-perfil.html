@@ -43,34 +43,36 @@ function mascara(t, mask){
 						<!-- INPUT ENDEREÇO -->
 						<div class="form-group col-md-12">
 							<label for="inputEnd"><strong>ENDEREÇO:</strong></label> 
-							<input type="text" th:field="*{endereco}" placeholder="Ex: Av. Recife, nº 10" class="form-control border border-dark rounded-sm"
+							<input type="text" th:field="*{endereco}" style="color: #000; font-weight: 500;" placeholder="Ex: Av. Recife, nº 10" class="form-control border border-dark rounded-sm"
 							id="inputEnd">
 						</div>
 						
 						<!-- INPUT COMPLEMENTO -->
 						<div class="form-group col-md-12">
 							<label for="inputCmp"><strong>COMPLEMENTO:</strong></label> 
-						<input type="text" th:field="*{complemento}"  placeholder="Ex: aptº 372 - bloco A" class="form-control border border-dark rounded-sm"
+						<input type="text" th:field="*{complemento}"  style="color: #000; font-weight: 500;" placeholder="Ex: aptº 372 - bloco A" class="form-control border border-dark rounded-sm"
 						id="inputCmp">
 						</div>
 						
 						<!-- INPUT CEP -->
 						<div class="form-group col-md-12">
 								<label for="cep"><strong>CEP:</strong></label> 
-						<input type="text" th:field="*{cep}" maxlength="9"  onkeypress="mascara(this, '#####-###')" class="form-control border border-dark rounded-sm"
+						<input type="text" th:field="*{cep}" style="color: #000; font-weight: 500;" placeholder="Exemplo: 54330-010"  maxlength="9"  onkeypress="mascara(this, '#####-###')" class="form-control border border-dark rounded-sm"
 						id="cep">
 						</div>
 						
 							<!-- INPUT TELEFONE -->
 						<div class="form-group col-md-12">
 								<label for="inputTel"><strong>TELEFONE:</strong></label> 
-						<input type="text" th:field="*{telefone}" maxlength="14"  onkeypress="mascara(this, '## # ####-####')" class="form-control border border-dark rounded-sm"
+						<input type="text" th:field="*{telefone}" style="color: #000; font-weight: 500;" placeholder="Exemplo: (XX) X XXXX-XXXX" maxlength="14"  onkeypress="mascara(this, '## # ####-####')" class="form-control border border-dark rounded-sm"
 						id="inputTel">
 						</div>
 						<br>
-						<div class="col-md-6 offset-md-3">
-								<button type="submit" class="btn btn-success btn-block w-60"><strong>SALVAR</strong></button>
+						<div class="col-md-6 offset-md-3 btn-group">
+								<button type="submit" class="btn btn-success"><strong>SALVAR</strong></button>&nbsp;&nbsp;&nbsp;&nbsp;
+									<a th:href="@{usuarioPerfil}" style="color: #000" class="btn btn-outline-warning"><strong>VOLTAR</strong></a>
 						</div>
 					</form>
+					<br><br><br><br><br>
 </body>
 </html>

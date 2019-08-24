@@ -12,6 +12,8 @@ public interface ChefDAO extends JpaRepository<Chef, Integer> {
 	@Query("select u from Chef u where u.email = :email")
 	public Chef findByEmail(String email);
 
+	@Query("select u from Chef u ")
+	public Chef findBynome();
 	
 	@Query("select u from Chef u where u.email = :email and u.senha = :senha")
 	public Chef efetuarLogin(String email, String senha);

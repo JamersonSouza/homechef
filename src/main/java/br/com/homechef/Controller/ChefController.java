@@ -60,7 +60,7 @@ public class ChefController {
 	}
 	
 	@PostMapping("/addChef")
-	public ModelAndView addUser(@Valid @ModelAttribute Chef chef, Errors erros, RedirectAttributes rt, @RequestParam("file") MultipartFile imagem) {
+	public ModelAndView addUser(@Valid @ModelAttribute Chef chef, Errors erros, HttpSession sesion,RedirectAttributes rt, @RequestParam("file") MultipartFile imagem) {
 		ModelAndView mv = new ModelAndView("contaCriada");
 		mv.addObject("chef", chef);
 		if(erros.hasErrors()) {
@@ -71,6 +71,7 @@ public class ChefController {
 			if (Util.fazerUploadImagem(imagem)) {
 				chef.setImagem(imagem.getOriginalFilename());
 				}
+			
 			chefservice.salvarChef(chef);
 			rt.addFlashAttribute("mensagem", "chef salvo");
 			mv.addObject("mensagem", "chef salvo");
@@ -103,6 +104,7 @@ public class ChefController {
 		}
 		else {
 			sessao2.setAttribute("chefLogado", chefLogado);
+			chef.setUsuario((Usuario) sessao2.getAttribute("cheflogado"));
 			return "chefLogadoIndex";
 		}
 		
@@ -311,7 +313,6 @@ public class ChefController {
 		@GetMapping(value = "/ContratarChef")
 		public ModelAndView viewChef() {
 			ModelAndView mv = new ModelAndView("ContratarChef");
-			mv.addObject("lista", chefservice.listarTodos());
 				return mv;
 		}
 			
