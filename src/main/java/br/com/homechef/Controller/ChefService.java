@@ -10,17 +10,21 @@ import org.springframework.stereotype.Service;
 
 import br.com.homechef.DAO.CardapioDAO;
 import br.com.homechef.DAO.ChefDAO;
+import br.com.homechef.DAO.GaleriaDAO;
 import br.com.homechef.excecoes.EmailExistsException;
 import br.com.homechef.excecoes.EspecExistsException;
 import br.com.homechef.excecoes.ServiceException;
 import br.com.homechef.model.Cardapio;
 import br.com.homechef.model.Chef;
+import br.com.homechef.model.GaleriaChef;
 
 @Service
 public class ChefService {
 	
 	@Autowired
 	private ChefDAO chefdao;
+	
+	@Autowired GaleriaDAO galeriachef;
 	
 	
 	public void salvarComplemento(Chef chef) throws Exception{
@@ -80,5 +84,8 @@ public class ChefService {
 	}
 	
 
+	public GaleriaChef findByIdFoto(Integer id) {
+		return galeriachef.findById(id).orElse(null);
+	}
 
 }

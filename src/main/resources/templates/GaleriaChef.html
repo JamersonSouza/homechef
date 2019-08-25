@@ -11,6 +11,7 @@
 <link rel="stylesheet"
 	href="https://static.pingendo.com/bootstrap/bootstrap-4.3.1.css">
 <title>Galeria Chef</title>
+<script src="https://kit.fontawesome.com/006642858d.js"></script>
 </head>
 
 <body>
@@ -28,9 +29,6 @@
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item"><a class="nav-link" href="#"><b></b></a>
 					</li>
-					<li class="nav-item text-warning"><a class="nav-link"
-						href="encontrar_chef.html"><b class="text-dark"><b
-								class="text-white">ENCONTRAR UM CHEF</b></b></a></li>
 					<li class="nav-item text-danger"><a
 						class="nav-link text-decoration-none" href="sobre_nos.html"><span><b
 								class="text-dark"><b class="text-white">SOBRE NOS</b></b></span></a></li>
@@ -39,11 +37,8 @@
 							class="text-dark"><b class="text-white h-50">CONTATO</b></b></a></li>
 				</ul>
 				<a class="btn navbar-btn ml-md-2 btn-warning text-danger"
-					th:href="@{loginchef}"><i class="fa fa-user fa-fw text-dark"></i><b
-					class="text-body">CHEF</b></a> <a
-					class="btn navbar-btn ml-md-2 btn-light text-danger"
-					th:href="@{login}"><i class="fa fa-user fa-fw text-dark"></i><b
-					class="text-body">USUÁRIO</b></a>
+					th:href="@{perfilChef}"><i class="fa fa-user fa-fw text-dark"></i><b
+					class="text-body">MINHA CONTA</b></a>
 			</div>
 		</div>
 	</nav>
@@ -92,6 +87,26 @@
 <div class="card card-panel">
 		<div class="card-heading" style="padding: 30px;">
 				<h3 class="card-title" style="font-weight: 400;">Últimas Fotos Adicionadas</h3>
+				<div class="card-body">
+						<div >
+<div class="row">
+	<div class="card mb-4" style="max-width: 330px; padding: 2%; margin-left: 120px; margin-bottom: 20px;" th:each="imagens : ${listaFotos}">
+		<div class="row no-gutters">
+			<div class="col-md-6">
+				<br>         <img class="img-fluid d-block" style="width: 400px; height: 150px; border: 3px solid #d35400;" th:attr="src=@{'/photos/'+ ${imagens.GaleriaImagem}}"> 
+			</div>
+				<div class="col-md-6">
+					<div class="card-body">
+					<a th:href="@{/EditarFoto(id=${imagens.id})}"><i class="fas fa-edit"></i> Editar</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a th:href="@{/removerFoto(id=${imagens.id})}"><i class="fas fa-times"></i>REMOVER</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+       
+      </div>
+				</div>
 		</div>
 </div>
 <br><br>

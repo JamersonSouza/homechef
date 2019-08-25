@@ -23,4 +23,5 @@ public interface ChefDAO extends JpaRepository<Chef, Integer> {
 	
 	public List<Chef> findByNomeContainingIgnoreCase(String nomePesquisa);
 	
+	
 }

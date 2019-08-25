@@ -383,6 +383,26 @@ public class ChefController {
 			}
 			galeria.setChefGaleria((Chef) session.getAttribute("chefLogado"));
 			galeriadao.save(galeria);
+			return galeria();
+		}
+		
+//		============= EDITAR E REMOVER FOTO ==================
+		@GetMapping("EditarFoto")
+		public ModelAndView editarFoto(@RequestParam Integer id, GaleriaChef galeria, HttpSession session) {
+			ModelAndView mv = new ModelAndView("GaleriaEditFotos");
+			galeria.setChefGaleria((Chef) session.getAttribute("chefLogado"));
+			mv.addObject("galeria", chefservice.findByIdFoto(id));
+			galeriadao.deleteById(id);
 			return mv;
+		}
+		
+		@GetMapping("/removerFoto")
+		public ModelAndView removerFoto(@RequestParam Integer id, GaleriaChef galeria, HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		galeria.setChefGaleria((Chef) session.getAttribute("chefLogado"));
+		mv.addObject("galeria", new GaleriaChef());
+		galeriadao.deleteById(id);
+		return galeria();
+		
 		}
 }

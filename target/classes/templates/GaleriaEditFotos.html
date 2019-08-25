@@ -11,7 +11,6 @@
 <link rel="stylesheet"
 	href="https://static.pingendo.com/bootstrap/bootstrap-4.3.1.css">
 <title>Galeria Chef</title>
-<script src="https://kit.fontawesome.com/006642858d.js"></script>
 </head>
 
 <body>
@@ -49,8 +48,8 @@
 			<div class="row">
 				<div class="text-center col-md-12">
 					<h1>
-						<b>SALVE FOTOS NA SUA GALERIA E FIQUE VISÍVEL &nbsp;</b><br>
-						<b>PARA SEUS FUTUROS CLIENTES</b>
+						<b>PARA EDITAR SUA FOTO BASTA CLICAR NO BOTÃO  &nbsp;</b><br>
+						<b>ABAIXO E ESCOLHER UMA NOVA FOTO</b>
 					</h1>
 				</div>
 			</div>
@@ -84,31 +83,6 @@
 			<hr width="50%">
 </form>
 
-<div class="card card-panel">
-		<div class="card-heading" style="padding: 30px;">
-				<h3 class="card-title" style="font-weight: 400;">Últimas Fotos Adicionadas</h3>
-				<div class="card-body">
-						<div >
-<div class="row">
-	<div class="card mb-4" style="max-width: 330px; padding: 2%; margin-left: 120px; margin-bottom: 20px;" th:each="imagens : ${listaFotos}">
-		<div class="row no-gutters">
-			<div class="col-md-6">
-				<br>         <img class="img-fluid d-block" style="width: 400px; height: 150px; border: 3px solid #d35400;" th:attr="src=@{'/photos/'+ ${imagens.GaleriaImagem}}"> 
-			</div>
-				<div class="col-md-6">
-					<div class="card-body">
-					<a th:href="@{/EditarFoto(id=${imagens.id})}"><i class="fas fa-edit"></i> Editar</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a th:href="@{/removerFoto(id=${imagens.id})}"><i class="fas fa-times"></i>REMOVER</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-       
-      </div>
-				</div>
-		</div>
-</div>
 <br><br>
 </body>
 </html>
