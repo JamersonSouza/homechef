@@ -12,9 +12,11 @@ public class AutorizadorInteceptor implements HandlerInterceptor {
 	
 	private static final boolean CONTROLAR_ACESSO = true;
 	
-	private static final String[] RECURSOS_LIVRES = { "/", "/addChef", "/addUsuario", "/index", "/login", "/loginchef", "/acesso-negado", "/cadastro", "/recuperarUsuario", "/RecuperarSenhaUsuario","/Escolher_Cadastro", "/loginchef", "/contato", "/cadastroChef"};
+	private static final String[] RECURSOS_LIVRES = { "/", "/addChef", "/addUsuario", "/index", "/login", "/loginchef", "/acesso-negado", "/cadastro", "/recuperarUsuario", "/RecuperarSenhaUsuario","/Escolher_Cadastro", "/loginchef", "/contato", 
+			"/cadastroChef", "/pesquisarComida", "/pesquisaComida", "/pratosSelect", "/pesquisa-pratos-baratos", "/lista-pratos-economicos", "/lista-pratos-MedioPreco", "/lista-pratos-AltoPreco",
+			"/pratos-PrecoSelect", "/ContratarChef", "/EscolherLogin"};
 	
-	private final String[] PAGINAS_ESTATICAS = {"/css/", "/imagens/", "/js/", "/photos/"};
+	private final String[] PAGINAS_ESTATICAS = {"/css/", "/imagens/", "/js/", "/photos"};
 	
 	private static final String PAGINA_ACESSO_NEGADO = "/acesso-negado";
 
@@ -24,8 +26,8 @@ public class AutorizadorInteceptor implements HandlerInterceptor {
 			 PAGINA_ACESSO_NEGADO};
 	
 	private final String[] PAGINAS_LOGADO_CHEF = {"/", "/index", "/addCardapio", "/ExcluirConta", 
-			 "/EditCardapio", "/CardapioEdit", "/removerCardapio", "/GaleriaChef/","/fotosGaleria/",
-			 "/ChefsFavoritos", "/EditarFoto", "/removerFoto",
+			 "/EditCardapio", "/CardapioEdit", "/removerCardapio", "/GaleriaChef","/fotosGaleria",
+			 "/ChefsFavoritos", "/EditarFoto", "/removerFoto", "/perfilChef",
 			 PAGINA_ACESSO_NEGADO};
 	
 	@Override

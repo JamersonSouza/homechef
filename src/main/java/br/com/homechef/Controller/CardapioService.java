@@ -49,6 +49,10 @@ public class CardapioService {
 		return cardapioDAO.findByPrecoRazoavel();
 		}
 	
+	public List<Cardapio> contratarchef(){
+		return cardapioDAO.ContrataRChef();
+	}
+	
 	//Lista Preços Altos de Pratos
 	public List<Cardapio> precosAltos(){
 		return cardapioDAO.findByPrecoAlto();

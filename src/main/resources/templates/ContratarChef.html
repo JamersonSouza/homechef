@@ -32,33 +32,21 @@
     <div class="container">
       <div class="row">
         <div class="p-0 order-2 order-lg-1 col-lg-4">
-        
-          <p class="lead mb-3">
-        <table>
-       	
-       	  <tr>
-          <th>NOME:</th>
-          <tr th:each="cont : ${lista}">
-          <td th:text="${cont.nome}"></td>
-          </tr>
-          <tr>
-          <th>LOCAL:</th>
-          <tr th:each="cont : ${lista}">
-           <td th:text="${cont.cidade}"></td> 
-          </tr>
-          <tr>
-          <th>SOBRE:</th>
-          <tr th:each="cont : ${lista}">
-          <td th:text="${cont.descricao}"></td>
-          </tr>
-          <tr>
-          <th>ESPECIALIDADE:</th>
-         <tr th:each="cont : ${lista}">	
-          <td th:text="${cont.especialidade}"></td>
-          </tr>
-       		
-        </table>
-        </p>
+	     <table class="table" th:each="list : ${PratosEmAlta}">
+	     			<thead>
+	     				<tr>
+	     				<th>Chef: <h6 style="text-transform: uppercase; color: #000; font-weight: 500" th:text="${list.chef.nome}"></h6></th></tr>
+	     				<tr>
+	     				<th>Cidade: <h6 style="text-transform: uppercase; color: #000; font-weight: 500" th:text="${list.chef.cidade}"></h6></th>
+	     				</tr>
+	     				<tr>
+	     				<th>Descrição: <h6 style="text-transform: uppercase; color: #000; font-weight: 500" th:text="${list.chef.descricao}"></h6></th>
+	     				</tr>
+	     				<tr>
+	     				<th>Especialidade: <h6 style="text-transform: uppercase; color: #000; font-weight: 500" th:text="${list.chef.especialidade}"></h6></th>
+	     				</tr>
+	     			</thead>
+	     </table>
         </div>
         
         <div class="d-flex flex-column justify-content-center p-3 col-lg-4 order-1 order-lg-2">
@@ -144,6 +132,7 @@
         </div>
       </div>
       <div class="row">
+      
         <div class="col-6 col-md-4 col-lg-2 p-0"> <img class="img-fluid d-block" src="imagens/COmidaTes.jpeg"> </div>
         <div class="col-6 col-md-4 col-lg-2 p-0"> <img class="img-fluid d-block" src="imagens/comidamedia.jpg"> </div>
         <div class="col-6 col-md-4 col-lg-2 p-0"> <img class="img-fluid d-block" src="imagens/prato30a50.png"> </div>

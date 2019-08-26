@@ -55,14 +55,14 @@
 </div>
 
 <div class="row">
-	<div class="card mb-4" style="max-width: 600px; padding: 2%; margin-left: 120px; margin-bottom: 20px;" th:each="pratos : ${listaPratos}" >
+	<div class="card mb-4" style="max-width: 490px; padding: 2%; margin-left: 120px; margin-bottom: 20px;" th:each="pratos : ${listaPratos}" >
 		<div class="row no-gutters">
 			<div class="col-md-4">
 				<br> <img class="img-fluid d-block" style="width: 300px; height: 150px; border: 3px solid #d35400;" th:attr="src=@{'/photos/'+ ${pratos.imagemPrato}}" />
 			</div>
-				<div class="col-md-4">
+				<div class="col-md-8">
 					<div class="card-body">
-						<h3 class="text-left" th:text="${pratos.nome}"></h3>
+						<h3 class="text-left" style="color: #000; font-weight: 500; text-transform: uppercase;" th:text="${pratos.nome}"></h3>
 							<ul class="pl-3">
 							<li ><b style="font-weight: 800; color: #000;">Chef:</b>
 					<b class="my-1" th:text="${pratos.chef.nome}"></b></li>
@@ -70,7 +70,7 @@
 					<b class="my-1" th:text="${pratos.descricao}"></b></li>
 						<li><b style="font-weight: 800; color: #000;">Quantidade de Pessoas:</b> <b class="my-1" th:text="${pratos.limitePessoas}"></b></li>
 				</ul>
-					<a class="btn btn-warning mt-3" href="chef_encontrarChef.html"><b>+SAIBA MAIS</b></a>
+					<a class="btn btn-warning mt-3" th:href="@{ContratarChef}"><b>+SAIBA MAIS</b></a>
 							</div>
 						</div>
 					</div>

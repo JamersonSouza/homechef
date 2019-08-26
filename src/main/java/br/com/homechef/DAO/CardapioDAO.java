@@ -17,6 +17,8 @@ public interface CardapioDAO extends JpaRepository<Cardapio, Integer> {
 	@Query("select u from Cardapio u where u.valorPessoa > 20 and u.valorPessoa < 50")
 	public List<Cardapio> findByPrecoBaixo();
 	
+	@Query("select u from Cardapio u")
+	public List<Cardapio> ContrataRChef();
 	
 	@Query("select u from Cardapio u")
 	public Page<Cardapio> listaPratosEmAlta(org.springframework.data.domain.Pageable paginaReq);

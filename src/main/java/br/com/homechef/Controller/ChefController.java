@@ -116,7 +116,6 @@ public class ChefController {
 	@GetMapping("perfilChef")
 	public ModelAndView perfilchef(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("perfilChef");
-		Chef chefLogado = (Chef) request.getSession().getAttribute("chefLogado");
 		mv.addObject("perfilChefLista", chefDAO.findAll(Sort.by("nome")));
 		return mv;
 	}
@@ -310,11 +309,20 @@ public class ChefController {
 		}	
 		
 //============= metodo listar chef para a view contratarChef
-		@GetMapping(value = "/ContratarChef")
-		public ModelAndView viewChef() {
+		@GetMapping("/ContratarChef")
+		public ModelAndView viewChef(HttpServletRequest request, HttpSession session) {
 			ModelAndView mv = new ModelAndView("ContratarChef");
+			mv.addObject("PratosEmAlta", this.cardapioService.contratarchef());
+			Chef chefLogado = (Chef) request.getSession().getAttribute("chefLogado");
 				return mv;
 		}
+		
+		@GetMapping("EscolherLogin")
+		public ModelAndView viewLogin() {
+			ModelAndView mv = new ModelAndView("EscolherLogin");
+			return mv;
+		}
+		
 			
 		//metodo listar chef na view encontrar chef 
 		@GetMapping("/EncontrarChef")
