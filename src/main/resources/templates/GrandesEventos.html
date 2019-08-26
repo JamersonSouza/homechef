@@ -35,8 +35,6 @@
    
    <div class="container">
   <form method="post" th:action="@{/solicitacao}" th:object="${grandeEvento}">
-  
-  
 <!-- MENSAGEM DE ERRO - VALIDAÇÃO -->
 		<div id="alerta" class="alert alert-danger" th:if="${#fields.hasAnyErrors()}">
 			<p th:each="erro : ${#fields.allErrors()}" th:text="${erro}"></p>
@@ -94,7 +92,7 @@
 		
 		<!-- INPUT HORÁRIO DO EVENTO -->
 		<div class="col-md-3">
-			<label for="inputHora"><strong>Horáro:</strong></label>
+			<label for="inputHora"><strong>Duraçao:</strong></label>
 				<input id="inputHora" type="number" min="1" th:field="*{hora}" class="form-control">
 				<small>*Insira a duração do Evento em horas.</small>
 		</div>

@@ -1,3 +1,4 @@
+
 package br.com.homechef.Controller;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +15,7 @@ public class AutorizadorInteceptor implements HandlerInterceptor {
 	
 	private static final String[] RECURSOS_LIVRES = { "/", "/addChef", "/addUsuario", "/index", "/login", "/loginchef", "/acesso-negado", "/cadastro", "/recuperarUsuario", "/RecuperarSenhaUsuario","/Escolher_Cadastro", "/loginchef", "/contato", 
 			"/cadastroChef", "/pesquisarComida", "/pesquisaComida", "/pratosSelect", "/pesquisa-pratos-baratos", "/lista-pratos-economicos", "/lista-pratos-MedioPreco", "/lista-pratos-AltoPreco",
-			"/pratos-PrecoSelect", "/ContratarChef", "/EscolherLogin", "/fotosgaleria"};
+			"/pratos-PrecoSelect", "/ContratarChef", "/EscolherLogin", "/fotosgaleria", "/GrandesEventos", "/solicitcao"};
 	
 	private final String[] PAGINAS_ESTATICAS = {"/css/", "/imagens/", "/js/", "/photos"};
 	

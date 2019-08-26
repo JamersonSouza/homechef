@@ -4,7 +4,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -28,14 +27,7 @@ public class ContatoController {
 		return mv;
 		}
 
-	//metodo para salvar a mensagem no bd
-	//@PostMapping("/contato")
-	//public String addContato(@ModelAttribute Contato contato) {
-		//System.out.println(contato);
-		//contatoRep.save(contato);
-		//return "redirect:/contato";
-		
-	//}
+
 	//metodo para salvar mensagem no banco e tratar erros
 	@PostMapping("/contato")
 	public ModelAndView addContato(@Valid @ModelAttribute Contato contato, Errors errors) {

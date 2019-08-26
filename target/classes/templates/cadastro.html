@@ -9,7 +9,10 @@
 	type="text/css">
 <link rel="stylesheet"
 	href="https://static.pingendo.com/bootstrap/bootstrap-4.3.1.css">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
 <title>Cadastro :: Usuario</title>
+
 </head>
 <body>
 
@@ -21,7 +24,7 @@
 					<b>CADASTRE-SE</b>
 				</h1>
 				<br>
-				<form method="post" th:action="@{/addUsuario}" th:object="${usuario}" enctype="multipart/form-data">
+				<form method="post" th:action="@{/addUsuario}" th:object="${usuario}" enctype="multipart/form-data" name="userform">
 				
 						<!-- ALERTA MENSAGEM DE USUARIO CADASTRADO -->
 						<div id="alerta" class="alert alert-success" th:if="${!#strings.isEmpty(mensagem)}">
@@ -59,14 +62,14 @@
 						<div class="form-group col-md-6">
 								<label for="inputSenha"><h5><strong>SENHA:</strong></h5></label> 
 						<input type="password" th:field="*{senha}" style="font-weight: 500; color: #000;" placeholder="Insira sua senha" class="form-control border border-dark rounded-sm"
-						id="SenhaAtual">
+						id="SenhaAtual" name="SenhaAtual">
 						</div>
 						
 							<!-- INPUT CONFIRMAR SENHA -->
 						<div class="form-group col-md-6">
-								<label for="inputCsenha"><h5><strong>CONFIRMA SENHA:</strong></h5></label> 
+								<label for="inputCsenha"><h5><strong>CONFIRMAR SENHA:</strong></h5></label> 
 						<input type="password" th:field="*{cnfSenha}" style="font-weight: 500; color: #000;" placeholder="Digite novamente sua senha" class="form-control border border-dark rounded-sm"
-						id="SenhaRepeat">
+						id="SenhaRepeat" name="SenhaRepeat">
 						</div>
 						
 						
@@ -81,7 +84,7 @@
 						</center>
 						</div>
 						
-						<button type="submit" style="margin-left: 40%;" class="btn btn-success"><strong>CRIAR CONTA</strong></button>
+						<button type="submit" onclick="return validar()" style="margin-left: 40%;" class="btn btn-success" ><strong>CRIAR CONTA</strong></button>
 							
 						
 						</div>
@@ -91,5 +94,29 @@
 		<!-- DIVS IMPORTANTES RESPONSAVEL IMG FNDO -->
 			</div>		
 		</div>
+<script>
+	function validar(){
+		var SenhaAtual= userform.SenhaAtual.value;
+		var SenhaRepeat= userform.SenhaRepeat.value;
+		if(SenhaAtual== "" || SenhaAtual.length <=5){
+			alert("Preencha o campo senha com minimo 6 caracteres");
+			userform.SenhaAtual.focus();
+			return false;
+		}
+		if(SenhaRepeat == "" || SenhaRepeat.length <= 5){
+			alert("Preencha o campo confirmar senha igual ao campo senha");
+			userform.SenhaRepeat.focus();
+			return false;
+		}
+		
+		if (SenhaAtual != SenhaRepeat) {
+			alert("Senhas diferentes");
+			userform.SenhaAtual.focus();
+			return false;
+		}
+
+	}
+
+</script> 
 </body>
 </html>
