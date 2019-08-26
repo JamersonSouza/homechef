@@ -313,6 +313,7 @@ public class ChefController {
 		public ModelAndView viewChef(HttpServletRequest request, HttpSession session) {
 			ModelAndView mv = new ModelAndView("ContratarChef");
 			mv.addObject("PratosEmAlta", this.cardapioService.contratarchef());
+			mv.addObject("fotosgaleria", galeriadao.findAll());
 			Chef chefLogado = (Chef) request.getSession().getAttribute("chefLogado");
 				return mv;
 		}

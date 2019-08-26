@@ -77,9 +77,9 @@
             
           </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4" th:each="lista : ${PratosEmAlta}">
           <div class="row">
-            <div class="col-md-12"><img class="img-fluid d-block" src="imagens/foto_chef.png"></div>
+            <div class="col-md-12"><img class="img-fluid d-block" style="border: 3px solid #d35400;" th:attr="src=@{'/photos/'+ ${lista.chef.imagem}}" /></div>
           </div>
         </div>
       </div>
@@ -116,32 +116,33 @@
   <div class="py-5" style="	background-image: url(imagens/fundoFotter.jpg);	background-position: top left;	background-size: 100%;	background-repeat: repeat;">
     <div class="container">
       <div class="row">
-        <div class="px-lg-5 d-flex flex-column justify-content-center col-lg-6" th:each="cont : ${lista}">
-				<h1 class="text-uppercase" ><b th:text=${cont.nome}></b></h1>
-          <p class="mb-3 lead text-left text-dark text-capitalize" ><b th:text=${cont.descricao}></b></p>
+        <div class="px-lg-5 d-flex flex-column justify-content-center col-lg-6" th:each="cont : ${PratosEmAlta}">
+				<h1 class="text-uppercase" ><b style="color: #e67e22" th:text=${cont.chef.nome}></b></h1>
+          <p class="mb-3 lead text-left text-dark text-capitalize" ><b th:text=${cont.chef.descricao}></b></p>
         </div>
         <div class="col-lg-6"> <img class="img-fluid d-block" src="imagens/chef.jpg"> </div>
       </div>
     </div>
   </div>
-  <div class="pt-5">
-    <div class="container-fluid">
-      <div class="row">
+      <div class="row p-4">
         <div class="text-center mx-auto col-md-12">
           <h1 class="mb-4"><b>GALERIA DO CHEF</b></h1>
         </div>
       </div>
       <div class="row">
-      
-        <div class="col-6 col-md-4 col-lg-2 p-0"> <img class="img-fluid d-block" src="imagens/COmidaTes.jpeg"> </div>
-        <div class="col-6 col-md-4 col-lg-2 p-0"> <img class="img-fluid d-block" src="imagens/comidamedia.jpg"> </div>
-        <div class="col-6 col-md-4 col-lg-2 p-0"> <img class="img-fluid d-block" src="imagens/prato30a50.png"> </div>
-        <div class="col-6 col-md-4 col-lg-2 p-0"> <img class="img-fluid d-block" src="imagens/tripe-foto-comida-850x567.jpg"> </div>
-        <div class="col-6 col-md-4 col-lg-2 p-0"> <img class="img-fluid d-block" src="imagens/prato-chique2.jpg"> </div>
-        <div class="col-6 col-md-4 col-lg-2 p-0"> <img class="img-fluid d-block" src="imagens/images.jpeg"> </div>
-      </div>
-    </div>
-  </div>
+	<div class="card mb-4" style="max-width: 330px; padding: 2%; margin-left: 120px; margin-bottom: 20px;" th:each="imagens : ${fotosgaleria}">
+		<div class="row no-gutters">
+			<div class="col-md-6">
+				<br> 
+				<img class="img-fluid d-block" style="width: 300px; height: 150px; border: 3px solid #d35400;" 
+				th:attr="src=@{'/photos/'+ ${imagens.chefGaleria.galeriachef}}"/>
+			</div>
+					</div>
+				</div>
+			</div>
+       
+  
+ 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
