@@ -126,6 +126,13 @@ public class UsuarioController {
 		return mv;
 		
 	}
+//	================= CONFIGURAÇÃO DA CONTA ==============
+	@GetMapping("Configuracoes-Conta")
+	public ModelAndView configConta() {
+		ModelAndView mv = new ModelAndView("UsuarioConfig");
+		mv.addObject("listaUsuario", usuarioDao.findAll());
+		return mv;
+	}
 	
 //========================= METODO PARA LISTAR USUARIO - OBS PRECISA SER MELHORADO ================================	
 	@GetMapping("/usuarioPerfil")

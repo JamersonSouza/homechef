@@ -23,7 +23,7 @@ public class AutorizadorInteceptor implements HandlerInterceptor {
 
 	private final String[] PAGINAS_LOGADO_USUARIO = {"/", "/index", "/editUser", "/usuarioPerfil", 
 			 "/salvarComplemento", "/contaExcluida", "/ExcluirUsuario", "/FavoritarChef",
-			 "/ChefsFavoritos", 
+			 "/ChefsFavoritos", "Configuracoes-Conta",
 			 PAGINA_ACESSO_NEGADO};
 	
 	private final String[] PAGINAS_LOGADO_CHEF = {"/", "/index", "/addCardapio", "/ExcluirConta", 
