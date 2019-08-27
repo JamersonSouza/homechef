@@ -45,27 +45,18 @@
 				<img th:attr="src=@{'/photos/'+ ${session.chefLogado.imagem}}"
 					style="width: 200px; height: 210px; border-radius: 50%; border: 3px solid #fa8231;" />
 			</center>
-			<h1 class="text-center" style="font-weight: 300;">Seja Bem
-				Vindo(a),</h1>
+			<h1 class="text-center" style="font-weight: 300;">Área de Configuração da Conta do usuário(a),</h1>
 			<h1 style="font-weight: 380; text-transform: UPPERCASE"
 				class="h1 text-center" th:text="|${session.chefLogado.nome}|"></h1>
 			<div class="form-row">
-				<div class="col-sm-12">
-					<a style="color: #fff;" class="btn btn-success col-sm-12"><b>&#9745;EVENTOS
-							AGENDADOS</b></a>
-				</div>
-				<div class="col-sm-6">
-					<a style="color: #fff;" class="btn btn-warning mt-3"
-						th:href="@{GaleriaChef}"><b>GALERIA DE FOTOS</b></a>
+				<div class="col-sm-6" th:each="chef : ${perfilChefLista}">
+					<a style="color: #fff;" class="btn btn-danger mt-3"
+						th:href="@{/ExcluirConta(idChef=${chef.idChef})}"><b>EXCLUIR
+							CONTA!</b></a>
 				</div>
 				<div class="col-sm-6">
 					<a style="color: #2c3e50;" class="btn btn-warning mt-3"
-						th:href="@{Cardapio}"><b>&#9733;CARDÁPIO</b></a>
-				</div>
-				
-				<div class="col-sm-12">
-					<a style="color: #2c3e50;" class="btn btn-warning mt-3"
-						th:href="@{/Configuracao-Conta-Chef}"><b>&#9733;CONFIGURAÇÃO DA CONTA</b></a>
+						th:href="@{/CardapioEdit}"><b>&#9733;EDITAR CARDÁPIO</b></a>
 				</div>
 			</div>
 			<br>

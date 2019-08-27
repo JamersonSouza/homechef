@@ -120,6 +120,13 @@ public class ChefController {
 		return mv;
 	}
 	
+	@GetMapping("Configuracao-Conta-Chef")
+	public ModelAndView chefConfig() {
+		ModelAndView mv = new ModelAndView("ConfigChef");
+		mv.addObject("perfilChefLista", chefDAO.findAll(Sort.by("nome")));
+		return mv;
+	}
+	
 	public ModelAndView listar() {
 		ModelAndView mv = new ModelAndView();
 			mv.addObject("perfilChefLista", chefservice.listarTodos());

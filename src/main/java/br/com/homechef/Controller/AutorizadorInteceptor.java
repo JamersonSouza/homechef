@@ -15,7 +15,7 @@ public class AutorizadorInteceptor implements HandlerInterceptor {
 	
 	private static final String[] RECURSOS_LIVRES = { "/", "/addChef", "/addUsuario", "/index", "/login", "/loginchef", "/acesso-negado", "/cadastro", "/recuperarUsuario", "/RecuperarSenhaUsuario","/Escolher_Cadastro", "/loginchef", "/contato", 
 			"/cadastroChef", "/pesquisarComida", "/pesquisaComida", "/pratosSelect", "/pesquisa-pratos-baratos", "/lista-pratos-economicos", "/lista-pratos-MedioPreco", "/lista-pratos-AltoPreco",
-			"/pratos-PrecoSelect", "/ContratarChef", "/EscolherLogin", "/fotosgaleria", "/GrandesEventos", "/solicitcao", "EncontrarChef", "sobre_nos"};
+			"/pratos-PrecoSelect", "/ContratarChef", "/EscolherLogin", "/fotosgaleria","/GrandesEventos", "/solicitcao", "EncontrarChef", "sobre_nos"};
 	
 	private final String[] PAGINAS_ESTATICAS = {"/css/", "/imagens/", "/js/", "/photos/"};
 	
@@ -26,9 +26,9 @@ public class AutorizadorInteceptor implements HandlerInterceptor {
 			 "/ChefsFavoritos", "Configuracoes-Conta",
 			 PAGINA_ACESSO_NEGADO};
 	
-	private final String[] PAGINAS_LOGADO_CHEF = {"/", "/index", "/addCardapio", "/ExcluirConta", 
+	private final String[] PAGINAS_LOGADO_CHEF = {"/", "/index", "/addCardapio", 
 			 "/EditCardapio", "/CardapioEdit", "/removerCardapio", "/GaleriaChef","/fotosGaleria",
-			 "/ChefsFavoritos", "/EditarFoto", "/removerFoto", "/perfilChef",
+			 "/ChefsFavoritos", "/EditarFoto", "/removerFoto", "/perfilChef", "/Configuracao-Conta-Chef", "/ExcluirConta",
 			 PAGINA_ACESSO_NEGADO};
 	
 	@Override
@@ -45,7 +45,7 @@ public class AutorizadorInteceptor implements HandlerInterceptor {
 		if(!CONTROLAR_ACESSO) {
 		return true;
 	}
-		if (pagRequisitada.contains("/perfilChef") || pagRequisitada.contains("ExcluirConta")) {
+		if (pagRequisitada.contains("/perfilChef")) {
 			if (ChefEstaLogado) {
 					return true;
 				} else {
@@ -54,8 +54,8 @@ public class AutorizadorInteceptor implements HandlerInterceptor {
 				}
 		}
 		
-		if (pagRequisitada.contains("/Cardapio") || pagRequisitada.contains("exclusaoConta") || pagRequisitada.contains("fotosGaleria") || pagRequisitada.contains("GaleriaChef")  
-				|| pagRequisitada.contains("/removerFoto") || pagRequisitada.contains("/EditarFoto")) {
+		if (pagRequisitada.contains("/Cardapio") || pagRequisitada.contains("fotosGaleria") || pagRequisitada.contains("GaleriaChef")  
+				|| pagRequisitada.contains("/removerFoto") || pagRequisitada.contains("/EditarFoto") || pagRequisitada.contains("contaExcluida")) {
 			if (ChefEstaLogado) {
 					return true;
 				} else {
