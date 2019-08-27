@@ -2,84 +2,123 @@
 <html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
-  <link rel="stylesheet" href="https://static.pingendo.com/bootstrap/bootstrap-4.3.1.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+	type="text/css">
+<link rel="stylesheet"
+	href="https://static.pingendo.com/bootstrap/bootstrap-4.3.1.css">
 </head>
-
-<body style="	background-image: linear-gradient(to bottom, rgba(130,130,130,0.8), rgba(130,130,130,0.8));	background-position: top left;	background-size: 100%;	background-repeat: repeat;">
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark py-4 pb-4" style="">
-    <div class="container"> <a class="navbar-brand" th:href="@{index}">
-        <img alt="" src="/imagens/logo_homechef2.png" width="150px">
-      </a> <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse" data-target="#navbar10">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbar10">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item text-danger"> <a class="nav-link text-decoration-none" th:href="@{sobre_nos}"><span><b class="text-dark"><b class="text-white">SOBRE NÓS</b></b></span></a> </li>
-          <li class="nav-item text-dark" style=""> <a class="nav-link text-decoration-none" th:href="@{contato}"><b class="text-dark"><b class="text-white h-50">CONTATO</b></b></a> </li>
-          <button class="btn btn-outline-warning" type="button">
-          <a class="link" th:href="@{index}">SAIR</a>
-          </button>
-        </a>
-      </div>
-    </div>
-  </nav>
+<body
+	style="background-image: linear-gradient(to bottom, rgba(130, 130, 130, 0.8), rgba(130, 130, 130, 0.8)); background-position: top left; background-size: 100%; background-repeat: repeat;">
+	<nav class="navbar navbar-expand-md navbar-dark bg-dark py-4 pb-4"
+		style="">
+		<div class="container">
+			<a class="navbar-brand" th:href="@{index}"> <img alt=""
+				src="/imagens/logo_homechef2.png" width="150px">
+			</a>
+			<button class="navbar-toggler navbar-toggler-right border-0"
+				type="button" data-toggle="collapse" data-target="#navbar10">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbar10">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item text-danger"><a
+						class="nav-link text-decoration-none" th:href="@{sobre_nos}"><span><b
+								class="text-dark"><b class="text-white">SOBRE NÓS</b></b></span></a></li>
+					<li class="nav-item text-dark" style=""><a
+						class="nav-link text-decoration-none" th:href="@{contato}"><b
+							class="text-dark"><b class="text-white h-50">CONTATO</b></b></a></li>
+					<button class="btn btn-outline-warning" type="button">
+						<a class="link" th:href="@{index}">SAIR</a>
+					</button>
+					</a>
+			</div>
+		</div>
+	</nav>
 <body>
-    <br>
-    
-       
-        <div class="container" style="margin-left: 30%;">
-         <div class="col-sm-6">
-         <center>
-            <img th:attr="src=@{'/photos/'+ ${session.chefLogado.imagem}}" style="width: 200px; height: 210px; border-radius: 50%; border: 3px solid #fa8231;"/>
-         </center>
-         
-         <div th:each="chef : ${perfilChefLista}">
-      
-		 <h1 class="text-center" style="font-weight: 300;">Seja Bem Vindo(a),</h1>  <h1 style="font-weight: 380; text-transform: UPPERCASE" class="h1 text-center" th:text="|${session.chefLogado.nome}|"></h1>
-      
-          <div class="form-row">
-            <div class="col-sm-12"><a  style="color: #fff;" class="btn btn-success col-sm-12"><b>&#9745;EVENTOS AGENDADOS</b></a></div>
-            <div class="col-sm-6"><a style="color: #fff;" class="btn btn-warning mt-3" th:href="@{GaleriaChef}"><b>GALERIA DE FOTOS</b></a></div>
-            <div class="col-sm-6"><a style="color: #2c3e50;" class="btn btn-warning mt-3" th:href="@{Cardapio}"><b>&#9733;CARDÁPIO</b></a></div>
-          	<div class="col-sm-6"><a style="color: #fff;" class="btn btn-danger mt-3" th:href="@{/ExcluirConta(idChef=${chef.idChef})}"><b>EXCLUIR CONTA!</b></a></div>
-          	 <div class="col-sm-6"><a style="color: #2c3e50;" class="btn btn-warning mt-3" th:href="@{/CardapioEdit}"><b>&#9733;EDITAR CARDÁPIO</b></a></div>
-	    		
-	    		</div>	    
-	        </div>
-<br><br>
-        </div>
-    </div>
- 
-  <div class="text-white py-1" style="	background-image: linear-gradient(to bottom, rgba(0, 0, 0, .75), rgba(0, 0, 0, .75)), url(imagens/fundoFotter.jpg);	background-position: center center, center center;	background-size: cover, cover;	background-repeat: repeat, repeat;">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12 text-center align-self-center p-4">
-          <p class=""><b>Home Chef Team.&nbsp;<br>Av.Barão de Lucena, 251 - Centro Jaboatão dos Guararapes,&nbsp;<br>PE 54110-051&nbsp;<br>Tel: (81) 9 5642-3532&nbsp;</b></p>
-          <div class="row">
-            <div class="col-md-12 d-flex align-items-center justify-content-around"> <a href="#">
-                <i class="d-block fa fa-facebook-official text-light fa-lg mx-2"></i>
-              </a> <a href="#">
-                <i class="d-block fa fa-instagram text-light fa-lg mx-2"></i>
-              </a> <a href="#">
-                <i class="d-block fa fa-google-plus-official text-light fa-lg mx-2"></i>
-              </a> <a href="#">
-                <i class="d-block fa fa-pinterest-p text-light fa-lg mx-2"></i>
-              </a> <a href="#">
-                <i class="d-block fa fa-reddit text-light fa-lg mx-2"></i>
-              </a> <a href="#">
-                <i class="d-block fa fa-twitter text-light fa-lg ml-2"></i>
-              </a> </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<br>
+	<div class="container" style="margin-left: 30%;">
+		<div class="col-sm-6">
+			<center>
+				<img th:attr="src=@{'/photos/'+ ${session.chefLogado.imagem}}"
+					style="width: 200px; height: 210px; border-radius: 50%; border: 3px solid #fa8231;" />
+			</center>
+			<h1 class="text-center" style="font-weight: 300;">Seja Bem
+				Vindo(a),</h1>
+			<h1 style="font-weight: 380; text-transform: UPPERCASE"
+				class="h1 text-center" th:text="|${session.chefLogado.nome}|"></h1>
+			<div class="form-row">
+				<div class="col-sm-12">
+					<a style="color: #fff;" class="btn btn-success col-sm-12"><b>&#9745;EVENTOS
+							AGENDADOS</b></a>
+				</div>
+				<div class="col-sm-6">
+					<a style="color: #fff;" class="btn btn-warning mt-3"
+						th:href="@{GaleriaChef}"><b>GALERIA DE FOTOS</b></a>
+				</div>
+				<div class="col-sm-6">
+					<a style="color: #2c3e50;" class="btn btn-warning mt-3"
+						th:href="@{Cardapio}"><b>&#9733;CARDÁPIO</b></a>
+				</div>
+				<div class="col-sm-6" th:each="chef : ${perfilChefLista}">
+					<a style="color: #fff;" class="btn btn-danger mt-3"
+						th:href="@{/ExcluirConta(idChef=${chef.idChef})}"><b>EXCLUIR
+							CONTA!</b></a>
+				</div>
+				<div class="col-sm-6">
+					<a style="color: #2c3e50;" class="btn btn-warning mt-3"
+						th:href="@{/CardapioEdit}"><b>&#9733;EDITAR CARDÁPIO</b></a>
+				</div>
+			</div>
+			<br>
+			<br>
+		</div>
+	</div>
+	<div class="text-white py-1"
+		style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, .75), rgba(0, 0, 0, .75)), url(imagens/fundoFotter.jpg); background-position: center center, center center; background-size: cover, cover; background-repeat: repeat, repeat;">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-center align-self-center p-4">
+					<p class="">
+						<b>Home Chef Team.&nbsp;<br>Av.Barão de Lucena, 251 -
+							Centro Jaboatão dos Guararapes,&nbsp;<br>PE 54110-051&nbsp;<br>Tel:
+							(81) 9 5642-3532&nbsp;
+						</b>
+					</p>
+					<div class="row">
+						<div
+							class="col-md-12 d-flex align-items-center justify-content-around">
+							<a href="#"> <i
+								class="d-block fa fa-facebook-official text-light fa-lg mx-2"></i>
+							</a> <a href="#"> <i
+								class="d-block fa fa-instagram text-light fa-lg mx-2"></i>
+							</a> <a href="#"> <i
+								class="d-block fa fa-google-plus-official text-light fa-lg mx-2"></i>
+							</a> <a href="#"> <i
+								class="d-block fa fa-pinterest-p text-light fa-lg mx-2"></i>
+							</a> <a href="#"> <i
+								class="d-block fa fa-reddit text-light fa-lg mx-2"></i>
+							</a> <a href="#"> <i
+								class="d-block fa fa-twitter text-light fa-lg ml-2"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+		integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
 </body>
-
 </html>

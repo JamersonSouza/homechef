@@ -17,7 +17,7 @@ public class AutorizadorInteceptor implements HandlerInterceptor {
 			"/cadastroChef", "/pesquisarComida", "/pesquisaComida", "/pratosSelect", "/pesquisa-pratos-baratos", "/lista-pratos-economicos", "/lista-pratos-MedioPreco", "/lista-pratos-AltoPreco",
 			"/pratos-PrecoSelect", "/ContratarChef", "/EscolherLogin", "/fotosgaleria", "/GrandesEventos", "/solicitcao", "EncontrarChef", "sobre_nos"};
 	
-	private final String[] PAGINAS_ESTATICAS = {"/css/", "/imagens/", "/js/", "/photos"};
+	private final String[] PAGINAS_ESTATICAS = {"/css/", "/imagens/", "/js/", "/photos/"};
 	
 	private static final String PAGINA_ACESSO_NEGADO = "/acesso-negado";
 

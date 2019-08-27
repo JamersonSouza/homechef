@@ -131,7 +131,7 @@ public class UsuarioController {
 	@GetMapping("/usuarioPerfil")
 	public ModelAndView perfilUser() {
 		ModelAndView mv = new ModelAndView("usuarioPerfil");
-		mv.addObject("listaUsuario", usuarioDao.findAll(Sort.by("nome")));
+		mv.addObject("listaUsuario", usuarioDao.findAll());
 		return mv;
 	}
 	

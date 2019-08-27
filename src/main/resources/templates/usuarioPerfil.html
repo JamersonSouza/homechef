@@ -45,22 +45,23 @@
          <center>
           <img th:attr="src=@{'/photos/'+ ${session.usuariologado.imagem}}" style="width: 250px; height: 250px; border-radius: 50%; border: 3px solid #fa8231;"/>
         </center>
-         <div th:each="user : ${listaUsuario}">
    <h1 class="text-center" style="font-weight: 300;">Seja Bem Vindo(a),</h1>  <h1 style="font-weight: 380; text-transform: UPPERCASE" class="h1 text-center" th:text="|${session.usuariologado.nome}|"></h1>
-          <div class="form-row">
+         <div class="row">
            <div class="col-md-6"><a class="btn btn-success" th:href="@{complemento-perfil}"><b>COMPLEMENTE SEU PERFIL</b></a></div>
             <div class="col-md-6"><a class="btn btn-success" th:href="@{lista_meus_eventos}"><b>EVENTOS AGENDADOS</b></a></div>
+            <div class="col-md-6"><a class="btn btn-warning mt-3" th:href="@{ChefsFavoritos}"><b>&#9733;CHEFS FAVORITOS</b></a></div>
+            </div>
+             <div class="form-row"  th:each="user : ${listaUsuario}">
+            <div class="col-sm-6" ><a style="color: #fff;" class="btn btn-danger mt-3" th:href="@{/ExcluirUsuario(idUsuario=${user.idUsuario})}"><b>EXCLUIR CONTA!</b></a></div>
             <div class="col-md-6"><a class="btn btn-warning mt-3" th:href="@{/edituser(idUsuario=${user.idUsuario})}"><b>EDITAR DADOS PESSOAIS</b></a></div>
-            <div class="col-md-6"><a class="btn btn-warning mt-3" th:href="@{ChefsFavoritos}"><b>&#9733;CHEFS FAVORITOS</b></a></div>	
-			          	<div class="col-sm-6"><a style="color: #fff;" class="btn btn-danger mt-3" th:href="@{/ExcluirUsuario(idUsuario=${user.idUsuario})}"><b>EXCLUIR CONTA!</b></a></div>
-	    		</div>	    
-	        </div>
+            </div>	
+	    		   
 <br><br>
         </div>
     </div>
   			
   			
-  <  		<!-- RODAPE -->
+		<!-- RODAPE -->
   <div class="text-white py-1" style="	background-image: linear-gradient(to bottom, rgba(0, 0, 0, .75), rgba(0, 0, 0, .75)), url(imagens/fundoFotter.jpg);	background-position: center center, center center;	background-size: cover, cover;	background-repeat: repeat, repeat;">
     <div class="container">
       <div class="row">
