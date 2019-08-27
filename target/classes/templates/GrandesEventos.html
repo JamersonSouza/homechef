@@ -37,7 +37,7 @@
   <form method="post" th:action="@{/solicitacao}" th:object="${grandeEvento}">
 <!-- MENSAGEM DE ERRO - VALIDAÇÃO -->
 		<div id="alerta" class="alert alert-danger" th:if="${#fields.hasAnyErrors()}">
-			<p th:each="erro : ${#fields.allErrors()}" th:text="${erro}"></p>
+			<strong><p th:each="err : ${#fields.allErrors()}" th:text="${err}"></p></strong>
 		</div>
 		
 		

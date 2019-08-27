@@ -64,7 +64,7 @@ function getEndereco() {
 					<span class="text-center">CADASTRE-SE</span>
 				</h1>
 				        <!---------------- FIM DO CABEÇALHO E INICIO DO FORMULARIO ---------->
-        <form method="POST" th:action="@{/addChef}" th:object="${chef}" enctype="multipart/form-data" id="formulario" style="margin-bottom: 81%">
+        <form method="POST" th:action="@{/addChef}" th:object="${chef}" enctype="multipart/form-data" id="formulario" style="margin-bottom: 81%" name="formchef">
            
            
             <ul id="progress">
@@ -85,13 +85,13 @@ function getEndereco() {
 				
 					<!-- INPUT SENHA-->
                 <label for="inputSenha"><h5><strong>SENHA:</strong></h5></label> 
-				<input type="password" th:field="*{senha}" placeholder="Insira sua senha" class="form-control border border-dark rounded-sm" id="SenhaAtual">
+				<input type="password" th:field="*{senha}" placeholder="Insira sua senha" class="form-control border border-dark rounded-sm" id="SenhaAtual" name="SenhaAtual">
               	
               		 <!-- INPUT CONFIRMA SENHA-->
 				<label for="inputCsenha"><h5><strong>CONFIRME SUA SENHA:</strong></h5></label> 
-				<input type="password" th:field="*{cnfSenha}" placeholder="Digite novamente sua senha" class="form-control border border-dark rounded-sm" id="SenhaRepeat">
+				<input type="password" th:field="*{cnfSenha}" placeholder="Digite novamente sua senha" class="form-control border border-dark rounded-sm" id="SenhaRepeat" name="SenhaRepeat">
 
-                <input type="submit" class="button_passo2" value="Proximo"/>          
+                <input type="submit" onclick="return validar()" class="button_passo2" value="Proximo"/>          
             </div>
 
             <div class="passo2 form-row col-md-10">
@@ -161,7 +161,7 @@ function getEndereco() {
 				<input type="text" th:field="*{rua}" class="form-control border border-dark rounded-sm" id="rua">
 						
                 <input type="submit" class="button_passo2" value="Anterior"/>
-                <button type="submit" class="btn btn-primary" id="confirm" value="Confirmar">CONFIRMAR</button>
+                <button type="submit" class="btn btn-primary" id="confirm" value="Confirmar" >CONFIRMAR</button>
                   <!--<input type="submit" id="confirm" value="Confirmar"/>-->
             </div>
         </form>
@@ -201,5 +201,30 @@ function getEndereco() {
         </script>
 				
 <script src="js/uikit.min.js"></script>
+<script>
+	function validar(){
+		var SenhaAtual= formchef.SenhaAtual.value;
+		var SenhaRepeat= formchef.SenhaRepeat.value;
+		if(SenhaAtual== "" || SenhaAtual.length <=5){
+			alert("Preencha o campo senha com minimo 6 caracteres");
+			formchef.SenhaAtual.focus();
+			return false;
+		}
+		if(SenhaRepeat == "" || SenhaRepeat.length <= 5){
+			alert("Preencha o campo confirmar senha igual ao campo senha");
+			formchef.SenhaRepeat.focus();
+			return false;
+		}
+		
+		if (SenhaAtual != SenhaRepeat) {
+			alert("Senhas diferentes");
+			formchef.SenhaAtual.focus();
+			return false;
+		}
+
+	}
+
+</script> 
+
 </body>
 </html>

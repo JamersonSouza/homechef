@@ -6,11 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -29,7 +26,7 @@ public class GrandesEventos {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@FutureOrPresent(message = "Data Anterior à DATA ATUAL não é PERMITIDA.")
 	private Date dataEvento;
-	//@DateTimeFormat(pattern = "HH:mm")
+	@DateTimeFormat(pattern = "HH:mm")
 	private Integer hora;
 	@NotBlank(message = "Local do Evento Inválido ou Vazio")
 	private String local;

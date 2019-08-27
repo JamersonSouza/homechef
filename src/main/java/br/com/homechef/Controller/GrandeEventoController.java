@@ -24,36 +24,36 @@ public class GrandeEventoController {
 	public ModelAndView viewEvento(GrandesEventos grandeEvento) {
 		ModelAndView mv = new ModelAndView("GrandesEventos");
 		mv.addObject("grandeEvento", new GrandesEventos());
-		mv.addObject("erro", grandeEvento);
+		mv.addObject("err", grandeEvento);
 		return mv;
 	}
 	
 	//validações ainda não estao funcionando.
+	@PostMapping("/solicitacao")
+	public ModelAndView enviarSolicitacao(@Valid @ModelAttribute GrandesEventos grandeEvento, Errors br) {
+		ModelAndView mv = new ModelAndView("GrandesEventos");
+		mv.addObject("grandeEvento", grandeEvento);
+		mv.addObject("err", grandeEvento);
+		if(br.hasErrors()) {
+		return mv;
+		}
+		System.out.println(grandeEvento);
+		grandeseventos.save(grandeEvento);
+		mv.addObject("mensagem", "Solicitação enviada com sucesso!");
+		return mv;
+	}
 	//@PostMapping("/solicitacao")
-	//public ModelAndView enviarSolicitacao(@Valid @ModelAttribute GrandesEventos grandeEvento, BindingResult br) {
-		//ModelAndView mv = new ModelAndView("GrandesEventos");
-		//mv.addObject("grandeEvento", grandeEvento);
-		//mv.addObject("erro", grandeEvento);
-		//if(br.hasErrors()) {
+	//public ModelAndView enviarSolicitacao(@Valid @ModelAttribute GrandesEventos grandeEvento, Errors errors) {
+		//ModelAndView mv= new ModelAndView("GrandesEventos");
+		//if(errors.hasErrors()) {
 			//return mv;
 		//}
+		//this.grandeseventos.save(grandeEvento);
 		//System.out.println(grandeEvento);
-		//grandeseventos.save(grandeEvento);
+		//mv.addObject("grandeEvento", grandeEvento);
 		//mv.addObject("mensagem", "Solicitação enviada com sucesso!");
 		//return mv;
-	//}
-@PostMapping("/solicitacao")
-public ModelAndView enviarSolicitacao(@Valid @ModelAttribute GrandesEventos grandeEvento, Errors errors) {
-		ModelAndView mv= new ModelAndView("GrandesEventos");
-		if(errors.hasErrors()) {
-			return mv;
-		}
-		this.grandeseventos.save(grandeEvento);
-		System.out.println(grandeEvento);
-		mv.addObject("grandeEvento", new GrandesEventos());
-		//mv.addObject("mensagem", "Mensagem enviada");
-		return mv;
 		
-	}
+	//}
 
 }
